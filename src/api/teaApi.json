@@ -1,0 +1,1255 @@
+[
+  {
+    "id": 1,
+    "name": "Sencha",
+    "type": "Green",
+    "score": 4.8,
+    "color": "#B6A889"
+  },
+  {
+    "id": 2,
+    "name": "Gyokuro",
+    "type": "Green",
+    "score": 3.2,
+    "color": "#B6A889"
+  },
+  {
+    "id": 3,
+    "name": "Matcha",
+    "type": "Green",
+    "score": 4.9,
+    "color": "#B6A889"
+  },
+  {
+    "id": 4,
+    "name": "Kabusecha",
+    "type": "Green",
+    "score": 2.3,
+    "color": "#B6A889"
+  },
+  {
+    "id": 5,
+    "name": "Genmaicha",
+    "type": "Green",
+    "score": 2.8,
+    "color": "#B6A889"
+  },
+  {
+    "id": 6,
+    "name": "Houjicha/\nHojicha",
+    "type": "Green",
+    "score": 2.3,
+    "color": "#B6A889"
+  },
+  {
+    "id": 7,
+    "name": "Shincha or\nIchibancha",
+    "type": "Green",
+    "score": 3.5,
+    "color": "#B6A889"
+  },
+  {
+    "id": 8,
+    "name": "Bancha",
+    "type": "Green",
+    "score": 3.6,
+    "color": "#B6A889"
+  },
+  {
+    "id": 9,
+    "name": "Kukicha",
+    "type": "Green",
+    "score": 2.6,
+    "color": "#B6A889"
+  },
+  {
+    "id": 10,
+    "name": "Konacha",
+    "type": "Green",
+    "score": 2.5,
+    "color": "#B6A889"
+  },
+  {
+    "id": 11,
+    "name": "Tamaryokucha\n (Guricha)",
+    "type": "Green",
+    "score": 3.9,
+    "color": "#B6A889"
+  },
+  {
+    "id": 12,
+    "name": "Aracha",
+    "type": "Green",
+    "score": 2.3,
+    "color": "#B6A889"
+  },
+  {
+    "id": 13,
+    "name": "Gunpowder",
+    "type": "Green",
+    "score": 4.1,
+    "color": "#B6A889"
+  },
+  {
+    "id": 14,
+    "name": "Hyson \nLucky Dragon",
+    "type": "Green",
+    "score": 3.6,
+    "color": "#B6A889"
+  },
+  {
+    "id": 15,
+    "name": "Snowy Mountain\nJian",
+    "type": "Green",
+    "score": 2.9,
+    "color": "#B6A889"
+  },
+  {
+    "id": 16,
+    "name": "Kai Hua Long Ding",
+    "type": "Green",
+    "score": 4.9,
+    "color": "#B6A889"
+  },
+  {
+    "id": 17,
+    "name": "Tian Mu Qing Ding",
+    "type": "Green",
+    "score": 2.1,
+    "color": "#B6A889"
+  },
+  {
+    "id": 18,
+    "name": "Xin Yang Mao Jian",
+    "type": "Green",
+    "score": 2.7,
+    "color": "#B6A889"
+  },
+  {
+    "id": 19,
+    "name": "Tai Ping Hou Kui",
+    "type": "Green",
+    "score": 3,
+    "color": "#B6A889"
+  },
+  {
+    "id": 20,
+    "name": "Anji Bai Cha",
+    "type": "Green",
+    "score": 2.4,
+    "color": "#B6A889"
+  },
+  {
+    "id": 21,
+    "name": "Mao Jian",
+    "type": "Green",
+    "score": 3,
+    "color": "#B6A889"
+  },
+  {
+    "id": 22,
+    "name": "Dragonwell/\nLongJing /\nLunch Ching",
+    "type": "Green",
+    "score": 3.7,
+    "color": "#B6A889"
+  },
+  {
+    "id": 23,
+    "name": "Bilo Chun/\nPilochun",
+    "type": "Green",
+    "score": 4.5,
+    "color": "#B6A889"
+  },
+  {
+    "id": 24,
+    "name": "Loashan",
+    "type": "Green",
+    "score": 2.8,
+    "color": "#B6A889"
+  },
+  {
+    "id": 25,
+    "name": "Pouchong",
+    "type": "Green",
+    "score": 3.3,
+    "color": "#B6A889"
+  },
+  {
+    "id": 26,
+    "name": "Matcha",
+    "type": "Matcha",
+    "score": 3.1,
+    "color": "#839A8F"
+  },
+  {
+    "id": 27,
+    "name": "White Kenya Matcha",
+    "type": "Matcha",
+    "score": 2.5,
+    "color": "#839A8F"
+  },
+  {
+    "id": 28,
+    "name": "Yerba Mate Matcha",
+    "type": "Matcha",
+    "score": 3.4,
+    "color": "#839A8F"
+  },
+  {
+    "id": 29,
+    "name": "Matcha Genmai Cha",
+    "type": "Matcha",
+    "score": 4.1,
+    "color": "#839A8F"
+  },
+  {
+    "id": 30,
+    "name": "Bombay Chai Matcha",
+    "type": "Matcha",
+    "score": 4.4,
+    "color": "#839A8F"
+  },
+  {
+    "id": 31,
+    "name": "Baihao Yinzhen (Silver Needle)",
+    "type": "White",
+    "score": 3.4,
+    "color": "#D4CAB0"
+  },
+  {
+    "id": 32,
+    "name": "Bai Mudan (White Peony)",
+    "type": "White",
+    "score": 4.2,
+    "color": "#D4CAB0"
+  },
+  {
+    "id": 33,
+    "name": "Shoumei tea (Long Life Eyebrow)",
+    "type": "White",
+    "score": 4,
+    "color": "#D4CAB0"
+  },
+  {
+    "id": 34,
+    "name": "Gongmei (Tribute Eyebrow)",
+    "type": "White",
+    "score": 3,
+    "color": "#D4CAB0"
+  },
+  {
+    "id": 35,
+    "name": "Xue Ya (Snow Bud)",
+    "type": "White",
+    "score": 2.5,
+    "color": "#D4CAB0"
+  },
+  {
+    "id": 36,
+    "name": "Lapsang Souchong",
+    "type": "Black",
+    "score": 2.1,
+    "color": "#3F4542"
+  },
+  {
+    "id": 37,
+    "name": "Congou Black",
+    "type": "Black",
+    "score": 3.3,
+    "color": "#3F4542"
+  },
+  {
+    "id": 38,
+    "name": "Panyang Congou",
+    "type": "Black",
+    "score": 4.9,
+    "color": "#3F4542"
+  },
+  {
+    "id": 39,
+    "name": "Keemun",
+    "type": "Black",
+    "score": 2.9,
+    "color": "#3F4542"
+  },
+  {
+    "id": 40,
+    "name": "Dianhong",
+    "type": "Black",
+    "score": 2.7,
+    "color": "#3F4542"
+  },
+  {
+    "id": 41,
+    "name": "Yingdehong",
+    "type": "Black",
+    "score": 2.2,
+    "color": "#3F4542"
+  },
+  {
+    "id": 42,
+    "name": "Jiu Qu Hong Mei (Nine Winding Red Plum)",
+    "type": "Black",
+    "score": 4.8,
+    "color": "#3F4542"
+  },
+  {
+    "id": 43,
+    "name": "Yunnan Black",
+    "type": "Black",
+    "score": 2.6,
+    "color": "#3F4542"
+  },
+  {
+    "id": 44,
+    "name": "Darjeeling",
+    "type": "Black",
+    "score": 3,
+    "color": "#3F4542"
+  },
+  {
+    "id": 45,
+    "name": "Ceylon",
+    "type": "Black",
+    "score": 4,
+    "color": "#3F4542"
+  },
+  {
+    "id": 46,
+    "name": "Kangra",
+    "type": "Black",
+    "score": 4.9,
+    "color": "#3F4542"
+  },
+  {
+    "id": 47,
+    "name": "Munnar",
+    "type": "Black",
+    "score": 2.2,
+    "color": "#3F4542"
+  },
+  {
+    "id": 48,
+    "name": "Nilgiri",
+    "type": "Black",
+    "score": 2.7,
+    "color": "#3F4542"
+  },
+  {
+    "id": 49,
+    "name": "Assam",
+    "type": "Black",
+    "score": 3.7,
+    "color": "#3F4542"
+  },
+  {
+    "id": 50,
+    "name": "Earl Grey",
+    "type": "Black",
+    "score": 2.9,
+    "color": "#3F4542"
+  },
+  {
+    "id": 51,
+    "name": "Lady Grey",
+    "type": "Black",
+    "score": 4.4,
+    "color": "#3F4542"
+  },
+  {
+    "id": 52,
+    "name": "Irish Breakfast",
+    "type": "Black",
+    "score": 3.4,
+    "color": "#3F4542"
+  },
+  {
+    "id": 53,
+    "name": "English Breakfast",
+    "type": "Black",
+    "score": 3.9,
+    "color": "#3F4542"
+  },
+  {
+    "id": 54,
+    "name": "Jaekseol (Bird's tongue)",
+    "type": "Black",
+    "score": 5,
+    "color": "#3F4542"
+  },
+  {
+    "id": 55,
+    "name": "Jin Hou (Golden Monkey)",
+    "type": "Black",
+    "score": 3,
+    "color": "#3F4542"
+  },
+  {
+    "id": 56,
+    "name": "Nepali",
+    "type": "Black",
+    "score": 3.8,
+    "color": "#3F4542"
+  },
+  {
+    "id": 57,
+    "name": "Sun Moon Lake",
+    "type": "Black",
+    "score": 2,
+    "color": "#3F4542"
+  },
+  {
+    "id": 58,
+    "name": "Rize",
+    "type": "Black",
+    "score": 2.7,
+    "color": "#3F4542"
+  },
+  {
+    "id": 59,
+    "name": "English Afternoon",
+    "type": "Black",
+    "score": 3.1,
+    "color": "#3F4542"
+  },
+  {
+    "id": 60,
+    "name": "Masala Chai",
+    "type": "Black",
+    "score": 4.6,
+    "color": "#3F4542"
+  },
+  {
+    "id": 61,
+    "name": "Iron Buddha (Tie Guan Yin)",
+    "type": "Oolong",
+    "score": 4.4,
+    "color": "#8A483C"
+  },
+  {
+    "id": 62,
+    "name": "Big Red Robe (Da Hong Pao)",
+    "type": "Oolong",
+    "score": 2.4,
+    "color": "#8A483C"
+  },
+  {
+    "id": 63,
+    "name": "Dan Cong Tea",
+    "type": "Oolong",
+    "score": 4.8,
+    "color": "#8A483C"
+  },
+  {
+    "id": 64,
+    "name": "Ali Shan",
+    "type": "Oolong",
+    "score": 4.9,
+    "color": "#8A483C"
+  },
+  {
+    "id": 65,
+    "name": "Ti Kuan Yin (Iron Goddess of Mercy)",
+    "type": "Oolong",
+    "score": 3.1,
+    "color": "#8A483C"
+  },
+  {
+    "id": 66,
+    "name": "Dan Cong (Single Bush)",
+    "type": "Oolong",
+    "score": 3.5,
+    "color": "#8A483C"
+  },
+  {
+    "id": 67,
+    "name": "Da Hong Pao (Big Red Robe)",
+    "type": "Oolong",
+    "score": 3.8,
+    "color": "#8A483C"
+  },
+  {
+    "id": 68,
+    "name": "Jin Xuan",
+    "type": "Oolong",
+    "score": 2.2,
+    "color": "#8A483C"
+  },
+  {
+    "id": 69,
+    "name": "Lishan",
+    "type": "Oolong",
+    "score": 4.2,
+    "color": "#8A483C"
+  },
+  {
+    "id": 70,
+    "name": "Si Ji Chun (Four Seasons)",
+    "type": "Oolong",
+    "score": 3.8,
+    "color": "#8A483C"
+  },
+  {
+    "id": 71,
+    "name": "Huangijin Gui",
+    "type": "Oolong",
+    "score": 3.1,
+    "color": "#8A483C"
+  },
+  {
+    "id": 72,
+    "name": "Shui Jin Gui (Golden Water Turtle)",
+    "type": "Oolong",
+    "score": 5,
+    "color": "#8A483C"
+  },
+  {
+    "id": 73,
+    "name": "Tieluohan (Iron Arhat)",
+    "type": "Oolong",
+    "score": 2,
+    "color": "#8A483C"
+  },
+  {
+    "id": 74,
+    "name": "Bai Jiguan (White Cockscomb)",
+    "type": "Oolong",
+    "score": 4.4,
+    "color": "#8A483C"
+  },
+  {
+    "id": 75,
+    "name": "Rougui (Cassia)",
+    "type": "Oolong",
+    "score": 2.9,
+    "color": "#8A483C"
+  },
+  {
+    "id": 76,
+    "name": "Shui Xian (Narcissus)",
+    "type": "Oolong",
+    "score": 3.8,
+    "color": "#8A483C"
+  },
+  {
+    "id": 77,
+    "name": "Dongding (Frozen Summit)",
+    "type": "Oolong",
+    "score": 2.4,
+    "color": "#8A483C"
+  },
+  {
+    "id": 78,
+    "name": "Dongfang Meiren (Oriental Beauty)",
+    "type": "Oolong",
+    "score": 4.3,
+    "color": "#8A483C"
+  },
+  {
+    "id": 79,
+    "name": "Rooibos",
+    "type": "Rooibos",
+    "score": 4.8,
+    "color": "#903A3B"
+  },
+  {
+    "id": 80,
+    "name": "Rooibos Masala Chai",
+    "type": "Flavoured Rooibos",
+    "score": 2.1,
+    "color": "#D6E7A5"
+  },
+  {
+    "id": 81,
+    "name": "Rooibos Long Cut",
+    "type": "Flavoured Rooibos",
+    "score": 3.7,
+    "color": "#D6E7A5"
+  },
+  {
+    "id": 82,
+    "name": "Mango Green Rooibos",
+    "type": "Flavoured Rooibos",
+    "score": 2.5,
+    "color": "#D6E7A5"
+  },
+  {
+    "id": 83,
+    "name": "Nougat Mousse Rooibos",
+    "type": "Flavoured Rooibos",
+    "score": 3.2,
+    "color": "#D6E7A5"
+  },
+  {
+    "id": 84,
+    "name": "Red Chai Rooibos",
+    "type": "Flavoured Rooibos",
+    "score": 4.8,
+    "color": "#D6E7A5"
+  },
+  {
+    "id": 85,
+    "name": "Bora Bora Mango Rooibos",
+    "type": "Flavoured Rooibos",
+    "score": 2.8,
+    "color": "#D6E7A5"
+  },
+  {
+    "id": 86,
+    "name": "Rooibos Christmas",
+    "type": "Flavoured Rooibos",
+    "score": 4.3,
+    "color": "#D6E7A5"
+  },
+  {
+    "id": 87,
+    "name": "Rooibos Tiramisu",
+    "type": "Flavoured Rooibos",
+    "score": 2,
+    "color": "#D6E7A5"
+  },
+  {
+    "id": 88,
+    "name": "Rooibos Lemon",
+    "type": "Flavoured Rooibos",
+    "score": 2.1,
+    "color": "#D6E7A5"
+  },
+  {
+    "id": 89,
+    "name": "Rooibos Caramel",
+    "type": "Flavoured Rooibos",
+    "score": 2.5,
+    "color": "#D6E7A5"
+  },
+  {
+    "id": 90,
+    "name": "Rooibos Blood Orange",
+    "type": "Flavoured Rooibos",
+    "score": 4.1,
+    "color": "#D6E7A5"
+  },
+  {
+    "id": 91,
+    "name": "Raw Pu Erh",
+    "type": "Pu Erh",
+    "score": 2.8,
+    "color": "#565F66"
+  },
+  {
+    "id": 92,
+    "name": "Cooked Pu Erh",
+    "type": "Pu Erh",
+    "score": 3.7,
+    "color": "#565F66"
+  },
+  {
+    "id": 93,
+    "name": "Impeial Pu Erh",
+    "type": "Pu Erh",
+    "score": 3.2,
+    "color": "#565F66"
+  },
+  {
+    "id": 94,
+    "name": "Mandarin Black Pu Erh Tea",
+    "type": "Pu Erh",
+    "score": 4.3,
+    "color": "#565F66"
+  },
+  {
+    "id": 95,
+    "name": "Japanese Pu Erh",
+    "type": "Pu Erh",
+    "score": 3.2,
+    "color": "#565F66"
+  },
+  {
+    "id": 96,
+    "name": "Grad Leaf Pu Erh",
+    "type": "Pu Erh",
+    "score": 4.3,
+    "color": "#565F66"
+  },
+  {
+    "id": 97,
+    "name": "Da Xue Shan Raw Pu Erh",
+    "type": "Pu Erh",
+    "score": 2,
+    "color": "#565F66"
+  },
+  {
+    "id": 98,
+    "name": "Zi Juan Purple Leave Raw Pu Erh",
+    "type": "Pu Erh",
+    "score": 2.4,
+    "color": "#565F66"
+  },
+  {
+    "id": 99,
+    "name": "Ming Yuan Hao Raw Pu Erh",
+    "type": "Pu Erh",
+    "score": 3.8,
+    "color": "#565F66"
+  },
+  {
+    "id": 100,
+    "name": "AlfalfaÊ",
+    "type": "Herbal",
+    "score": 3.8,
+    "color": "#618111"
+  },
+  {
+    "id": 101,
+    "name": "Angelica Root",
+    "type": "Herbal",
+    "score": 4.2,
+    "color": "#618111"
+  },
+  {
+    "id": 102,
+    "name": "Anise (Star Anise)",
+    "type": "Herbal",
+    "score": 4.2,
+    "color": "#618111"
+  },
+  {
+    "id": 103,
+    "name": "Black Cohosh",
+    "type": "Herbal",
+    "score": 2.5,
+    "color": "#618111"
+  },
+  {
+    "id": 104,
+    "name": "Boneset",
+    "type": "Herbal",
+    "score": 2.1,
+    "color": "#618111"
+  },
+  {
+    "id": 105,
+    "name": "Borage",
+    "type": "Herbal",
+    "score": 2.1,
+    "color": "#618111"
+  },
+  {
+    "id": 106,
+    "name": "Burdock",
+    "type": "Herbal",
+    "score": 2.9,
+    "color": "#618111"
+  },
+  {
+    "id": 107,
+    "name": "ButcherÕs Broom",
+    "type": "Herbal",
+    "score": 2.7,
+    "color": "#618111"
+  },
+  {
+    "id": 108,
+    "name": "Calendula",
+    "type": "Herbal",
+    "score": 4.8,
+    "color": "#618111"
+  },
+  {
+    "id": 109,
+    "name": "Caraway Seeds",
+    "type": "Herbal",
+    "score": 4.2,
+    "color": "#618111"
+  },
+  {
+    "id": 110,
+    "name": "Cascara SagradaÊ",
+    "type": "Herbal",
+    "score": 2.2,
+    "color": "#618111"
+  },
+  {
+    "id": 111,
+    "name": "Catnip",
+    "type": "Herbal",
+    "score": 3.4,
+    "color": "#618111"
+  },
+  {
+    "id": 112,
+    "name": "Chamomile or Camomile",
+    "type": "Herbal",
+    "score": 3.3,
+    "color": "#618111"
+  },
+  {
+    "id": 113,
+    "name": "Chickweed",
+    "type": "Herbal",
+    "score": 3.1,
+    "color": "#618111"
+  },
+  {
+    "id": 114,
+    "name": "Cinnamon",
+    "type": "Herbal",
+    "score": 2.5,
+    "color": "#618111"
+  },
+  {
+    "id": 115,
+    "name": "Cleavers (galium aparine)",
+    "type": "Herbal",
+    "score": 4.5,
+    "color": "#618111"
+  },
+  {
+    "id": 116,
+    "name": "Cloves (or clove blossoms)",
+    "type": "Herbal",
+    "score": 2.3,
+    "color": "#618111"
+  },
+  {
+    "id": 117,
+    "name": "Corn silk",
+    "type": "Herbal",
+    "score": 2.7,
+    "color": "#618111"
+  },
+  {
+    "id": 118,
+    "name": "Dandelion",
+    "type": "Herbal",
+    "score": 2.8,
+    "color": "#618111"
+  },
+  {
+    "id": 119,
+    "name": "Dong Quai",
+    "type": "Herbal",
+    "score": 4.8,
+    "color": "#618111"
+  },
+  {
+    "id": 120,
+    "name": "Echinacea",
+    "type": "Herbal",
+    "score": 2.2,
+    "color": "#618111"
+  },
+  {
+    "id": 121,
+    "name": "Elderberry",
+    "type": "Herbal",
+    "score": 2.2,
+    "color": "#618111"
+  },
+  {
+    "id": 122,
+    "name": "Elecampane",
+    "type": "Herbal",
+    "score": 4.9,
+    "color": "#618111"
+  },
+  {
+    "id": 123,
+    "name": "Eucalyptus",
+    "type": "Herbal",
+    "score": 3.3,
+    "color": "#618111"
+  },
+  {
+    "id": 124,
+    "name": "Eyebright",
+    "type": "Herbal",
+    "score": 4.8,
+    "color": "#618111"
+  },
+  {
+    "id": 125,
+    "name": "Fennel seeds and leaves",
+    "type": "Herbal",
+    "score": 3.4,
+    "color": "#618111"
+  },
+  {
+    "id": 126,
+    "name": "Feverfew",
+    "type": "Herbal",
+    "score": 2,
+    "color": "#618111"
+  },
+  {
+    "id": 127,
+    "name": "Garlic",
+    "type": "Herbal",
+    "score": 2.7,
+    "color": "#618111"
+  },
+  {
+    "id": 128,
+    "name": "Ginger",
+    "type": "Herbal",
+    "score": 2,
+    "color": "#618111"
+  },
+  {
+    "id": 129,
+    "name": "Ginkgo (Ginkgo Biloba)",
+    "type": "Herbal",
+    "score": 5,
+    "color": "#618111"
+  },
+  {
+    "id": 130,
+    "name": "Ginsing (Panax quinquefolia)",
+    "type": "Herbal",
+    "score": 4.8,
+    "color": "#618111"
+  },
+  {
+    "id": 131,
+    "name": "Goldenrod",
+    "type": "Herbal",
+    "score": 2.1,
+    "color": "#618111"
+  },
+  {
+    "id": 132,
+    "name": "Gotu Kola",
+    "type": "Herbal",
+    "score": 3.9,
+    "color": "#618111"
+  },
+  {
+    "id": 133,
+    "name": "Hops",
+    "type": "Herbal",
+    "score": 3.9,
+    "color": "#618111"
+  },
+  {
+    "id": 134,
+    "name": "Horsetail",
+    "type": "Herbal",
+    "score": 4.1,
+    "color": "#618111"
+  },
+  {
+    "id": 135,
+    "name": "Hyssop",
+    "type": "Herbal",
+    "score": 3.9,
+    "color": "#618111"
+  },
+  {
+    "id": 136,
+    "name": "Jasmine",
+    "type": "Herbal",
+    "score": 3.3,
+    "color": "#618111"
+  },
+  {
+    "id": 137,
+    "name": "Kava or Kava kava",
+    "type": "Herbal",
+    "score": 4.4,
+    "color": "#618111"
+  },
+  {
+    "id": 138,
+    "name": "LadyÕs Mantle",
+    "type": "Herbal",
+    "score": 2.1,
+    "color": "#618111"
+  },
+  {
+    "id": 139,
+    "name": "Lavender",
+    "type": "Herbal",
+    "score": 3.9,
+    "color": "#618111"
+  },
+  {
+    "id": 140,
+    "name": "Lemon Balm",
+    "type": "Herbal",
+    "score": 4.1,
+    "color": "#618111"
+  },
+  {
+    "id": 141,
+    "name": "Lemon grass",
+    "type": "Herbal",
+    "score": 3.2,
+    "color": "#618111"
+  },
+  {
+    "id": 142,
+    "name": "Lemon Verbena",
+    "type": "Herbal",
+    "score": 3.8,
+    "color": "#618111"
+  },
+  {
+    "id": 143,
+    "name": "Licorice",
+    "type": "Herbal",
+    "score": 2.1,
+    "color": "#618111"
+  },
+  {
+    "id": 144,
+    "name": "Linden flowers (Basswood)",
+    "type": "Herbal",
+    "score": 3,
+    "color": "#618111"
+  },
+  {
+    "id": 145,
+    "name": "Marjoram",
+    "type": "Herbal",
+    "score": 2.2,
+    "color": "#618111"
+  },
+  {
+    "id": 146,
+    "name": "Marshmallow",
+    "type": "Herbal",
+    "score": 4.5,
+    "color": "#618111"
+  },
+  {
+    "id": 147,
+    "name": "Peppermint or mint",
+    "type": "Herbal",
+    "score": 4.4,
+    "color": "#618111"
+  },
+  {
+    "id": 148,
+    "name": "Motherwort",
+    "type": "Herbal",
+    "score": 4.1,
+    "color": "#618111"
+  },
+  {
+    "id": 149,
+    "name": "Mugwort",
+    "type": "Herbal",
+    "score": 4.6,
+    "color": "#618111"
+  },
+  {
+    "id": 150,
+    "name": "Mullein",
+    "type": "Herbal",
+    "score": 3.5,
+    "color": "#618111"
+  },
+  {
+    "id": 151,
+    "name": "Nettles",
+    "type": "Herbal",
+    "score": 4.1,
+    "color": "#618111"
+  },
+  {
+    "id": 152,
+    "name": "Passion Flower",
+    "type": "Herbal",
+    "score": 3.5,
+    "color": "#618111"
+  },
+  {
+    "id": 153,
+    "name": "Pau DÕArco",
+    "type": "Herbal",
+    "score": 2.1,
+    "color": "#618111"
+  },
+  {
+    "id": 154,
+    "name": "Pleurisy Root",
+    "type": "Herbal",
+    "score": 4,
+    "color": "#618111"
+  },
+  {
+    "id": 155,
+    "name": "Raspberry leaves",
+    "type": "Herbal",
+    "score": 4.4,
+    "color": "#618111"
+  },
+  {
+    "id": 156,
+    "name": "Red Clover Blossoms",
+    "type": "Herbal",
+    "score": 5,
+    "color": "#618111"
+  },
+  {
+    "id": 157,
+    "name": "Red Raspberry",
+    "type": "Herbal",
+    "score": 4.5,
+    "color": "#618111"
+  },
+  {
+    "id": 158,
+    "name": "Rose hips",
+    "type": "Herbal",
+    "score": 2.2,
+    "color": "#618111"
+  },
+  {
+    "id": 159,
+    "name": "Rosemary",
+    "type": "Herbal",
+    "score": 4.9,
+    "color": "#618111"
+  },
+  {
+    "id": 160,
+    "name": "Sage",
+    "type": "Herbal",
+    "score": 4.5,
+    "color": "#618111"
+  },
+  {
+    "id": 161,
+    "name": "Sassafras",
+    "type": "Herbal",
+    "score": 5,
+    "color": "#618111"
+  },
+  {
+    "id": 162,
+    "name": "Sarsparilla",
+    "type": "Herbal",
+    "score": 2.9,
+    "color": "#618111"
+  },
+  {
+    "id": 163,
+    "name": "Slippery Elm",
+    "type": "Herbal",
+    "score": 4.2,
+    "color": "#618111"
+  },
+  {
+    "id": 164,
+    "name": "Skullcap",
+    "type": "Herbal",
+    "score": 3.1,
+    "color": "#618111"
+  },
+  {
+    "id": 165,
+    "name": "Spearmint",
+    "type": "Herbal",
+    "score": 4.5,
+    "color": "#618111"
+  },
+  {
+    "id": 166,
+    "name": "Stevia",
+    "type": "Herbal",
+    "score": 4.9,
+    "color": "#618111"
+  },
+  {
+    "id": 167,
+    "name": "St. JohnÕs Wort",
+    "type": "Herbal",
+    "score": 3.5,
+    "color": "#618111"
+  },
+  {
+    "id": 168,
+    "name": "Strawberry leaves",
+    "type": "Herbal",
+    "score": 4.2,
+    "color": "#618111"
+  },
+  {
+    "id": 169,
+    "name": "Thyme",
+    "type": "Herbal",
+    "score": 3.6,
+    "color": "#618111"
+  },
+  {
+    "id": 170,
+    "name": "Uva Ursi",
+    "type": "Herbal",
+    "score": 4,
+    "color": "#618111"
+  },
+  {
+    "id": 171,
+    "name": "Vervain",
+    "type": "Herbal",
+    "score": 3.6,
+    "color": "#618111"
+  },
+  {
+    "id": 172,
+    "name": "Violet (leaves and flowers)",
+    "type": "Herbal",
+    "score": 4.7,
+    "color": "#618111"
+  },
+  {
+    "id": 173,
+    "name": "Walnut leaves (black)",
+    "type": "Herbal",
+    "score": 4.9,
+    "color": "#618111"
+  },
+  {
+    "id": 174,
+    "name": "White Oak Bark",
+    "type": "Herbal",
+    "score": 3.3,
+    "color": "#618111"
+  },
+  {
+    "id": 175,
+    "name": "Wild Yam",
+    "type": "Herbal",
+    "score": 2.2,
+    "color": "#618111"
+  },
+  {
+    "id": 176,
+    "name": "Yarrow",
+    "type": "Herbal",
+    "score": 4.6,
+    "color": "#618111"
+  },
+  {
+    "id": 177,
+    "name": "Yellow Dock",
+    "type": "Herbal",
+    "score": 4.5,
+    "color": "#618111"
+  },
+  {
+    "id": 178,
+    "name": "Yerba Santa",
+    "type": "Herbal",
+    "score": 4.6,
+    "color": "#618111"
+  },
+  {
+    "id": 179,
+    "name": "Yerba Mate",
+    "type": "Herbal",
+    "score": 3.7,
+    "color": "#618111"
+  }
+]
