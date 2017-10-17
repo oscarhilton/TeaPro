@@ -7,33 +7,35 @@ import {
 
 class TeaCard extends Component {
   render() {
+    const { title, score, category } = this.props.tea;
+    console.log(this.state);
     return (
-      <View style={teaCardStyle(this.props.color)}>
+      <View style={[styles.teaCardStyle, { backgroundColor: category.background }]}>
         <Text style={styles.titleStyle}>
-          {this.props.tea.title}
+          { title }
         </Text>
         <Text style={styles.scoreStlye}>
-          {this.props.tea.score}
+          { score }
         </Text>
       </View>
     );
   }
 }
 
-const teaCardStyle = function(color) {
-   return {
-     width: 100,
-     height: 100,
-     backgroundColor: color,
-     padding: 8,
-     margin: 1,
-     borderRadius: 5,
-     flex: 1,
-     position: 'relative'
-   };
- };
+// const teaCardStyle = function(color) {
+//    return;
+//  };
 
 const styles = StyleSheet.create({
+  teaCardStyle: {
+    width: 100,
+    height: 100,
+    padding: 8,
+    margin: 1,
+    borderRadius: 5,
+    flex: 1,
+    position: 'relative'
+  },
   titleStyle: {
     fontSize: 12,
     fontWeight: '300',

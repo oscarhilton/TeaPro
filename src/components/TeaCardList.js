@@ -12,11 +12,11 @@ class TeaCardList extends Component {
   }
 
   renderRow(tea) {
-    return <TeaCard tea={tea} color={'#212121'} />;
+    console.log(tea);
+    return <TeaCard tea={tea} />;
   }
 
   render() {
-    console.log(this.props);
     return (
       <ListView
         horizontal
@@ -30,8 +30,9 @@ class TeaCardList extends Component {
 
 const styles = StyleSheet.create({
   teaListStyle: {
-    paddingTop: 15,
-    paddingBottom: 15
+    paddingTop: 5,
+    paddingBottom: 10,
+    backgroundColor: '#cccccc'
   }
 });
 

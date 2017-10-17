@@ -21,7 +21,7 @@ class DiscoverScene extends Component {
         return (
           <View key={cat._id}>
             <SectionHeader heading={`All ${cat.title} teas`} />
-            <TeaCardList teaList={cat.teas} />
+            <TeaCardList teaList={cat.teas} colour={cat.background} />
           </View>
         );
       })

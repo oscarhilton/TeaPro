@@ -14,15 +14,7 @@ class HeroTea extends Component {
           />
           <Text style={styles.textStyle} >{this.props.heroText}This season's tea</Text>
           <View style={styles.teaCardStyle} >
-            <TeaCard
-              tea={{
-                id: 61,
-                name: 'Iron Buddha',
-                type: 'Oolong',
-                score: 4.4
-              }}
-              color={'#8A483C'}
-            />
+
           </View>
         </View>
       </View>
