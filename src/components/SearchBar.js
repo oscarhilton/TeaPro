@@ -1,12 +1,17 @@
 import React, { Component } from 'react';
-import { View } from 'react-native';
-import { Input } from './common';
+import { View, TextInput } from 'react-native';
 
 class SearchBar extends Component {
   render() {
     return (
       <View>
-        <Input />
+        <TextInput
+          secureTextEntry={secureTextEntry}
+          placeholder={placeholder}
+          value={value}
+          onChangeText={onChangeText}
+          style={styles.inputStyle}
+        />
       </View>
     );
   }

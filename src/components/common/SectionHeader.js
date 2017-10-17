@@ -11,7 +11,9 @@ const styles = StyleSheet.create({
   headingStyle: {
     fontSize: 12,
     fontWeight: '400',
-    padding: 10
+    padding: 10,
+    borderColor: '#cccccc',
+    borderWidth: 1
   }
 });
 

@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import { ListView, StyleSheet } from 'react-native';
-import { connect } from 'react-redux';
 import TeaCard from './TeaCard';
 
 class TeaCardList extends Component {
@@ -13,10 +12,11 @@ class TeaCardList extends Component {
   }
 
   renderRow(tea) {
-    return <TeaCard tea={tea} color={tea.color} />;
+    return <TeaCard tea={tea} color={'#212121'} />;
   }
 
   render() {
+    console.log(this.props);
     return (
       <ListView
         horizontal
@@ -31,15 +31,8 @@ class TeaCardList extends Component {
 const styles = StyleSheet.create({
   teaListStyle: {
     paddingTop: 15,
-    paddingBottom: 15,
-    backgroundColor: '#cccccc'
+    paddingBottom: 15
   }
 });
 
-const mapStateToProps = state => {
-  return {
-    teaList: state.teaList
-  };
-};
-
-export default connect(mapStateToProps)(TeaCardList);
+export default TeaCardList;

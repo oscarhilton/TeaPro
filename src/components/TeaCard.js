@@ -10,7 +10,7 @@ class TeaCard extends Component {
     return (
       <View style={teaCardStyle(this.props.color)}>
         <Text style={styles.titleStyle}>
-          {this.props.tea.name}
+          {this.props.tea.title}
         </Text>
         <Text style={styles.scoreStlye}>
           {this.props.tea.score}
@@ -22,12 +22,12 @@ class TeaCard extends Component {
 
 const teaCardStyle = function(color) {
    return {
-     width: 80,
-     height: 80,
+     width: 100,
+     height: 100,
      backgroundColor: color,
      padding: 8,
      margin: 1,
-     borderRadius: 10,
+     borderRadius: 5,
      flex: 1,
      position: 'relative'
    };
