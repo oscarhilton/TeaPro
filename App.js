@@ -1,11 +1,10 @@
 import React, { Component } from 'react';
-import { View } from 'react-native';
+import { View, Text } from 'react-native';
 import { Provider } from 'react-redux';
 import { createStore, applyMiddleware } from 'redux';
 import reduxThunk from 'redux-thunk';
 import reducers from './src/reducers';
-import DiscoverScene from './src/components/DiscoverScene';
-import BottomNavigation from './src/components/BottomNavigation';
+import { Root } from './src/navigators/AppNavigator';
 
 const store = createStore(reducers, {}, applyMiddleware(reduxThunk));
 
@@ -14,8 +13,7 @@ export default class App extends Component<{}> {
     return (
       <Provider store={store}>
         <View style={{ flex: 1 }} >
-          <DiscoverScene />
-          <BottomNavigation />
+          <Root />
         </View>
       </Provider>
     );

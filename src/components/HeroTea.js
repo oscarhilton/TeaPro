@@ -14,7 +14,6 @@ class HeroTea extends Component {
           />
           <Text style={styles.textStyle} >{this.props.heroText}This season's tea</Text>
           <View style={styles.teaCardStyle} >
-
           </View>
         </View>
       </View>
