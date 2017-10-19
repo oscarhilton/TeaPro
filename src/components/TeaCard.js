@@ -1,39 +1,20 @@
-import React, { Component } from 'react';
+import React from 'react';
 import {
   Text,
   View,
-  StyleSheet,
-  TouchableOpacity
+  StyleSheet
 } from 'react-native';
 
-class TeaCard extends Component {
-  handlePress() {
-    // this.props.navigation.navigate('ViewTea');
-  }
-
-  render() {
-    console.log(this.props);
-    const { title, score, category } = this.props.tea;
-    return (
-      <TouchableOpacity
-        onPress={this.handlePress.bind(this)}
-      >
-        <View style={[styles.teaCardStyle, { backgroundColor: category.background }]}>
-          <Text style={styles.titleStyle}>
-            { title }
-          </Text>
-          <Text style={styles.scoreStlye}>
-            { score }
-          </Text>
-        </View>
-      </TouchableOpacity>
-    );
-  }
-}
-
-// const teaCardStyle = function(color) {
-//    return;
-//  };
+const TeaCard = (props) => {
+  const { title, category } = props.tea;
+  return (
+    <View style={[styles.teaCardStyle, { backgroundColor: category.background }]}>
+      <Text style={styles.titleStyle}>
+        { title }
+      </Text>
+    </View>
+  );
+};
 
 const styles = StyleSheet.create({
   teaCardStyle: {

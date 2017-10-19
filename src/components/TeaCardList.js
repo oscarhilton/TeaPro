@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { ListView, StyleSheet } from 'react-native';
-import TeaCard from './TeaCard';
+import TeaCardButton from './TeaCardButton';
 
 class TeaCardList extends Component {
   componentWillMount() {
@@ -12,8 +12,7 @@ class TeaCardList extends Component {
   }
 
   renderRow(tea) {
-    console.log(tea);
-    return <TeaCard tea={tea} />;
+    return <TeaCardButton tea={tea} />;
   }
 
   render() {

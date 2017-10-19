@@ -2,20 +2,20 @@ import React from 'react';
 import { TabNavigator, StackNavigator } from 'react-navigation';
 // import { icon } from 'react-native-elements';
 
-import DiscoverScene from '../components/DiscoverScene';
-import ProfileScene from '../components/ProfileScene';
-import ViewTeaScene from '../components/ViewTeaScene';
+import Discover from '../screens/Discover';
+import Profile from '../screens/Profile';
+import ViewTea from '../screens/ViewTea';
 
 export const Tabs = TabNavigator({
   Discover: {
-    screen: DiscoverScene
+    screen: Discover
   },
   Profile: {
-    screen: ProfileScene
+    screen: Profile
   }
 });
 
-export const Root = StackNavigator({
+export const Navigator = StackNavigator({
   Tabs: {
     screen: Tabs,
     cardStyle: {
@@ -23,7 +23,7 @@ export const Root = StackNavigator({
     }
   },
   ViewTea: {
-    screen: ViewTeaScene
+    screen: ViewTea
   }
 }, {
   mode: 'modal',

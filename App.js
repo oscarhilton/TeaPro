@@ -1,19 +1,37 @@
 import React, { Component } from 'react';
-import { View, Text } from 'react-native';
-import { Provider } from 'react-redux';
+import { View } from 'react-native';
+import { Provider, connect } from 'react-redux';
 import { createStore, applyMiddleware } from 'redux';
 import reduxThunk from 'redux-thunk';
+import { addNavigationHelpers } from 'react-navigation';
+import { Navigator } from './src/navigators/AppNavigator';
 import reducers from './src/reducers';
-import { Root } from './src/navigators/AppNavigator';
 
 const store = createStore(reducers, {}, applyMiddleware(reduxThunk));
 
-export default class App extends Component<{}> {
+const App = ({ dispatch, nav }) => {
+  return (
+    <Navigator
+      navigation={addNavigationHelpers({
+        dispatch,
+        state: nav
+      })}
+    />
+  );
+};
+
+const mapStateToProps = (state) => ({
+  nav: state.nav,
+});
+
+const AppWithNavigationState = connect(mapStateToProps)(App);
+
+export default class Root extends Component<{}> {
   render() {
     return (
       <Provider store={store}>
         <View style={{ flex: 1 }} >
-          <Root />
+          <AppWithNavigationState />
         </View>
       </Provider>
     );
