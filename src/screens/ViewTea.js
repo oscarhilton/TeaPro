@@ -1,13 +1,22 @@
 import React from 'react';
-import { View, StyleSheet } from 'react-native';
-import TeaCard from '../components/TeaCard';
+import { ScrollView, StyleSheet } from 'react-native';
+import Accordion from '../components/Accordion';
+import ViewTeaHeader from '../components/ViewTeaHeader';
 
-const ViewTeaScene = ({ navigation }) => {
+const ViewTea = ({ navigation }) => {
   const { params } = navigation.state;
   return (
-    <View style={styles.backgroundStyle}>
-      <TeaCard tea={params} />
-    </View>
+    <ScrollView style={styles.backgroundStyle}>
+      <ViewTeaHeader tea={params} />
+      <Accordion
+        heading={'Description'}
+        text={params.description}
+      />
+      <Accordion
+        heading={'Description'}
+        text={params.description}
+      />
+    </ScrollView>
   );
 };
 
@@ -18,4 +27,4 @@ const styles = StyleSheet.create({
   }
 });
 
-export default ViewTeaScene;
+export default ViewTea;
