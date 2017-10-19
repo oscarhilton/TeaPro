@@ -27,9 +27,5 @@ export const Navigator = StackNavigator({
   }
 }, {
   mode: 'modal',
-  headerMode: 'none',
-  cardStyle: {
-    backgroundColor: 'transparent',
-    opacity: 0.99
-  }
+  headerMode: 'none'
 });

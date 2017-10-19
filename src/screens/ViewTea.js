@@ -9,8 +9,8 @@ const ViewTea = ({ navigation }) => {
     <ScrollView style={styles.backgroundStyle}>
       <ViewTeaHeader tea={params} />
       <Accordion
-        heading={'Description'}
-        text={params.description}
+        heading={'Steep Time'}
+        text={params.steeptime}
       />
       <Accordion
         heading={'Description'}
