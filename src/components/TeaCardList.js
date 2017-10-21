@@ -31,7 +31,7 @@ const styles = StyleSheet.create({
   teaListStyle: {
     paddingTop: 5,
     paddingBottom: 10,
-    backgroundColor: '#dddddd'
+    backgroundColor: '#f1f1f1'
   }
 });
 
