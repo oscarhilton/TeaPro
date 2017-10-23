@@ -2,12 +2,14 @@ import React from 'react';
 import { ScrollView, StyleSheet } from 'react-native';
 import Accordion from '../components/Accordion';
 import ViewTeaHeader from '../components/ViewTeaHeader';
+import RatingsBar from '../components/RatingsBar';
 
 const ViewTea = ({ navigation }) => {
   const { params } = navigation.state;
   return (
     <ScrollView style={styles.backgroundStyle}>
       <ViewTeaHeader tea={params} />
+      <RatingsBar />
       <Accordion
         heading={'Steep Time'}
         text={params.steeptime}

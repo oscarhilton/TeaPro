@@ -1,5 +1,9 @@
 import axios from 'axios';
-import { GET_TEA_CATEGORIES, NAVIGATE, GO_BACK } from './types';
+import { GET_TEA_CATEGORIES, NAVIGATE, GO_BACK, REQUEST_TEAS } from './types';
+
+export const requestTeas = () => dispatch => {
+  dispatch({ type: REQUEST_TEAS });
+};
 
 export const getAllCategories = () => async dispatch => {
   const res = await axios.get('https://calm-sands-55569.herokuapp.com/api/category/all');

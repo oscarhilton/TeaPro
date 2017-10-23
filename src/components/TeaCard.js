@@ -6,11 +6,14 @@ import {
 } from 'react-native';
 
 const TeaCard = (props) => {
-  const { title, category } = props.tea;
+  const { title, category, score } = props.tea;
   return (
     <View style={[styles.teaCardStyle, { backgroundColor: category.background }, props.addStyle]}>
       <Text style={styles.titleStyle}>
         { title }
+      </Text>
+      <Text style={styles.scoreStlye}>
+        { score }
       </Text>
     </View>
   );

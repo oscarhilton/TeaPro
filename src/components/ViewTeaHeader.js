@@ -22,17 +22,19 @@ class ViewTeaHeader extends Component {
               addStyle={styles.teaCardStyle}
             />
           </View>
-          <Text style={styles.headerTextStyle}>{this.props.tea.title}</Text>
-          <Text
-            style={styles.originTextStyle}
-          >
-            {`${this.props.tea.category.title} tea from ${this.props.tea.origin}`}
-          </Text>
+          <View style={styles.detailsTextContainerStyle}>
+            <Text style={styles.headerTextStyle}>{this.props.tea.title}</Text>
+            <Text
+              style={styles.originTextStyle}
+            >
+              {`${this.props.tea.category.title} tea from ${this.props.tea.origin}`}
+            </Text>
+          </View>
         </View>
         <Image
           style={styles.imageStyle}
           blurRadius={0}
-          source={background}
+          source={{ uri: 'https://picsum.photos/200/300/?random'}}
         />
       </View>
     );
@@ -51,12 +53,8 @@ const styles = StyleSheet.create({
     right: 0
   },
   teaCardStyle: {
-    shadowColor: '#000000',
-    shadowOffset: { height: 20, width: 10 },
-    shadowOpacity: 0.4
   },
   detailsStyle: {
-    justifyContent: 'center',
     margin: 10,
     position: 'absolute',
     zIndex: 1,
@@ -80,22 +78,20 @@ const styles = StyleSheet.create({
     height: 100,
     width: 90
   },
+  detailsTextContainerStyle: {
+    position: 'absolute',
+    bottom: 10,
+    left: 0
+  },
   headerTextStyle: {
     color: 'white',
     fontSize: 18,
     fontWeight: '600',
-    position: 'absolute',
-    bottom: 10,
-    left: 0,
-    marginRight: 100
+    marginBottom: 5
   },
   originTextStyle: {
     color: 'white',
-    letterSpacing: 2,
     fontSize: 12,
-    position: 'absolute',
-    bottom: 10,
-    right: 0
   }
 });
 
