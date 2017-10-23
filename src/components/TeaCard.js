@@ -8,7 +8,7 @@ import {
 const TeaCard = (props) => {
   const { title, category } = props.tea;
   return (
-    <View style={[styles.teaCardStyle, { backgroundColor: category.background }]}>
+    <View style={[styles.teaCardStyle, { backgroundColor: category.background }, props.addStyle]}>
       <Text style={styles.titleStyle}>
         { title }
       </Text>
@@ -29,7 +29,7 @@ const styles = StyleSheet.create({
   titleStyle: {
     fontSize: 12,
     fontWeight: '300',
-    color: 'white',
+    color: 'white'
   },
   scoreStlye: {
     fontSize: 10,

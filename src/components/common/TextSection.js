@@ -17,8 +17,7 @@ const styles = StyleSheet.create({
   componentStyle: {
     backgroundColor: '#ffffff',
     padding: 10,
-    paddingTop: 15,
-    paddingBottom: 25
+    paddingBottom: 15
   },
   textStyle: {
     color: '#212121',

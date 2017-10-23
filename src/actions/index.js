@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { GET_TEA_CATEGORIES, NAVIGATE } from './types';
+import { GET_TEA_CATEGORIES, NAVIGATE, GO_BACK } from './types';
 
 export const getAllCategories = () => async dispatch => {
   const res = await axios.get('https://calm-sands-55569.herokuapp.com/api/category/all');
@@ -9,4 +9,12 @@ export const getAllCategories = () => async dispatch => {
 
 export const showTea = (tea) => dispatch => {
   dispatch({ type: NAVIGATE, routeName: 'ViewTea', params: tea });
+};
+
+export const goToScene = (scene, params) => dispatch => {
+  dispatch({ type: NAVIGATE, routeName: scene, params });
+};
+
+export const goBack = () => dispatch => {
+  dispatch({ type: GO_BACK });
 };

@@ -6,3 +6,4 @@ export * from './Input';
 export * from './Spinner';
 export * from './SectionHeader';
 export * from './TextSection';
+export * from './CloseButton';

@@ -12,8 +12,6 @@ const styles = StyleSheet.create({
     fontSize: 12,
     fontWeight: '600',
     padding: 10,
-    borderColor: '#cccccc',
-    borderWidth: 1,
     backgroundColor: '#ffffff'
   }
 });
