@@ -10,14 +10,15 @@ import { addTeaToCupboard } from '../actions';
 class ViewTea extends Component {
   renderUserControls = (tea) => {
     if (this.props.auth.loggedIn) {
+      const {firstName, lastName} = this.props.auth.user;
       return (
         <View>
           <Accordion
             heading={'Logged in user:'}
-            text={`${this.props.auth.user.firstName} ${this.props.auth.user.lastName}`}
+            text={`${firstName} ${lastName}`}
           />
           <Button
-            onPress={this.props.addTeaToCupboard(tea, this.props.auth.user._id)}
+            onPress={this.handleAddTeaCupboard.bind(this, tea)}
           >
             Add tea to cupboard
           </Button>
@@ -29,6 +30,10 @@ class ViewTea extends Component {
         heading={'NOT LOGGED IN'}
       />
     );
+  }
+
+  handleAddTeaCupboard(tea) {
+    this.props.addTeaToCupboard(tea, this.props.auth.user._id);
   }
 
   render() {

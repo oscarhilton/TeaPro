@@ -4,7 +4,11 @@ import { FETCH_USER } from './types';
 
 export const onLoggedIn = (user) => async dispatch => {
   await AsyncStorage.setItem('USER', JSON.stringify(user));
-  dispatch({ type: FETCH_USER, payload: user });
+  const res = {
+    loggedIn: true,
+    user
+  };
+  dispatch({ type: FETCH_USER, payload: res });
 };
 
 export const fetchUser = () => async dispatch => {

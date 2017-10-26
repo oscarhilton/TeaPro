@@ -11,6 +11,7 @@ import SafariView from 'react-native-safari-view';
 import { connect } from 'react-redux';
 import { onLoggedIn } from '../actions/authActions';
 import { Button } from '../components/common';
+import { api } from '../api';
 
 class Login extends Component {
 
@@ -45,10 +46,10 @@ class Login extends Component {
   }
 
   // Handle Login with Facebook button tap
-  loginWithFacebook = () => this.openURL('https://calm-sands-55569.herokuapp.com/auth/facebook');
+  loginWithFacebook = () => this.openURL(`${api}/auth/facebook`);
 
   // Handle Login with Google button tap
-  loginWithGoogle = () => this.openURL('http://localhost:3000/auth/google');
+  loginWithGoogle = () => this.openURL(`${api}/auth/google`);
 
   // Open URL in a browser
   openURL = (url) => {

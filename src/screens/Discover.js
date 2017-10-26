@@ -21,7 +21,6 @@ class DiscoverScene extends Component {
 
   renderSections() {
     const { categories } = this.props.teaList.teas;
-    console.log(this.props.auth, 'AUTH !!');
     return (
       categories.map((cat) => {
         return (
