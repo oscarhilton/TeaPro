@@ -22,3 +22,8 @@ export const goToScene = (scene, params) => dispatch => {
 export const goBack = () => dispatch => {
   dispatch({ type: GO_BACK });
 };
+
+export const addTeaToCupboard = (tea, userId) => dispatch => {
+  console.log(tea, 'ID --->', userId);
+  dispatch({ type: 'test' });
+};

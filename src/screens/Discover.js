@@ -7,18 +7,21 @@ import {
 } from 'react-native';
 import { connect } from 'react-redux';
 import { requestTeas, getAllCategories } from '../actions';
+import { fetchUser } from '../actions/authActions';
 import { SectionHeader, Spinner } from '../components/common';
 import TeaCardList from '../components/TeaCardList';
 import HeroTea from '../components/HeroTea';
 
 class DiscoverScene extends Component {
-  componentDidMount() {
+  componentWillMount() {
     this.props.requestTeas();
     this.props.getAllCategories();
+    this.props.fetchUser();
   }
 
   renderSections() {
     const { categories } = this.props.teaList.teas;
+    console.log(this.props.auth, 'AUTH !!');
     return (
       categories.map((cat) => {
         return (
@@ -73,8 +76,8 @@ const styles = StyleSheet.create({
   }
 });
 
-const mapStateToProps = ({ teaList }) => {
-  return { teaList };
+const mapStateToProps = ({ teaList, auth }) => {
+  return { teaList, auth };
 };
 
-export default connect(mapStateToProps, { getAllCategories, requestTeas })(DiscoverScene);
+export default connect(mapStateToProps, { getAllCategories, requestTeas, fetchUser })(DiscoverScene);

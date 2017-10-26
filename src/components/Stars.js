@@ -47,7 +47,6 @@ class Stars extends Component {
   }
 
   render() {
-    console.log(this.props, this.state);
     const { one, two, three, four, five } = this.state;
     return (
       <View style={styles.ratingsStyle} >

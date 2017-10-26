@@ -7,10 +7,10 @@ const CloseButton = ({ onPress, addStyle }) => {
   return (
     <TouchableOpacity
       onPress={onPress}
-      style={styles.touchableStyle}
+      style={[styles.touchableStyle, addStyle]}
     >
       <Image
-        style={[styles.closeStyle, addStyle]}
+        style={[styles.closeStyle]}
         source={closeImage}
       />
     </TouchableOpacity>
@@ -19,8 +19,9 @@ const CloseButton = ({ onPress, addStyle }) => {
 
 const styles = StyleSheet.create({
   touchableStyle: {
-    padding: 20,
-    zIndex: 9
+    padding: 12,
+    zIndex: 9,
+    borderRadius: 40
   },
   closeStyle: {
     width: 15,

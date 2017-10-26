@@ -48,9 +48,11 @@ const styles = StyleSheet.create({
   },
   closeStyle: {
     position: 'absolute',
-    margin: 20,
+    margin: 10,
     top: 0,
-    right: 0
+    right: 0,
+    justifyContent: 'center',
+    alignItems: 'center'
   },
   teaCardStyle: {
   },
@@ -65,7 +67,7 @@ const styles = StyleSheet.create({
     flex: 1
   },
   imageStyle: {
-    height: 400,
+    height: 300,
     zIndex: 0,
     opacity: 0.5,
     position: 'absolute',
@@ -87,7 +89,7 @@ const styles = StyleSheet.create({
     color: 'white',
     fontSize: 18,
     fontWeight: '600',
-    marginBottom: 5
+    marginBottom: 2
   },
   originTextStyle: {
     color: 'white',
