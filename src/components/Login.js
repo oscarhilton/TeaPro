@@ -76,6 +76,11 @@ class Login extends Component {
         >
           Login with google
         </Button>
+        <Button
+          onPress={this.loginWithFacebook}
+        >
+          Login with facebook
+        </Button>
       </View>
     );
   }

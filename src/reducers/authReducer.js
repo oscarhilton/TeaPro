@@ -3,8 +3,7 @@ import {
  } from '../actions/types';
 
 const INITIAL_STATE = {
-  loggedIn: false,
-  user: null,
+  loggedIn: false
 };
 
 export default function (state = INITIAL_STATE, action) {

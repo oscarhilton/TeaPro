@@ -2,13 +2,25 @@ import React, { Component } from 'react';
 import { View, Text } from 'react-native';
 import { connect } from 'react-redux';
 import TeaCardList from '../components/TeaCardList';
+import ProfileInfo from '../components/ProfileInfo';
 import { SectionHeader } from '../components/common';
 import { getCupboardTeas } from '../actions';
 import Login from '../components/Login';
 
 class ProfileScene extends Component {
   componentWillMount() {
-    this.props.getCupboardTeas(this.props.auth.user._id);
+    const { loggedIn, user } = this.props.auth;
+    if (loggedIn) {
+      console.log('fetching cupboard?');
+      this.props.getCupboardTeas(user._id);
+    }
+  }
+
+  renderProfile() {
+    const { loggedIn, user } = this.props.auth;
+    if (loggedIn) {
+      return <ProfileInfo user={user} />;
+    }
   }
 
   renderCupboard() {
@@ -19,7 +31,7 @@ class ProfileScene extends Component {
         return (
           <View>
             <SectionHeader
-              heading={`${user.firstName}s cupboard`}
+              heading={`${user.name}s cupboard`}
             />
             <TeaCardList
               teaList={teas}
@@ -36,6 +48,7 @@ class ProfileScene extends Component {
   render() {
     return (
       <View style={{ flex: 1 }}>
+        {this.renderProfile()}
         {this.renderCupboard()}
       </View>
     );

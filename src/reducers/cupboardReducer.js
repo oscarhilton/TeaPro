@@ -15,6 +15,12 @@ const INITIAL_STATE = {
          loaded: true,
          teas: action.payload
        };
+     case ADD_TEA_TO_CUPBOARD:
+       console.log(action.payload);
+       return {
+         ...state,
+         teas: [action.payload, ...state.teas]
+       };
      default:
        return state;
    }

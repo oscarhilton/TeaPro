@@ -7,7 +7,7 @@ const ProfileInfo = (props) => {
       <View style={styles.profileImageComponentStyle} >
         <Image
           style={styles.profileImageStyle}
-          source={{ uri: props.auth.picture.medium }}
+          source={{ uri: props.user.avatar}}
         />
       </View>
       <View style={styles.profileDetailsStlye} >
@@ -16,7 +16,7 @@ const ProfileInfo = (props) => {
             <Text
               style={styles.usernameStlye}
             >
-              {props.auth.login.username}
+            {props.user.name}
             </Text>
           </View>
           <View>
