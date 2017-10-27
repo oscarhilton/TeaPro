@@ -12,13 +12,11 @@ export const onLoggedIn = (user) => async dispatch => {
 };
 
 export const fetchUser = () => async dispatch => {
-  console.log('fetchUser fired!');
   const storageUser = await AsyncStorage.getItem('USER');
   const userObj = JSON.parse(storageUser);
   const res = {
     loggedIn: true,
     user: userObj
   };
-  console.log(res, '<--- RES !!!!!');
   dispatch({ type: FETCH_USER, payload: res });
 };

@@ -32,18 +32,12 @@ export const goBack = () => dispatch => {
 };
 
 export const addTeaToCupboard = (tea, userId) => async dispatch => {
-  console.log('clicked');
   const res = await axios.post(`${api}/api/user/cupboard/add`, { teaId: tea._id, userId });
-  console.log(res);
-  if (res.status === 200){
-    console.log('yep');
-  }
 
   dispatch({ type: ADD_TEA_TO_CUPBOARD, payload: tea });
 };
 
 export const getCupboardTeas = (userId) => async dispatch => {
   const res = await axios.post(`${api}/api/user/cupboard/get`, { userId });
-  console.log(res, '<--- GET CUPBOARD TEAS');
   dispatch({ type: GET_CUPBOARD_TEAS, payload: res.data });
-}
+};

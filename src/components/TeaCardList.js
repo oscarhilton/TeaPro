@@ -7,12 +7,12 @@ class TeaCardList extends Component {
     const ds = new ListView.DataSource({
       rowHasChanged: (r1, r2) => r1 !== r2
     });
-
     this.dataSource = ds.cloneWithRows(this.props.teaList);
   }
 
   renderRow(tea) {
-    return <TeaCardButton tea={{...tea, score: 3.2}} />;
+    // console.log(tea.title);
+    return <TeaCardButton tea={{ ...tea, score: 3.2 }} />;
   }
 
   render() {
@@ -31,6 +31,7 @@ const styles = StyleSheet.create({
   teaListStyle: {
     paddingTop: 5,
     paddingBottom: 10,
+    height: 115,
     backgroundColor: '#f1f1f1'
   }
 });

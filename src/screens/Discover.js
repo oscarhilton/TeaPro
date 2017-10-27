@@ -21,6 +21,7 @@ class DiscoverScene extends Component {
 
   renderSections() {
     const { categories } = this.props.teaList.teas;
+    console.log(categories);
     return (
       categories.map((cat) => {
         return (
@@ -31,7 +32,6 @@ class DiscoverScene extends Component {
             <TeaCardList
               navigate={this.props.navigation.navigate}
               teaList={cat.teas}
-              colour={cat.background}
             />
           </View>
         );
@@ -54,6 +54,7 @@ class DiscoverScene extends Component {
   }
 
   render() {
+    console.log(this.props.teaList);
     return (
       <View style={{ flex: 1 }} >
         {this.renderContent()}
