@@ -6,7 +6,9 @@ import {
   GO_BACK,
   REQUEST_TEAS,
   GET_CUPBOARD_TEAS,
-  ADD_TEA_TO_CUPBOARD
+  ADD_TEA_TO_CUPBOARD,
+  GET_WISHLIST_TEAS,
+  ADD_TEA_TO_WISHLIST
  } from './types';
 
 export const requestTeas = () => dispatch => {
@@ -40,4 +42,15 @@ export const addTeaToCupboard = (tea, userId) => async dispatch => {
 export const getCupboardTeas = (userId) => async dispatch => {
   const res = await axios.post(`${api}/api/user/cupboard/get`, { userId });
   dispatch({ type: GET_CUPBOARD_TEAS, payload: res.data });
+};
+
+export const addTeaToWishlist = (tea, userId) => async dispatch => {
+  const res = await axios.post(`${api}/api/user/wishlist/add`, { teaId: tea._id, userId });
+
+  dispatch({ type: ADD_TEA_TO_WISHLIST, payload: tea });
+};
+
+export const getWishlistTeas = (userId) => async dispatch => {
+  const res = await axios.post(`${api}/api/user/wishlist/get`, { userId });
+  dispatch({ type: GET_WISHLIST_TEAS, payload: res.data });
 };

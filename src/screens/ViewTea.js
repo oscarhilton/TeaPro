@@ -5,7 +5,7 @@ import { Button } from '../components/common';
 import Accordion from '../components/Accordion';
 import ViewTeaHeader from '../components/ViewTeaHeader';
 import RatingsBar from '../components/RatingsBar';
-import { addTeaToCupboard } from '../actions';
+import { addTeaToCupboard, addTeaToWishlist } from '../actions';
 
 class ViewTea extends Component {
   renderUserControls = (tea) => {
@@ -22,6 +22,11 @@ class ViewTea extends Component {
           >
             Add tea to cupboard
           </Button>
+          <Button
+            onPress={this.handleAddTeaWishlist.bind(this, tea)}
+          >
+            Add tea to wishlist
+          </Button>
         </View>
       );
     }
@@ -34,6 +39,10 @@ class ViewTea extends Component {
 
   handleAddTeaCupboard(tea) {
     this.props.addTeaToCupboard(tea, this.props.auth.user._id);
+  }
+
+  handleAddTeaWishlist(tea) {
+    this.props.addTeaToWishlist(tea, this.props.auth.user._id);
   }
 
   render() {
@@ -70,4 +79,4 @@ const mapStateToProps = ({ auth }) => {
   return { auth };
 };
 
-export default connect(mapStateToProps, { addTeaToCupboard })(ViewTea);
+export default connect(mapStateToProps, { addTeaToCupboard, addTeaToWishlist })(ViewTea);

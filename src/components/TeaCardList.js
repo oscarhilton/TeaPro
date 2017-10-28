@@ -22,6 +22,7 @@ class TeaCardList extends Component {
         dataSource={this.dataSource}
         renderRow={this.renderRow.bind(this)}
         style={styles.teaListStyle}
+        removeClippedSubviews={false}
       />
     );
   }

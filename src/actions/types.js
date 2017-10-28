@@ -5,3 +5,5 @@ export const REQUEST_TEAS = 'request_teas';
 export const FETCH_USER = 'fetch_user';
 export const GET_CUPBOARD_TEAS = 'get_cupboard_teas';
 export const ADD_TEA_TO_CUPBOARD = 'add_tea_to_cupboard';
+export const GET_WISHLIST_TEAS = 'get_wishlist_teas';
+export const ADD_TEA_TO_WISHLIST = 'add_tea_to_wishlist';

@@ -3,7 +3,7 @@ import { AsyncStorage } from 'react-native';
 import { FETCH_USER } from './types';
 
 export const onLoggedIn = (user) => async dispatch => {
-  await AsyncStorage.setItem('USER', JSON.stringify(user));
+  // await AsyncStorage.setItem('USER', JSON.stringify(user));
   const res = {
     loggedIn: true,
     user
@@ -12,23 +12,28 @@ export const onLoggedIn = (user) => async dispatch => {
 };
 
 export const fetchUser = () => async dispatch => {
-  const storageUser = await AsyncStorage.getItem('USER');
+  // const storageUser = await AsyncStorage.getItem('USER');
   // await AsyncStorage.removeItem('USER');
-  const userObj = JSON.parse(storageUser);
-  console.log(storageUser, '<- storageUser');
+  // const userObj = JSON.parse(storageUser);
+  // console.log(storageUser, '<- storageUser');
   // const loggout = await AsyncStorage.removeItem('USER');
   // console.log(storageUser, '<- storageUser', loggout);
+  // let storageUser = null;
 
-  let res = {};
-  if (storageUser === null) {
-    res = {
-      loggedIn: false
-    };
-  } else {
-    res = {
-      loggedIn: true,
-      user: userObj
-    };
-  }
+  let res = {
+    loggedIn: false
+  };
+
+  // let res = {};
+  // if (storageUser === null) {
+  //   res = {
+  //     loggedIn: false
+  //   };
+  // } else {
+  //   res = {
+  //     loggedIn: true,
+  //     user: userObj
+  //   };
+  // }
   dispatch({ type: FETCH_USER, payload: res });
 };
