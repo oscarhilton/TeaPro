@@ -12,7 +12,7 @@ class TeaCardList extends Component {
 
   renderRow(tea) {
     // console.log(tea.title);
-    return <TeaCardButton tea={{ ...tea, score: 3.2 }} />;
+    return <TeaCardButton tea={{ ...tea, score: 4.6 }} />;
   }
 
   render() {
@@ -32,8 +32,7 @@ const styles = StyleSheet.create({
   teaListStyle: {
     paddingTop: 5,
     paddingBottom: 10,
-    height: 115,
-    backgroundColor: '#f1f1f1'
+    height: 115
   }
 });
 

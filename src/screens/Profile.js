@@ -1,76 +1,37 @@
 import React, { Component } from 'react';
 import { View, Text } from 'react-native';
 import { connect } from 'react-redux';
-import TeaCardList from '../components/TeaCardList';
 import ProfileInfo from '../components/ProfileInfo';
-import { SectionHeader } from '../components/common';
-import { getCupboardTeas, getWishlistTeas } from '../actions';
+import UserTeaList from '../components/UserTeaList';
 import Login from '../components/Login';
+import {
+  fetchCupboardTeas,
+  returnCupboardTeas,
+} from '../actions';
 
 class ProfileScene extends Component {
   componentWillMount() {
+    console.log('FOCUSED');
     const { loggedIn, user } = this.props.auth;
+    console.log(user);
     if (loggedIn) {
-      this.props.getCupboardTeas(user._id);
-      this.props.getWishlistTeas(user._id);
+      this.props.fetchCupboardTeas();
+      this.props.returnCupboardTeas(user._id);
     }
   }
 
   isLoggedIn() {
-    const { loggedIn } = this.props.auth;
+    const { cupboard } = this.props;
+    const { loggedIn, user } = this.props.auth;
     if (loggedIn) {
       return (
         <View>
-          {this.renderProfile()}
-          {this.renderCupboard()}
-          {this.renderWishlist()}
+          <ProfileInfo user={user} />
+          <UserTeaList user={user} cupboard={cupboard} heading={'Teas in your cupboard'} />
         </View>
       );
     }
     return <Login />;
-  }
-
-  renderProfile() {
-    const { loggedIn, user } = this.props.auth;
-    if (loggedIn) {
-      return <ProfileInfo user={user} />;
-    }
-  }
-
-  renderCupboard() {
-    const { user } = this.props.auth;
-    const { loaded, teas } = this.props.cupboard;
-    if (loaded) {
-      return (
-        <View>
-          <SectionHeader
-            heading={`${user.name}s cupboard`}
-          />
-          <TeaCardList
-            teaList={teas}
-          />
-        </View>
-      );
-    }
-    return <Text>LOADING!</Text>;
-  }
-
-  renderWishlist() {
-    const { user } = this.props.auth;
-    const { loaded, teas } = this.props.wishlist;
-    if (loaded) {
-      return (
-        <View>
-          <SectionHeader
-            heading={`${user.name}s wishlist`}
-          />
-          <TeaCardList
-            teaList={teas}
-          />
-        </View>
-      );
-    }
-    return <Text>LOADING!</Text>;
   }
 
   render() {
@@ -82,8 +43,8 @@ class ProfileScene extends Component {
   }
 }
 
-const mapStateToProps = ({ auth, cupboard, wishlist }) => {
-  return { auth, cupboard, wishlist };
+const mapStateToProps = ({ auth, cupboard }) => {
+  return { auth, cupboard };
 };
 
-export default connect(mapStateToProps, { getCupboardTeas, getWishlistTeas })(ProfileScene);
+export default connect(mapStateToProps, { fetchCupboardTeas, returnCupboardTeas })(ProfileScene);

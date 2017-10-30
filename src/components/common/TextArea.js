@@ -1,15 +1,15 @@
 import React from 'react';
 import { TextInput, View, Text, StyleSheet } from 'react-native';
 
-const Input = ({ label, value, onChangeText, placeholder, secureTextEntry, multiline }) => {
+const TextArea = ({ label, value, onChangeText, placeholder, numberOfLines }) => {
   return (
     <View style={styles.containerStyle}>
       <Text style={styles.labelStyle}>{ label }</Text>
       <TextInput
-        secureTextEntry={secureTextEntry}
         placeholder={placeholder}
-        multiline={multiline}
+        multiline={true}
         autoCorrect={false}
+        numberOfLines={numberOfLines}
         value={value}
         onChangeText={onChangeText}
         style={styles.inputStyle}
@@ -21,23 +21,23 @@ const Input = ({ label, value, onChangeText, placeholder, secureTextEntry, multi
 const styles = StyleSheet.create({
   inputStyle: {
     color: '#000',
-    paddingRight: 5,
-    paddingLeft: 5,
-    fontSize: 18,
+    padding: 10,
+    borderRadius: 4,
+    borderWidth: 1,
+    borderColor: '#cccccc',
+    fontSize: 14,
     lineHeight: 23,
-    flex: 2
+    height: 250
   },
   labelStyle: {
-    fontSize: 18,
-    paddingLeft: 20,
-    flex: 1
+    fontSize: 14,
+    paddingBottom: 10
   },
   containerStyle: {
-    height: 40,
-    flex: 1,
-    flexDirection: 'row',
-    alignItems: 'center',
+    height: 300,
+    padding: 10,
+    backgroundColor: 'white'
   }
 });
 
-export { Input };
+export { TextArea };

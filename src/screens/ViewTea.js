@@ -5,7 +5,12 @@ import { Button } from '../components/common';
 import Accordion from '../components/Accordion';
 import ViewTeaHeader from '../components/ViewTeaHeader';
 import RatingsBar from '../components/RatingsBar';
-import { addTeaToCupboard, addTeaToWishlist } from '../actions';
+import {
+  addTeaToCupboard,
+  addTeaToWishlist,
+  returnCupboardTeas,
+  goToScene
+} from '../actions';
 
 class ViewTea extends Component {
   renderUserControls = (tea) => {
@@ -13,10 +18,6 @@ class ViewTea extends Component {
       const {firstName, lastName} = this.props.auth.user;
       return (
         <View>
-          <Accordion
-            heading={'Logged in user:'}
-            text={`${firstName} ${lastName}`}
-          />
           <Button
             onPress={this.handleAddTeaCupboard.bind(this, tea)}
           >
@@ -26,6 +27,11 @@ class ViewTea extends Component {
             onPress={this.handleAddTeaWishlist.bind(this, tea)}
           >
             Add tea to wishlist
+          </Button>
+          <Button
+            onPress={this.handleWriteReview.bind(this, tea)}
+          >
+            Write a review
           </Button>
         </View>
       );
@@ -39,10 +45,16 @@ class ViewTea extends Component {
 
   handleAddTeaCupboard(tea) {
     this.props.addTeaToCupboard(tea, this.props.auth.user._id);
+    this.props.returnCupboardTeas(this.props.auth.user._id);
   }
 
   handleAddTeaWishlist(tea) {
     this.props.addTeaToWishlist(tea, this.props.auth.user._id);
+  }
+
+  handleWriteReview(tea) {
+    console.log(tea, '<-- Tea to review');
+    this.props.goToScene('WriteReview', tea);
   }
 
   render() {
@@ -79,4 +91,9 @@ const mapStateToProps = ({ auth }) => {
   return { auth };
 };
 
-export default connect(mapStateToProps, { addTeaToCupboard, addTeaToWishlist })(ViewTea);
+export default connect(mapStateToProps, {
+  addTeaToCupboard,
+  addTeaToWishlist,
+  returnCupboardTeas, 
+  goToScene
+})(ViewTea);

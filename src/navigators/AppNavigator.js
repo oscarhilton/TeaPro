@@ -5,6 +5,18 @@ import { TabNavigator, StackNavigator, Platform } from 'react-navigation';
 import Discover from '../screens/Discover';
 import Profile from '../screens/Profile';
 import ViewTea from '../screens/ViewTea';
+import WriteReview from '../screens/WriteReview';
+
+export const TeaScreen = StackNavigator({
+  ViewTea: {
+    screen: ViewTea
+  },
+  WriteReview: {
+    screen: WriteReview
+  }
+}, {
+  headerMode: 'none'
+});
 
 export const Tabs = TabNavigator({
   Discover: {
@@ -36,7 +48,7 @@ export const Navigator = StackNavigator({
     }
   },
   ViewTea: {
-    screen: ViewTea
+    screen: TeaScreen
   }
 }, {
   mode: 'modal',

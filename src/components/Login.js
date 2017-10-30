@@ -3,13 +3,12 @@ import {
   Linking,
   StyleSheet,
   Platform,
-  Text,
   View,
-  AsyncStorage
 } from 'react-native';
 import SafariView from 'react-native-safari-view';
 import { connect } from 'react-redux';
 import { onLoggedIn } from '../actions/authActions';
+import { fetchCupboardTeas, returnCupboardTeas } from '../actions';
 import { Button } from '../components/common';
 import { api } from '../api';
 
@@ -39,6 +38,10 @@ class Login extends Component {
     const user = JSON.parse(decodeURI(user_string));
     // Call onLoggedIn function of parent component and pass user object
     this.props.onLoggedIn(user);
+    this.props.fetchCupboardTeas();
+    // console.log(user, '<-- USER!!!!!');
+    console.log(user._id);
+    this.props.returnCupboardTeas(user._id);
     //Close SafariView
     if (Platform.OS === 'ios') {
       SafariView.dismiss();
@@ -104,4 +107,4 @@ const styles = StyleSheet.create({
   }
 });
 
-export default connect(null, { onLoggedIn })(Login);
+export default connect(null, { onLoggedIn, fetchCupboardTeas, returnCupboardTeas })(Login);

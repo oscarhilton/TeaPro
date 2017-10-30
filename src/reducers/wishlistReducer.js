@@ -1,22 +1,26 @@
 import {
-  GET_WISHLIST_TEAS,
+  FETCH_WISHLIST_TEAS,
+  RETURN_WISHLIST_TEAS,
   ADD_TEA_TO_WISHLIST
  } from '../actions/types';
 
 const INITIAL_STATE = {
-  loaded: false,
-  teas: []
+  loading: false
 };
 
  export default function (state = INITIAL_STATE, action) {
    switch (action.type) {
-     case GET_WISHLIST_TEAS:
+     case FETCH_WISHLIST_TEAS:
        return {
-         loaded: true,
+         ...state,
+         loading: true
+       };
+     case RETURN_WISHLIST_TEAS:
+       return {
+         loading: false,
          teas: action.payload
        };
      case ADD_TEA_TO_WISHLIST:
-       console.log(action.payload);
        return {
          ...state,
          teas: [action.payload, ...state.teas]
