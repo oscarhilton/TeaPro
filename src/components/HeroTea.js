@@ -10,7 +10,7 @@ class HeroTea extends Component {
         <View style={styles.heroStyle}>
           <Image
             style={styles.imageStyle}
-            source={{ uri: 'https://33.media.tumblr.com/9d175c9e58a238dfb719547c26505aae/tumblr_nase02Lvxq1tiyj7vo1_500.jpg' }}
+            source={{ uri: 'https://i.pinimg.com/736x/4a/f2/47/4af247c79450c3e63982a5d5cbeea06b--coffee-break-coffee-time.jpg' }}
           />
           <Text style={styles.textStyle} >{this.props.heroText}This season's tea</Text>
           <View style={styles.teaCardStyle} >
@@ -23,20 +23,20 @@ class HeroTea extends Component {
 
 const styles = StyleSheet.create({
   componentStyle: {
-    position: 'relative'
+    position: 'relative',
+    margin: 10
   },
   heroStyle: {
     borderBottomWidth: 1,
     padding: 0,
-    backgroundColor: '#fff',
     flexDirection: 'row',
-    borderColor: '#ddd',
     position: 'relative'
   },
   imageStyle: {
-    height: 200,
+    height: 400,
     flex: 1,
-    width: null
+    width: null,
+    borderRadius: 20
   },
   textStyle: {
     backgroundColor: '#403C40',

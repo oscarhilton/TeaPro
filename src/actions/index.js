@@ -19,18 +19,19 @@ export const requestTeas = () => dispatch => {
 };
 
 export const getAllCategories = () => async dispatch => {
-  const storageCategories = await AsyncStorage.getItem('TeaCategories');
+  // const storageCategories = await AsyncStorage.getItem('TeaCategories');
+  // let categories = {};
+  // if (storageCategories === null) {
+  //   const res = await axios.get(`${api}/api/category/all`);
+  //   await AsyncStorage.setItem('TeaCategories', JSON.stringify(res.data.cats));
+  //   categories = res.data.cats;
+  // } else {
+  //   categories = JSON.parse(storageCategories);
+  // }
 
-  let categories = {};
-  if (storageCategories === null) {
-    const res = await axios.get(`${api}/api/category/all`);
-    await AsyncStorage.setItem('TeaCategories', JSON.stringify(res.data.cats));
-    categories = res.data.cats;
-  } else {
-    categories = JSON.parse(storageCategories);
-  }
+  const res = await axios.get(`${api}/api/category/all`);
 
-  dispatch({ type: GET_TEA_CATEGORIES, payload: categories });
+  dispatch({ type: GET_TEA_CATEGORIES, payload: res.data });
 };
 
 export const showTea = (tea) => dispatch => {
@@ -46,7 +47,7 @@ export const goBack = () => dispatch => {
 };
 
 export const addTeaToCupboard = (tea, userId) => async dispatch => {
-  await axios.post(`${api}/api/user/cupboard/add`, { teaId: tea._id, userId });
+  await axios.post(`${api}/api/user/${userId}/cupboard/add/${tea._id}`);
   dispatch({ type: ADD_TEA_TO_CUPBOARD, payload: tea });
 };
 
@@ -54,28 +55,26 @@ export const fetchCupboardTeas = () => dispatch => {
   dispatch({ type: FETCH_CUPBOARD_TEAS });
 };
 
-export const returnCupboardTeas = (userId) => async dispatch => {
-  // const storageCupboard = await AsyncStorage.getItem('UserCupboard');
-  const storageCupboard = null;
-
-  let cupboard = {};
-  if (storageCupboard === null) {
-    const res = await axios.post(`${api}/api/user/cupboard/get`, { userId });
-    await AsyncStorage.setItem('UserCupboard', JSON.stringify(res.data));
-    cupboard = res.data;
-  } else {
-    cupboard = JSON.parse(storageCupboard);
-  }
-
-  dispatch({ type: RETURN_CUPBOARD_TEAS, payload: cupboard });
-};
-
 // export const returnCupboardTeas = (userId) => async dispatch => {
-//   console.log('action fired');
-//   const res = await axios.post(`${api}/api/user/cupboard/get`, { userId });
-//   console.log(res);
-//   dispatch({ type: RETURN_CUPBOARD_TEAS, payload: res.data });
+//   // const storageCupboard = await AsyncStorage.getItem('UserCupboard');
+//   const storageCupboard = null;
+//
+//   let cupboard = {};
+//   if (storageCupboard === null) {
+//     const res = await axios.post(`${api}/api/user/cupboard/get`, { userId });
+//     await AsyncStorage.setItem('UserCupboard', JSON.stringify(res.data));
+//     cupboard = res.data;
+//   } else {
+//     cupboard = JSON.parse(storageCupboard);
+//   }
+//
+//   dispatch({ type: RETURN_CUPBOARD_TEAS, payload: cupboard });
 // };
+
+export const returnCupboardTeas = (userId) => async dispatch => {
+  const res = await axios.post(`${api}/api/user/${userId}/cupboard`);
+  dispatch({ type: RETURN_CUPBOARD_TEAS, payload: res.data });
+};
 
 export const addTeaToWishlist = (tea, userId) => async dispatch => {
   const res = await axios.post(`${api}/api/user/wishlist/add`, { teaId: tea._id, userId });

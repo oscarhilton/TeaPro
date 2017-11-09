@@ -11,9 +11,7 @@ import {
 
 class ProfileScene extends Component {
   componentWillMount() {
-    console.log('FOCUSED');
     const { loggedIn, user } = this.props.auth;
-    console.log(user);
     if (loggedIn) {
       this.props.fetchCupboardTeas();
       this.props.returnCupboardTeas(user._id);

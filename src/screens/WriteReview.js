@@ -4,7 +4,6 @@ import { TextArea, Button } from '../components/common';
 
 const WriteReview = (props) => {
   const tea = props.navigation.state.params;
-  console.log(tea);
 
   return (
     <View style={{ flex: 1, backgroundColor: 'white' }}>

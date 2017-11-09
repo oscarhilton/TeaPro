@@ -12,7 +12,6 @@ export const onLoggedIn = (user) => async dispatch => {
     };
   }
   catch (err) {
-    console.log(err);
     res = {
       loggedIn: false,
     };

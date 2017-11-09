@@ -5,6 +5,7 @@ import { TabNavigator, StackNavigator, Platform } from 'react-navigation';
 import Discover from '../screens/Discover';
 import Profile from '../screens/Profile';
 import ViewTea from '../screens/ViewTea';
+import ChooseMoods from '../screens/ChooseMoods';
 import WriteReview from '../screens/WriteReview';
 
 export const TeaScreen = StackNavigator({
@@ -24,6 +25,9 @@ export const Tabs = TabNavigator({
   },
   Profile: {
     screen: Profile
+  },
+  ChooseMoods: {
+    screen: ChooseMoods
   }
 }, {
   headerMode: 'none',        // I don't want a NavBar at top

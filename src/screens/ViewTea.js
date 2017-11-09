@@ -53,7 +53,6 @@ class ViewTea extends Component {
   }
 
   handleWriteReview(tea) {
-    console.log(tea, '<-- Tea to review');
     this.props.goToScene('WriteReview', tea);
   }
 
@@ -94,6 +93,6 @@ const mapStateToProps = ({ auth }) => {
 export default connect(mapStateToProps, {
   addTeaToCupboard,
   addTeaToWishlist,
-  returnCupboardTeas, 
+  returnCupboardTeas,
   goToScene
 })(ViewTea);

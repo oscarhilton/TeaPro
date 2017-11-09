@@ -22,7 +22,6 @@ const TeaCard = (props) => {
 const styles = StyleSheet.create({
   teaCardStyle: {
     width: 90,
-    height: 100,
     padding: 8,
     margin: 1,
     borderRadius: 8,

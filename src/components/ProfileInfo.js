@@ -39,7 +39,6 @@ const styles = StyleSheet.create({
     position: 'relative',
     flexDirection: 'row',
     backgroundColor: '#ffffff',
-    marginTop: 20,
     shadowColor: '#000000',
     shadowOffset: { height: 2 },
     shadowOpacity: 0.15

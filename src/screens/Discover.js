@@ -21,7 +21,6 @@ class DiscoverScene extends Component {
 
   renderSections() {
     const { categories } = this.props.teaList.teas;
-    console.log(categories);
     return (
       categories.map((cat) => {
         return (
@@ -54,7 +53,6 @@ class DiscoverScene extends Component {
   }
 
   render() {
-    console.log(this.props.teaList);
     return (
       <View style={{ flex: 1 }} >
         {this.renderContent()}
@@ -65,7 +63,7 @@ class DiscoverScene extends Component {
 
 const styles = StyleSheet.create({
   componentStyle: {
-    backgroundColor: 'white'
+    backgroundColor: '#18061B'
   },
   spinnerStyle: {
     position: 'absolute',

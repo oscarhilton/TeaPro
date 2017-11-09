@@ -9,10 +9,10 @@ const SectionHeader = props => {
 
 const styles = StyleSheet.create({
   headingStyle: {
-    fontSize: 12,
+    fontSize: 18,
     fontWeight: '600',
-    padding: 10,
-    backgroundColor: '#ffffff'
+    color: 'white',
+    padding: 10
   }
 });
 
