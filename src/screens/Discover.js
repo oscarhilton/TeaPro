@@ -78,4 +78,8 @@ const mapStateToProps = ({ teaList, auth }) => {
   return { teaList, auth };
 };
 
-export default connect(mapStateToProps, { getAllCategories, requestTeas, fetchUser })(DiscoverScene);
+export default connect(mapStateToProps, {
+  getAllCategories,
+  requestTeas,
+  fetchUser
+})(DiscoverScene);
