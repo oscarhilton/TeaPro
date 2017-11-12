@@ -2,11 +2,10 @@ import React, { Component } from 'react';
 import {
   ScrollView,
   View,
-  Text,
   StyleSheet
 } from 'react-native';
 import { connect } from 'react-redux';
-import { requestTeas, getAllCategories } from '../actions';
+import { requestCategories, returnAllCategories } from '../actions/categoryActions';
 import { fetchUser } from '../actions/authActions';
 import { SectionHeader, Spinner } from '../components/common';
 import TeaCardList from '../components/TeaCardList';
@@ -14,13 +13,14 @@ import HeroTea from '../components/HeroTea';
 
 class DiscoverScene extends Component {
   componentWillMount() {
-    this.props.requestTeas();
-    this.props.getAllCategories();
+    this.props.requestCategories();
+    this.props.returnAllCategories();
     this.props.fetchUser();
   }
 
   renderSections() {
-    const { categories } = this.props.teaList.teas;
+    const { categories } = this.props.categories;
+    console.log(categories);
     return (
       categories.map((cat) => {
         return (
@@ -39,7 +39,7 @@ class DiscoverScene extends Component {
   }
 
   renderContent() {
-    if (this.props.teaList.loading) {
+    if (this.props.categories.loading) {
       return (
         <Spinner style={styles.spinnerStyle} />
       );
@@ -63,7 +63,8 @@ class DiscoverScene extends Component {
 
 const styles = StyleSheet.create({
   componentStyle: {
-    backgroundColor: '#18061B'
+    backgroundColor: '#18061B',
+    paddingTop: 50
   },
   spinnerStyle: {
     position: 'absolute',
@@ -74,12 +75,12 @@ const styles = StyleSheet.create({
   }
 });
 
-const mapStateToProps = ({ teaList, auth }) => {
-  return { teaList, auth };
+const mapStateToProps = ({ categories, auth }) => {
+  return { categories, auth };
 };
 
 export default connect(mapStateToProps, {
-  getAllCategories,
-  requestTeas,
+  requestCategories,
+  returnAllCategories,
   fetchUser
 })(DiscoverScene);

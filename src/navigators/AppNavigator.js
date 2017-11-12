@@ -20,11 +20,11 @@ export const TeaScreen = StackNavigator({
 });
 
 export const Tabs = TabNavigator({
-  Discover: {
-    screen: Discover
-  },
   Profile: {
     screen: Profile
+  },
+  Discover: {
+    screen: Discover
   },
   ChooseMoods: {
     screen: OnBoarding
@@ -32,6 +32,10 @@ export const Tabs = TabNavigator({
 }, {
   headerMode: 'none',        // I don't want a NavBar at top
     tabBarPosition: 'bottom',  // So your Android tabs go bottom
+    initialRouteName: 'ChooseMoods',
+    lazy: true,
+    swipeEnabled: true,
+    animationEnabled: true,
     tabBarOptions: {
       activeTintColor: 'red',  // Color of tab when pressed
       inactiveTintColor: '#b5b5b5', // Color of tab when not pressed

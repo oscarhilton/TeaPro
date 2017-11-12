@@ -13,6 +13,9 @@ const { width } = Dimensions.get('window');
 class ThumbnailButton extends Component {
   render() {
     const { title, image } = this.props.data;
+    const showImage = image ?
+          <Image source={{ uri: image.path }} style={styles.imageStyle} /> :
+          null;
     const clickStyle =
           this.props.clicked ?
           { backgroundColor: 'rgba(185,39,72,0.9)' } :
@@ -31,10 +34,7 @@ class ThumbnailButton extends Component {
             {title}
           </Text>
         </View>
-        <Image
-          source={{ uri: image.path }}
-          style={styles.imageStyle}
-        />
+        {showImage}
       </TouchableOpacity>
     );
   }
@@ -52,7 +52,8 @@ const styles = StyleSheet.create({
     bottom: 0,
     left: 0,
     justifyContent: 'center',
-    zIndex: 2
+    zIndex: 2,
+    padding: 5
   },
   textStyle: {
     color: 'white',

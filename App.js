@@ -6,6 +6,7 @@ import reduxThunk from 'redux-thunk';
 import { addNavigationHelpers, NavigationActions } from 'react-navigation';
 import { Navigator } from './src/navigators/AppNavigator';
 import reducers from './src/reducers';
+import Header from './src/components/Header';
 
 const store = createStore(reducers, {}, applyMiddleware(reduxThunk));
 
@@ -47,7 +48,8 @@ export default class Root extends Component<{}> {
   render() {
     return (
       <Provider store={store}>
-        <View style={{ flex: 1 }} >
+        <View style={{ flex: 1, position: 'relative' }} >
+          <Header />
           <AppWithNavigationState />
         </View>
       </Provider>

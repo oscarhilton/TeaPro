@@ -1,13 +1,15 @@
 import React, { Component } from 'react';
-import { View } from 'react-native';
+import { ScrollView } from 'react-native';
+import ChooseCategories from '../components/onBoarding/ChooseCategories';
 import ChooseMoods from '../components/onBoarding/ChooseMoods';
 
 class OnBoarding extends Component {
   render() {
     return (
-      <View style={{ flex: 1, backgroundColor: '#212121' }}>
+      <ScrollView style={{ flex: 1, backgroundColor: '#212121', paddingTop: 50 }}>
+        <ChooseCategories />
         <ChooseMoods />
-      </View>
+      </ScrollView>
     );
   }
 }

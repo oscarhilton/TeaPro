@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { View, Text } from 'react-native';
 import { connect } from 'react-redux';
+import { fetchUser } from '../actions/authActions';
 import ProfileInfo from '../components/ProfileInfo';
 import UserTeaList from '../components/UserTeaList';
 import Login from '../components/Login';
@@ -11,6 +12,7 @@ import {
 
 class ProfileScene extends Component {
   componentWillMount() {
+    this.props.fetchUser();
     const { loggedIn, user } = this.props.auth;
     if (loggedIn) {
       this.props.fetchCupboardTeas();
@@ -34,7 +36,7 @@ class ProfileScene extends Component {
 
   render() {
     return (
-      <View style={{ flex: 1 }}>
+      <View style={{ flex: 1, paddingTop: 50 }}>
         {this.isLoggedIn()}
       </View>
     );
@@ -45,4 +47,4 @@ const mapStateToProps = ({ auth, cupboard }) => {
   return { auth, cupboard };
 };
 
-export default connect(mapStateToProps, { fetchCupboardTeas, returnCupboardTeas })(ProfileScene);
+export default connect(mapStateToProps, { fetchUser, fetchCupboardTeas, returnCupboardTeas })(ProfileScene);
