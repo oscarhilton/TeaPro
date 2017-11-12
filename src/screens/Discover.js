@@ -8,6 +8,7 @@ import { connect } from 'react-redux';
 import { requestCategories, returnAllCategories } from '../actions/categoryActions';
 import { fetchUser } from '../actions/authActions';
 import { SectionHeader, Spinner } from '../components/common';
+import { SEARCH_OFFSET } from '../components/styleHelpers';
 import TeaCardList from '../components/TeaCardList';
 import HeroTea from '../components/HeroTea';
 
@@ -64,7 +65,7 @@ class DiscoverScene extends Component {
 const styles = StyleSheet.create({
   componentStyle: {
     backgroundColor: '#18061B',
-    paddingTop: 50
+    paddingTop: SEARCH_OFFSET
   },
   spinnerStyle: {
     position: 'absolute',

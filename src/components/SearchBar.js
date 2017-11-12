@@ -1,5 +1,9 @@
 import React, { Component } from 'react';
 import { View, Text, TextInput, StyleSheet } from 'react-native';
+import { connect } from 'react-redux';
+import { startSearch, returnSearch, endSearch } from '../actions/searchActions';
+import { Spinner } from './common';
+import SearchResult from './SearchResult';
 
 class SearchBar extends Component {
   constructor(props) {
@@ -9,22 +13,38 @@ class SearchBar extends Component {
     };
   }
 
-  handleSearch() {
-    if (this.state.searchText.length > 5) {
-      console.log('start the search please mr computa');
+  handleChange(searchText) {
+    this.setState({ searchText });
+
+    if (this.state.searchText.length < 2) {
+      this.props.endSearch();
+    } else {
+      this.props.startSearch();
+      this.props.returnSearch(searchText);
+    }
+  }
+
+  renderResults() {
+    if (this.props.search.loading) {
+      return (
+        <View style={[styles.resultsStyle, { padding: 10 }]}>
+          <Spinner size='small' />
+        </View>
+      );
+    } else if (this.props.search.results.length > 0) {
+      const results = this.props.search.results.map((result) => {
+        return <SearchResult key={result.title} data={result} />;
+      });
       return (
         <View style={styles.resultsStyle}>
-          <Text>Search results</Text>
+          {results}
         </View>
       );
     }
   }
 
-  handleChange(searchText) {
-    this.setState({ searchText });
-  }
-
   render() {
+    console.log(this.props.search);
     return (
       <View style={{ flex: 1 }}>
         <View style={styles.inputContainerStyle}>
@@ -34,7 +54,7 @@ class SearchBar extends Component {
             style={styles.inputStyle}
           />
         </View>
-        {this.handleSearch()}
+        {this.renderResults()}
       </View>
     );
   }
@@ -53,10 +73,12 @@ const styles = StyleSheet.create({
     fontSize: 14
   },
   resultsStyle: {
-    backgroundColor: 'white',
-    height: 40,
-    padding: 10
+    backgroundColor: 'white'
   }
 });
 
-export default SearchBar;
+const mapStateToProps = ({ search }) => {
+  return { search };
+};
+
+export default connect(mapStateToProps, { startSearch, returnSearch, endSearch })(SearchBar);

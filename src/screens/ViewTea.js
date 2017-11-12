@@ -82,6 +82,7 @@ class ViewTea extends Component {
 const styles = StyleSheet.create({
   backgroundStyle: {
     backgroundColor: 'rgba(0,0,0,0.8)',
+    paddingTop: 50,
     flex: 1
   }
 });

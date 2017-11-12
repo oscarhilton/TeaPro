@@ -20,7 +20,10 @@ const styles = StyleSheet.create({
     right: 0,
     flex: 1,
     backgroundColor: 'rgba(255,255,255,0.3)',
-    zIndex: 9
+    zIndex: 9,
+    borderBottomLeftRadius: 20,
+    borderBottomRightRadius: 20,
+    paddingTop: 20
   }
 });
 
