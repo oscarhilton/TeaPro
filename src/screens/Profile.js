@@ -13,24 +13,21 @@ import {
 } from '../actions';
 
 class ProfileScene extends Component {
-  componentWillMount() {
-    this.props.fetchUser();
+  async componentWillMount() {
+    const { user } = this.props.auth;
+    await this.props.fetchUser();
+    this.props.fetchCupboardTeas();
+    this.props.returnCupboardTeas(user._id);
   }
 
-  componentWillReceiveProps(newProps) {
+  async componentWillReceiveProps(newProps) {
     if (this.props.auth.loggedIn !== newProps.auth.loggedIn) {
       const { loggedIn, user, onBoard } = newProps.auth;
       if (loggedIn) {
-        async () => {
-          await this.props.checkOnBoarding(user._id);
-
-          if (onBoard) {
-            this.props.fetchCupboardTeas();
-            this.props.returnCupboardTeas(user._id);
-          } else {
-            this.props.goToScene('OnBoarding', user);
-          }
-        };
+        await this.props.checkOnBoarding(user._id);
+        if (!onBoard) {
+          this.props.goToScene('OnBoarding', user);
+        }
       }
     }
   }

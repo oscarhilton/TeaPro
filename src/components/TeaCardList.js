@@ -11,7 +11,6 @@ class TeaCardList extends Component {
   }
 
   renderRow(tea) {
-    // console.log(tea.title);
     return <TeaCardButton tea={{ ...tea, score: 4.6 }} />;
   }
 
@@ -33,7 +32,7 @@ const styles = StyleSheet.create({
     paddingTop: 5,
     paddingBottom: 10,
     height: 130,
-    backgroundColor: 'white'
+    backgroundColor: '#f1f1f1'
   }
 });
 

@@ -1,6 +1,7 @@
 import {
   FETCH_USER,
   CHECK_ON_BOARDING,
+  SUBMIT_ON_BOARDING,
   LOG_OUT_USER
 } from '../actions/authActions/types';
 
@@ -20,6 +21,11 @@ export default function (state = INITIAL_STATE, action) {
       return {
         ...state,
         onBoard: action.payload
+      };
+    case SUBMIT_ON_BOARDING:
+      return {
+        ...state,
+        user: action.payload
       };
     case LOG_OUT_USER:
       return {

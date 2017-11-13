@@ -7,27 +7,22 @@ import {
   StyleSheet
 } from 'react-native';
 import { connect } from 'react-redux';
-import { startSearch, returnSearch, endSearch } from '../actions/searchActions';
+import { startSearch, updateSearch, returnSearch, endSearch } from '../actions/searchActions';
 import { Spinner } from './common';
 import SearchResult from './SearchResult';
+import TeaCardList from './TeaCardList';
 
 const searchIcon = require('../assets/images/search.png');
 
 class SearchBar extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      searchText: ''
-    };
-  }
+  handleChange(text) {
+    const { searchText } = this.props.search;
+    this.props.startSearch();
+    this.props.updateSearch(text);
 
-  handleChange(searchText) {
-    this.setState({ searchText });
-
-    if (this.state.searchText.length < 2) {
+    if (searchText.length < 1) {
       this.props.endSearch();
     } else {
-      this.props.startSearch();
       this.props.returnSearch(searchText);
     }
   }
@@ -49,14 +44,14 @@ class SearchBar extends Component {
       });
       return (
         <View style={styles.resultsStyle}>
-          {results}
+          <TeaCardList teaList={this.props.search.results} />
         </View>
       );
     }
   }
 
   render() {
-    console.log(this.props);
+    console.log(this.props.search.searchText);
     return (
       <View style={{ flex: 1 }}>
         <View style={styles.inputContainerStyle}>
@@ -65,7 +60,7 @@ class SearchBar extends Component {
             style={styles.iconStyle}
           />
           <TextInput
-            value={this.state.searchText}
+            value={this.props.search.searchText}
             onChangeText={this.handleChange.bind(this)}
             style={styles.inputStyle}
           />
@@ -105,4 +100,4 @@ const mapStateToProps = ({ search, nav }) => {
   return { search, nav };
 };
 
-export default connect(mapStateToProps, { startSearch, returnSearch, endSearch })(SearchBar);
+export default connect(mapStateToProps, { startSearch, updateSearch, returnSearch, endSearch })(SearchBar);

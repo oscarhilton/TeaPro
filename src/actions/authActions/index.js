@@ -1,6 +1,7 @@
 import axios from 'axios';
 import { AsyncStorage } from 'react-native';
 import { api } from '../../api';
+import { updateUser } from '../helpers';
 import {
   FETCH_USER,
   CHECK_ON_BOARDING,
@@ -29,9 +30,6 @@ export const fetchUser = () => async dispatch => {
   const storageUser = await AsyncStorage.getItem('USER');
   const userObj = JSON.parse(storageUser);
 
-  // const loggout = await AsyncStorage.removeItem('USER');
-  // console.log(storageUser, '<- storageUser', loggout);
-
   let res = {};
   if (storageUser === null) {
     res = {
@@ -43,6 +41,7 @@ export const fetchUser = () => async dispatch => {
       user: userObj
     };
   }
+  console.log(res);
   dispatch({ type: FETCH_USER, payload: res });
 };
 
@@ -58,6 +57,10 @@ export const checkOnBoarding = (id) => async dispatch => {
 };
 
 export const submitOnboarding = (id, moods, categories) => async dispatch => {
-  const res = await axios.post(`${api}/api/user/${id}/onboardsubmit`, { moods, categories });
-  dispatch({ type: SUBMIT_ON_BOARDING, payload: res.data });
+  await axios.post(`${api}/api/user/${id}/onboardsubmit`, { moods, categories });
+  const user = await updateUser({
+    chosenMoods: moods,
+    chosenCategories: categories
+  });
+  dispatch({ type: SUBMIT_ON_BOARDING, payload: user });
 };

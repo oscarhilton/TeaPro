@@ -57,7 +57,6 @@ const styles = StyleSheet.create({
     alignItems: 'center'
   },
   detailsStyle: {
-    margin: 10,
     position: 'absolute',
     zIndex: 1,
     top: 0,
@@ -86,8 +85,15 @@ const styles = StyleSheet.create({
   },
   detailsTextContainerStyle: {
     position: 'absolute',
-    bottom: 10,
-    left: 0
+    paddingBottom: 20,
+    paddingTop: 15,
+    backgroundColor: 'rgba(255,255,255,0.1)',
+    borderTopLeftRadius: 10,
+    borderTopRightRadius: 10,
+    padding: 10,
+    bottom: 0,
+    left: 0,
+    width: '100%'
   },
   headerTextStyle: {
     color: 'white',

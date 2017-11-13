@@ -3,6 +3,10 @@ import { View, ScrollView } from 'react-native';
 import { connect } from 'react-redux';
 import { goBack } from '../actions/navActions';
 import { submitOnboarding } from '../actions/authActions';
+import {
+  fetchCupboardTeas,
+  returnCupboardTeas,
+} from '../actions';
 import { SEARCH_OFFSET } from '../components/styleHelpers';
 import { FloatingButton } from '../components/common';
 import ChooseCategories from '../components/onBoarding/ChooseCategories';
@@ -16,6 +20,8 @@ class OnBoarding extends Component {
   handleChoices() {
     const { currentUser, chosenCategories, chosenMoods } = this.props;
     this.props.submitOnboarding(currentUser, chosenCategories, chosenMoods);
+    this.props.fetchCupboardTeas();
+    this.props.returnCupboardTeas(currentUser);
     this.props.goBack();
   }
 
@@ -50,4 +56,9 @@ const mapStateToProps = ({ auth, categories, moods }) => {
   return { currentUser, chosenCategories, chosenMoods };
 };
 
-export default connect(mapStateToProps, { goBack, submitOnboarding })(OnBoarding);
+export default connect(mapStateToProps, {
+  goBack,
+  submitOnboarding,
+  fetchCupboardTeas,
+  returnCupboardTeas
+})(OnBoarding);

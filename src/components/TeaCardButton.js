@@ -3,11 +3,13 @@ import {
   TouchableOpacity
 } from 'react-native';
 import { connect } from 'react-redux';
+import { clearSearch } from '../actions/searchActions';
 import { goToScene } from '../actions/navActions';
 import TeaCard from './TeaCard';
 
 class TeaCardButton extends Component {
   handlePress() {
+    this.props.clearSearch();
     this.props.goToScene('ViewTea', this.props.tea);
   }
 
@@ -22,4 +24,4 @@ class TeaCardButton extends Component {
   }
 }
 
-export default connect(null, { goToScene })(TeaCardButton);
+export default connect(null, { goToScene, clearSearch })(TeaCardButton);

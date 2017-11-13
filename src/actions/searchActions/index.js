@@ -3,6 +3,8 @@ import { api } from '../../api';
 import {
   START_SEARCH,
   RETURN_SEARCH,
+  UPDATE_SEARCH,
+  CLEAR_SEARCH,
   END_SEARCH
 } from './types';
 
@@ -15,7 +17,15 @@ export const returnSearch = (term) => async dispatch => {
   dispatch({ type: RETURN_SEARCH, payload: res.data });
 };
 
+export const updateSearch = (searchText) => dispatch => {
+  dispatch({ type: UPDATE_SEARCH, payload: searchText });
+};
+
 export const endSearch = () => dispatch => {
-  console.log('end search')
   dispatch({ type: END_SEARCH });
+};
+
+export const clearSearch = () => dispatch => {
+  console.log('CLEARING SEARCH');
+  dispatch({ type: CLEAR_SEARCH });
 };

@@ -16,9 +16,8 @@ const Button = ({ onPress, children }) => {
 
 const styles = StyleSheet.create({
   textStyle: {
-    alignSelf: 'center',
     color: '#212121',
-    fontSize: 16,
+    fontSize: 14,
     fontWeight: '600',
     paddingTop: 10,
     paddingBottom: 10
@@ -26,7 +25,10 @@ const styles = StyleSheet.create({
   buttonStyle: {
     flex: 1,
     alignSelf: 'stretch',
-    backgroundColor: '#ccc',
+    backgroundColor: '#f1f1f1',
+    padding: 10,
+    borderBottomColor: '#ccc',
+    borderBottomWidth: 1,
   }
 });
 
