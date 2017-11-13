@@ -10,9 +10,8 @@ class HeroTea extends Component {
         <View style={styles.heroStyle}>
           <Image
             style={styles.imageStyle}
-            source={{ uri: 'https://i.pinimg.com/736x/4a/f2/47/4af247c79450c3e63982a5d5cbeea06b--coffee-break-coffee-time.jpg' }}
+            source={{ uri: 'https://ae01.alicdn.com/kf/HTB1xey5PXXXXXXhaXXXq6xXFXXXl/Black-Pottery-Japanese-Style-Tea-Cup-And-Saucer-Vintage-Kung-Fu-Teacup-Hand-Made-Ceramic-Tea.jpg' }}
           />
-          <Text style={styles.textStyle} >{this.props.heroText}This season's tea</Text>
           <View style={styles.teaCardStyle} >
           </View>
         </View>

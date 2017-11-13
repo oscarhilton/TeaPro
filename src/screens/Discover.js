@@ -65,7 +65,7 @@ class DiscoverScene extends Component {
 const styles = StyleSheet.create({
   componentStyle: {
     backgroundColor: '#18061B',
-    paddingTop: SEARCH_OFFSET
+    // paddingTop: SEARCH_OFFSET
   },
   spinnerStyle: {
     position: 'absolute',

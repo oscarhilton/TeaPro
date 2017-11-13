@@ -1,9 +1,8 @@
 import React, { Component } from 'react';
-import { View } from 'react-native';
+import { ScrollView, View } from 'react-native';
 import { connect } from 'react-redux';
 import { fetchUser, checkOnBoarding, logOutUser } from '../actions/authActions';
 import { goToScene } from '../actions/navActions';
-import { SEARCH_OFFSET } from '../components/styleHelpers';
 import { Button } from '../components/common';
 import ProfileInfo from '../components/ProfileInfo';
 import UserTeaList from '../components/UserTeaList';
@@ -22,13 +21,16 @@ class ProfileScene extends Component {
     if (this.props.auth.loggedIn !== newProps.auth.loggedIn) {
       const { loggedIn, user, onBoard } = newProps.auth;
       if (loggedIn) {
-        this.props.checkOnBoarding(user._id);
-        if (onBoard) {
-          this.props.fetchCupboardTeas();
-          this.props.returnCupboardTeas(user._id);
-        } else {
-          this.props.goToScene('OnBoarding', user);
-        }
+        async () => {
+          await this.props.checkOnBoarding(user._id);
+
+          if (onBoard) {
+            this.props.fetchCupboardTeas();
+            this.props.returnCupboardTeas(user._id);
+          } else {
+            this.props.goToScene('OnBoarding', user);
+          }
+        };
       }
     }
   }
@@ -43,11 +45,15 @@ class ProfileScene extends Component {
   }
 
   isLoggedIn() {
-    const { cupboard } = this.props;
+    const { cupboard, wishlist } = this.props;
+    console.log(wishlist, cupboard);
+    // const showCupboard =
+    //   cupboard ?
+    //   return <UserTeaList user={user} cupboard={cupboard} heading={'Teas in your cupboard'} /> : return null;
     const { loggedIn, user } = this.props.auth;
     if (loggedIn) {
       return (
-        <View>
+        <ScrollView>
           <ProfileInfo user={user} />
           <UserTeaList user={user} cupboard={cupboard} heading={'Teas in your cupboard'} />
           <View style={{ height: 100 }}>
@@ -62,7 +68,7 @@ class ProfileScene extends Component {
               Open OnBoarding
             </Button>
           </View>
-        </View>
+        </ScrollView>
       );
     }
     return <Login />;
@@ -71,15 +77,15 @@ class ProfileScene extends Component {
   render() {
     console.log(this.props.auth);
     return (
-      <View style={{ flex: 1, paddingTop: SEARCH_OFFSET }}>
+      <View style={{ flex: 1 }}>
         {this.isLoggedIn()}
       </View>
     );
   }
 }
 
-const mapStateToProps = ({ auth, cupboard }) => {
-  return { auth, cupboard };
+const mapStateToProps = ({ auth, cupboard, wishlist }) => {
+  return { auth, cupboard, wishlist };
 };
 
 export default connect(mapStateToProps, {

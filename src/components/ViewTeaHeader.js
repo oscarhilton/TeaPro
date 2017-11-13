@@ -3,6 +3,7 @@ import { View, Text, StyleSheet, Image } from 'react-native';
 import { connect } from 'react-redux';
 import { goBack } from '../actions/navActions';
 import { CloseButton } from '../components/common';
+import { SEARCH_OFFSET } from './styleHelpers';
 import TeaCard from '../components/TeaCard';
 
 const background = require('../assets/images/background-teapro.png');
@@ -43,18 +44,17 @@ class ViewTeaHeader extends Component {
 
 const styles = StyleSheet.create({
   componentStyle: {
-    height: 300,
+    height: 400,
     position: 'relative'
   },
   closeStyle: {
     position: 'absolute',
+    marginTop: SEARCH_OFFSET + 15,
     margin: 10,
     top: 0,
     right: 0,
     justifyContent: 'center',
     alignItems: 'center'
-  },
-  teaCardStyle: {
   },
   detailsStyle: {
     margin: 10,
@@ -64,10 +64,12 @@ const styles = StyleSheet.create({
     bottom: 0,
     left: 0,
     right: 0,
-    flex: 1
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center'
   },
   imageStyle: {
-    height: 300,
+    height: 400,
     zIndex: 0,
     opacity: 0.5,
     position: 'absolute',
@@ -78,7 +80,9 @@ const styles = StyleSheet.create({
   },
   teaCardContainer: {
     height: 100,
-    width: 90
+    width: 90,
+    justifyContent: 'center',
+    alignItems: 'center'
   },
   detailsTextContainerStyle: {
     position: 'absolute',

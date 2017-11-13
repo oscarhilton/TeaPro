@@ -1,9 +1,17 @@
 import React, { Component } from 'react';
-import { View, Text, TextInput, StyleSheet } from 'react-native';
+import {
+  View,
+  Text,
+  TextInput,
+  Image,
+  StyleSheet
+} from 'react-native';
 import { connect } from 'react-redux';
 import { startSearch, returnSearch, endSearch } from '../actions/searchActions';
 import { Spinner } from './common';
 import SearchResult from './SearchResult';
+
+const searchIcon = require('../assets/images/search.png');
 
 class SearchBar extends Component {
   constructor(props) {
@@ -24,14 +32,18 @@ class SearchBar extends Component {
     }
   }
 
-  renderResults() {
+  renderSpinner() {
     if (this.props.search.loading) {
       return (
-        <View style={[styles.resultsStyle, { padding: 10 }]}>
+        <View style={{ width: 40 }}>
           <Spinner size='small' />
         </View>
       );
-    } else if (this.props.search.results.length > 0) {
+    }
+  }
+
+  renderResults() {
+    if (this.props.search.results.length > 0) {
       const results = this.props.search.results.map((result) => {
         return <SearchResult key={result.title} data={result} />;
       });
@@ -48,11 +60,16 @@ class SearchBar extends Component {
     return (
       <View style={{ flex: 1 }}>
         <View style={styles.inputContainerStyle}>
+          <Image
+            source={searchIcon}
+            style={styles.iconStyle}
+          />
           <TextInput
             value={this.state.searchText}
             onChangeText={this.handleChange.bind(this)}
             style={styles.inputStyle}
           />
+          {this.renderSpinner()}
         </View>
         {this.renderResults()}
       </View>
@@ -63,14 +80,21 @@ class SearchBar extends Component {
 const styles = StyleSheet.create({
   inputContainerStyle: {
     flex: 1,
+    flexDirection: 'row',
+    justifyContent: 'space-between',
     height: 30,
-    backgroundColor: 'rgba(255,255,255,0.8)',
+    backgroundColor: 'rgb(255,255,255)',
     margin: 10,
-    padding: 10,
     borderRadius: 50
   },
+  iconStyle: {
+    width: 12,
+    height: 12,
+    margin: 9
+  },
   inputStyle: {
-    fontSize: 14
+    fontSize: 14,
+    flex: 1,
   },
   resultsStyle: {
     backgroundColor: 'white'

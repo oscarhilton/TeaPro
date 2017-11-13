@@ -23,6 +23,8 @@ const styles = StyleSheet.create({
     zIndex: 9,
     borderBottomLeftRadius: 20,
     borderBottomRightRadius: 20,
+    shadowOpacity: 0.5,
+    shadowOffset: { height: 3 },
     paddingTop: 20
   }
 });

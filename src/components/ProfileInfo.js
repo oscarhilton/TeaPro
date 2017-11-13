@@ -19,13 +19,6 @@ const ProfileInfo = (props) => {
             {props.user.name}
             </Text>
           </View>
-          <View>
-            <Text
-              style={styles.rankStyle}
-            >
-              Tea Master
-            </Text>
-          </View>
         </View>
         <View style={styles.bottomSectionStyle} >
         </View>
@@ -34,14 +27,22 @@ const ProfileInfo = (props) => {
   );
 };
 
+// <View>
+//   <Text
+//     style={styles.rankStyle}
+//   >
+//     Tea Master
+//   </Text>
+// </View>
+
+
 const styles = StyleSheet.create({
   componentStyle: {
-    position: 'relative',
-    flexDirection: 'row',
-    backgroundColor: '#ffffff',
-    shadowColor: '#000000',
-    shadowOffset: { height: 2 },
-    shadowOpacity: 0.15
+    backgroundColor: '#212121',
+    height: 400,
+    flexDirection: 'column',
+    justifyContent: 'center',
+    alignItems: 'center',
   },
   profileImageComponentStyle: {
     margin: 10
@@ -51,17 +52,13 @@ const styles = StyleSheet.create({
   },
   usernameStlye: {
     fontSize: 18,
-    fontWeight: '600'
+    fontWeight: '600',
+    textAlign: 'center',
+    color: 'white'
   },
   rankStyle: {
     fontSize: 12,
     fontWeight: '600',
-    position: 'absolute',
-    top: 20,
-    right: 20,
-    padding: 5,
-    paddingLeft: 10,
-    paddingRight: 10,
     backgroundColor: 'blue',
     color: 'white',
     borderRadius: 20
@@ -69,10 +66,9 @@ const styles = StyleSheet.create({
   profileImageStyle: {
     width: 75,
     height: 75,
-    borderRadius: 40
+    borderRadius: 20
   },
   topSectionStyle: {
-    flexDirection: 'row'
   }
 });
 

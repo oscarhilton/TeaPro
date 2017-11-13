@@ -4,7 +4,8 @@ import { api } from '../../api';
 import {
   FETCH_USER,
   CHECK_ON_BOARDING,
-  LOG_OUT_USER
+  LOG_OUT_USER,
+  SUBMIT_ON_BOARDING
 } from './types';
 
 export const onLoggedIn = (user) => async dispatch => {
@@ -54,4 +55,9 @@ export const checkOnBoarding = (id) => async dispatch => {
   const res = await axios.get(`${api}/api/user/${id}/onboardstatus`);
   console.log(res.data);
   dispatch({ type: CHECK_ON_BOARDING, payload: res.data });
+};
+
+export const submitOnboarding = (id, moods, categories) => async dispatch => {
+  const res = await axios.post(`${api}/api/user/${id}/onboardsubmit`, { moods, categories });
+  dispatch({ type: SUBMIT_ON_BOARDING, payload: res.data });
 };
