@@ -25,14 +25,11 @@ export const Tabs = TabNavigator({
   },
   Discover: {
     screen: Discover
-  },
-  ChooseMoods: {
-    screen: OnBoarding
   }
 }, {
   headerMode: 'none',        // I don't want a NavBar at top
     tabBarPosition: 'bottom',  // So your Android tabs go bottom
-    initialRouteName: 'ChooseMoods',
+    initialRouteName: 'Discover',
     lazy: true,
     swipeEnabled: true,
     animationEnabled: true,
@@ -57,6 +54,9 @@ export const Navigator = StackNavigator({
   },
   ViewTea: {
     screen: TeaScreen
+  },
+  OnBoarding: {
+    screen: OnBoarding
   }
 }, {
   mode: 'modal',

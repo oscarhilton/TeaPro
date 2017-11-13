@@ -44,7 +44,7 @@ class SearchBar extends Component {
   }
 
   render() {
-    console.log(this.props.search);
+    console.log(this.props);
     return (
       <View style={{ flex: 1 }}>
         <View style={styles.inputContainerStyle}>
@@ -77,8 +77,8 @@ const styles = StyleSheet.create({
   }
 });
 
-const mapStateToProps = ({ search }) => {
-  return { search };
+const mapStateToProps = ({ search, nav }) => {
+  return { search, nav };
 };
 
 export default connect(mapStateToProps, { startSearch, returnSearch, endSearch })(SearchBar);

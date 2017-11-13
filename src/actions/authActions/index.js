@@ -1,6 +1,11 @@
+import axios from 'axios';
 import { AsyncStorage } from 'react-native';
-// import axios from 'axios';
-import { FETCH_USER } from './types';
+import { api } from '../../api';
+import {
+  FETCH_USER,
+  CHECK_ON_BOARDING,
+  LOG_OUT_USER
+} from './types';
 
 export const onLoggedIn = (user) => async dispatch => {
   let res;
@@ -38,4 +43,15 @@ export const fetchUser = () => async dispatch => {
     };
   }
   dispatch({ type: FETCH_USER, payload: res });
+};
+
+export const logOutUser = () => async dispatch => {
+  await AsyncStorage.removeItem('USER');
+  dispatch({ type: LOG_OUT_USER });
+};
+
+export const checkOnBoarding = (id) => async dispatch => {
+  const res = await axios.get(`${api}/api/user/${id}/onboardstatus`);
+  console.log(res.data);
+  dispatch({ type: CHECK_ON_BOARDING, payload: res.data });
 };

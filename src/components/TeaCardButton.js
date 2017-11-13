@@ -3,12 +3,12 @@ import {
   TouchableOpacity
 } from 'react-native';
 import { connect } from 'react-redux';
-import { showTea } from '../actions';
+import { goToScene } from '../actions/navActions';
 import TeaCard from './TeaCard';
 
 class TeaCardButton extends Component {
   handlePress() {
-    this.props.showTea(this.props.tea);
+    this.props.goToScene('ViewTea', this.props.tea);
   }
 
   render() {
@@ -22,4 +22,4 @@ class TeaCardButton extends Component {
   }
 }
 
-export default connect(null, { showTea })(TeaCardButton);
+export default connect(null, { goToScene })(TeaCardButton);

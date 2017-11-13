@@ -2,8 +2,6 @@ import axios from 'axios';
 import { AsyncStorage } from 'react-native';
 import { api } from '../api';
 import {
-  NAVIGATE,
-  GO_BACK,
   FETCH_CUPBOARD_TEAS,
   RETURN_CUPBOARD_TEAS,
   ADD_TEA_TO_CUPBOARD,
@@ -11,18 +9,6 @@ import {
   GET_WISHLIST_TEAS,
   ADD_TEA_TO_WISHLIST
  } from './types';
-
-export const showTea = (tea) => dispatch => {
-  dispatch({ type: NAVIGATE, routeName: 'ViewTea', params: tea });
-};
-
-export const goToScene = (scene, params) => dispatch => {
-  dispatch({ type: NAVIGATE, routeName: scene, params });
-};
-
-export const goBack = () => dispatch => {
-  dispatch({ type: GO_BACK });
-};
 
 export const addTeaToCupboard = (tea, userId) => async dispatch => {
   await axios.post(`${api}/api/user/${userId}/cupboard/add/${tea._id}`);

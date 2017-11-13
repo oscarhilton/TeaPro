@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { View, Text, StyleSheet, Image } from 'react-native';
 import { connect } from 'react-redux';
-import { goBack } from '../actions';
+import { goBack } from '../actions/navActions';
 import { CloseButton } from '../components/common';
 import TeaCard from '../components/TeaCard';
 

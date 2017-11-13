@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { ScrollView, StyleSheet, View } from 'react-native';
 import { connect } from 'react-redux';
 import { Button } from '../components/common';
+import { SEARCH_OFFSET } from '../components/styleHelpers';
 import Accordion from '../components/Accordion';
 import ViewTeaHeader from '../components/ViewTeaHeader';
 import RatingsBar from '../components/RatingsBar';
@@ -82,7 +83,7 @@ class ViewTea extends Component {
 const styles = StyleSheet.create({
   backgroundStyle: {
     backgroundColor: 'rgba(0,0,0,0.8)',
-    paddingTop: 50,
+    paddingTop: SEARCH_OFFSET,
     flex: 1
   }
 });
