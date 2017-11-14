@@ -9,9 +9,11 @@ const TeaCard = (props) => {
   const { title, score, category } = props.tea;
   return (
     <View style={[styles.teaCardStyle, { backgroundColor: category.background }, props.addStyle]}>
-      <Text style={styles.titleStyle}>
-        { title }
-      </Text>
+      <View style={styles.textBackgroundStyle}>
+        <Text style={styles.titleStyle}>
+          { title }
+        </Text>
+      </View>
       <Text style={styles.scoreStlye}>
         { score }
       </Text>
@@ -22,11 +24,23 @@ const TeaCard = (props) => {
 const styles = StyleSheet.create({
   teaCardStyle: {
     width: 90,
-    padding: 8,
     margin: 1,
     borderRadius: 8,
     flex: 1,
-    position: 'relative'
+    position: 'relative',
+    shadowOpacity: 0.1,
+    shadowOffset: { height: 1, width: 1 },
+    shadowColor: 'black'
+  },
+  textBackgroundStyle: {
+    backgroundColor: 'rgba(255,255,255,0.1)',
+    borderTopLeftRadius: 8,
+    borderTopRightRadius: 8,
+    height: '70%',
+    shadowOpacity: 0.3,
+    shadowOffset: { height: 1 },
+    shadowColor: 'black',
+    padding: 8
   },
   titleStyle: {
     fontSize: 12,

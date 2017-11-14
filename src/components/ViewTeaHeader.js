@@ -24,7 +24,11 @@ class ViewTeaHeader extends Component {
             />
           </View>
           <View style={styles.detailsTextContainerStyle}>
-            <Text style={styles.headerTextStyle}>{this.props.tea.title}</Text>
+            <Text
+              style={[styles.headerTextStyle]}
+            >
+              {this.props.tea.title}
+            </Text>
             <Text
               style={styles.originTextStyle}
             >
@@ -85,11 +89,9 @@ const styles = StyleSheet.create({
   },
   detailsTextContainerStyle: {
     position: 'absolute',
-    paddingBottom: 20,
-    paddingTop: 15,
-    backgroundColor: 'rgba(255,255,255,0.1)',
-    borderTopLeftRadius: 10,
-    borderTopRightRadius: 10,
+    backgroundColor: 'rgba(25,25,25,0.5)',
+    borderTopLeftRadius: 5,
+    borderTopRightRadius: 5,
     padding: 10,
     bottom: 0,
     left: 0,
@@ -97,7 +99,7 @@ const styles = StyleSheet.create({
   },
   headerTextStyle: {
     color: 'white',
-    fontSize: 18,
+    fontSize: 14,
     fontWeight: '600',
     marginBottom: 2
   },

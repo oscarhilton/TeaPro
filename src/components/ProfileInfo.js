@@ -38,7 +38,7 @@ const ProfileInfo = (props) => {
 
 const styles = StyleSheet.create({
   componentStyle: {
-    backgroundColor: '#212121',
+    backgroundColor: '#657D66',
     height: 400,
     flexDirection: 'column',
     justifyContent: 'center',
@@ -64,9 +64,11 @@ const styles = StyleSheet.create({
     borderRadius: 20
   },
   profileImageStyle: {
-    width: 75,
-    height: 75,
-    borderRadius: 20
+    width: 125,
+    height: 125,
+    borderRadius: 60,
+    borderColor: 'rgba(255,255,255,0.5)',
+    borderWidth: 2
   },
   topSectionStyle: {
   }

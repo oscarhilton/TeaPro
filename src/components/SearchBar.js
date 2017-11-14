@@ -4,6 +4,7 @@ import {
   Text,
   TextInput,
   Image,
+  Dimensions,
   StyleSheet
 } from 'react-native';
 import { connect } from 'react-redux';
@@ -11,6 +12,8 @@ import { startSearch, updateSearch, returnSearch, endSearch } from '../actions/s
 import { Spinner } from './common';
 import SearchResult from './SearchResult';
 import TeaCardList from './TeaCardList';
+
+const { height } = Dimensions.get('window');
 
 const searchIcon = require('../assets/images/search.png');
 
@@ -43,8 +46,10 @@ class SearchBar extends Component {
         return <SearchResult key={result.title} data={result} />;
       });
       return (
-        <View style={styles.resultsStyle}>
-          <TeaCardList teaList={this.props.search.results} />
+        <View style={styles.resultsStyle} pointerEvents='box-none' >
+          <View>
+            <TeaCardList teaList={this.props.search.results} />
+          </View>
         </View>
       );
     }
@@ -92,7 +97,9 @@ const styles = StyleSheet.create({
     flex: 1,
   },
   resultsStyle: {
-    backgroundColor: 'white'
+    backgroundColor: 'rgba(0,0,0,0.2)',
+    flex: 1,
+    height
   }
 });
 

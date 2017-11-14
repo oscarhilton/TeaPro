@@ -48,9 +48,6 @@ export const Tabs = TabNavigator({
 export const Navigator = StackNavigator({
   Tabs: {
     screen: Tabs,
-    cardStyle: {
-      backgroundColor: 'white'
-    }
   },
   ViewTea: {
     screen: TeaScreen
