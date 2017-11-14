@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { View, Text, Image, StyleSheet } from 'react-native';
-import Stars from './Stars';
+import StarRating from 'react-native-star-rating';
 import CircleAvitar from './CircleAvitar';
 
 class RatingsBar extends Component {
@@ -14,7 +14,13 @@ class RatingsBar extends Component {
           <Text>48 Reviews</Text>
         </View>
         <View style={{ justifyContent: 'center' }}>
-          <Stars score={0.2} />
+          <StarRating
+            disabled={true}
+            starSize={15}
+            starColor={'#212121'}
+            maxStars={5}
+            rating={this.props.rating}
+          />
         </View>
       </View>
     );

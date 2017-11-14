@@ -46,7 +46,7 @@ class SearchBar extends Component {
         return <SearchResult key={result.title} data={result} />;
       });
       return (
-        <View style={styles.resultsStyle} pointerEvents='box-none' >
+        <View>
           <View>
             <TeaCardList teaList={this.props.search.results} />
           </View>
@@ -95,11 +95,6 @@ const styles = StyleSheet.create({
   inputStyle: {
     fontSize: 14,
     flex: 1,
-  },
-  resultsStyle: {
-    backgroundColor: 'rgba(0,0,0,0.2)',
-    flex: 1,
-    height
   }
 });
 

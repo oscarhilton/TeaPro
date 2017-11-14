@@ -23,6 +23,11 @@ const ProfileInfo = (props) => {
         <View style={styles.bottomSectionStyle} >
         </View>
       </View>
+      <Image
+        style={styles.imageStyle}
+        blurRadius={0}
+        source={{ uri: 'https://picsum.photos/200/300/?random'}}
+      />
     </View>
   );
 };
@@ -38,7 +43,7 @@ const ProfileInfo = (props) => {
 
 const styles = StyleSheet.create({
   componentStyle: {
-    backgroundColor: '#657D66',
+    backgroundColor: '#000000',
     height: 400,
     flexDirection: 'column',
     justifyContent: 'center',
@@ -56,6 +61,16 @@ const styles = StyleSheet.create({
     textAlign: 'center',
     color: 'white'
   },
+  imageStyle: {
+    height: 400,
+    zIndex: -1,
+    opacity: 0.5,
+    position: 'absolute',
+    top: 0,
+    bottom: 0,
+    left: 0,
+    right: 0
+  },
   rankStyle: {
     fontSize: 12,
     fontWeight: '600',
@@ -67,10 +82,11 @@ const styles = StyleSheet.create({
     width: 125,
     height: 125,
     borderRadius: 60,
-    borderColor: 'rgba(255,255,255,0.5)',
-    borderWidth: 2
+    borderColor: 'white',
+    borderWidth: 1
   },
   topSectionStyle: {
+    zIndex: 2
   }
 });
 

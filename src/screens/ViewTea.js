@@ -9,8 +9,8 @@ import {
   addTeaToCupboard,
   addTeaToWishlist,
   returnCupboardTeas,
-  goToScene
 } from '../actions';
+import { goToScene } from '../actions/navActions';
 
 class ViewTea extends Component {
   renderUserControls = (tea) => {
@@ -59,12 +59,15 @@ class ViewTea extends Component {
   render() {
     const { navigation } = this.props;
     const { params } = navigation.state;
+    const average = params.score / params.reviews.length;
+    const roundedScore = isNaN(average) ? 0 : Math.round(average * 10) / 10;
+    console.log(params);
     return (
       <ScrollView
         style={styles.backgroundStyle}
       >
         <ViewTeaHeader tea={params} />
-        <RatingsBar />
+        <RatingsBar rating={roundedScore} />
         {this.renderUserControls(params)}
         <Accordion
           heading={'Steep Time'}

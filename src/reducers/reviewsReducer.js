@@ -2,7 +2,7 @@ import {
   CREATE_REVIEW,
   FETCH_REVIEWS,
   RETURN_TEA_REVIEWS,
-  RETURN_SINGLE_REVIEW
+  RETURN_SINGLE_REVIEW,
 } from '../actions/reviewsActions/types';
 
 const INITIAL_STATE = {

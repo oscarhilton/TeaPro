@@ -11,7 +11,7 @@ class TeaCardList extends Component {
   }
 
   renderRow(tea) {
-    return <TeaCardButton tea={{ ...tea, score: 4.6 }} />;
+    return <TeaCardButton tea={tea} />;
   }
 
   render() {

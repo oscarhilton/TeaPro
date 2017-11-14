@@ -6,7 +6,9 @@ import {
 } from 'react-native';
 
 const TeaCard = (props) => {
-  const { title, score, category } = props.tea;
+  const { title, category, score, reviews } = props.tea;
+  const average = score / reviews.length;
+  const roundedScore = isNaN(average) ? '' : Math.round(average * 10) / 10;
   return (
     <View style={[styles.teaCardStyle, { backgroundColor: category.background }, props.addStyle]}>
       <View style={styles.textBackgroundStyle}>
@@ -15,7 +17,7 @@ const TeaCard = (props) => {
         </Text>
       </View>
       <Text style={styles.scoreStlye}>
-        { score }
+        {roundedScore}
       </Text>
     </View>
   );

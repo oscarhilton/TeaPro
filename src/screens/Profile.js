@@ -50,7 +50,7 @@ class ProfileScene extends Component {
     const { loggedIn, user } = this.props.auth;
     if (loggedIn) {
       return (
-        <ScrollView>
+        <ScrollView style={{ flex: 1, backgroundColor: 'black'}}>
           <ProfileInfo user={user} />
           <UserTeaList user={user} cupboard={cupboard} heading={'Teas in your cupboard'} />
           <View style={{ height: 100 }}>
