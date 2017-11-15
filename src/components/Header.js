@@ -21,7 +21,7 @@ const styles = StyleSheet.create({
     left: 0,
     right: 0,
     flex: 1,
-    zIndex: 9,
+    zIndex: 999,
     borderBottomLeftRadius: 20,
     borderBottomRightRadius: 20,
     shadowOpacity: 0.5,

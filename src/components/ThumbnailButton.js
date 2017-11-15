@@ -7,6 +7,7 @@ import {
   Dimensions,
   StyleSheet
 } from 'react-native';
+import { api } from '../api';
 
 const { width } = Dimensions.get('window');
 
@@ -14,7 +15,7 @@ class ThumbnailButton extends Component {
   render() {
     const { title, image } = this.props.data;
     const showImage = image ?
-          <Image source={{ uri: image.path }} style={styles.imageStyle} /> :
+          <Image source={{ uri: `${api}/uploads/${image.title}` }} style={styles.imageStyle} /> :
           null;
     const clickStyle =
           this.props.clicked ?

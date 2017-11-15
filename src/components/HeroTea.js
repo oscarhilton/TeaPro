@@ -33,9 +33,7 @@ const styles = StyleSheet.create({
   imageStyle: {
     height: 400,
     flex: 1,
-    width: null,
-    borderTopLeftRadius: 20,
-    borderTopRightRadius: 20
+    width: null
   },
   textStyle: {
     backgroundColor: '#403C40',

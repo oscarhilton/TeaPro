@@ -1,16 +1,17 @@
 import React, { Component } from 'react';
 import { ScrollView, StyleSheet, View } from 'react-native';
 import { connect } from 'react-redux';
-import { Button } from '../components/common';
-import Accordion from '../components/Accordion';
-import ViewTeaHeader from '../components/ViewTeaHeader';
-import RatingsBar from '../components/RatingsBar';
 import {
   addTeaToCupboard,
   addTeaToWishlist,
   returnCupboardTeas,
 } from '../actions';
 import { goToScene } from '../actions/navActions';
+import { Button } from '../components/common';
+import Accordion from '../components/Accordion';
+import ViewTeaHeader from '../components/ViewTeaHeader';
+import RatingsBar from '../components/RatingsBar';
+import UploadImage from '../components/upload/UploadImage';
 
 class ViewTea extends Component {
   renderUserControls = (tea) => {
@@ -33,6 +34,7 @@ class ViewTea extends Component {
           >
             Write a review
           </Button>
+          <UploadImage />
         </View>
       );
     }

@@ -13,9 +13,7 @@ const styles = StyleSheet.create({
     fontWeight: '600',
     color: '#212121',
     padding: 10,
-    backgroundColor: 'white',
-    borderTopLeftRadius: 20,
-    borderTopRightRadius: 20
+    backgroundColor: 'white'
   }
 });
 

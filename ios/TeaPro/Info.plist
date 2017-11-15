@@ -8,10 +8,10 @@
 	<string>TeaPro</string>
 	<key>CFBundleExecutable</key>
 	<string>$(EXECUTABLE_NAME)</string>
-	<key>CFBundleIdentifier</key>
-	<string>org.reactjs.native.example.$(PRODUCT_NAME:rfc1034identifier)</string>
 	<key>CFBundleInfoDictionaryVersion</key>
 	<string>6.0</string>
+	<key>CFBundleIdentifier</key>
+	<string>org.reactjs.native.example.$(PRODUCT_NAME:rfc1034identifier)</string>
 	<key>CFBundleName</key>
 	<string>$(PRODUCT_NAME)</string>
 	<key>CFBundlePackageType</key>
@@ -50,6 +50,14 @@
 	</dict>
 	<key>NSLocationWhenInUseUsageDescription</key>
 	<string></string>
+  
+  <key>NSPhotoLibraryUsageDescription</key>
+  <string>This app requires access to the photo library.</string>
+  <key>NSMicrophoneUsageDescription</key>
+  <string>This app does not require access to the microphone.</string>
+  <key>NSCameraUsageDescription</key>
+  <string>This app requires access to the camera.</string>
+  
 	<key>UIAppFonts</key>
 	<array>
 		<string>Entypo.ttf</string>

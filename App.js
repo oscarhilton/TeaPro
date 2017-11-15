@@ -48,10 +48,7 @@ export default class Root extends Component<{}> {
   render() {
     return (
       <Provider store={store}>
-        <View style={{ flex: 1, position: 'relative' }} >
-          <Header />
-          <AppWithNavigationState />
-        </View>
+        <AppWithNavigationState />
       </Provider>
     );
   }

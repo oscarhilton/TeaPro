@@ -11,8 +11,13 @@ import { SectionHeader, Spinner } from '../components/common';
 import { SEARCH_OFFSET } from '../components/styleHelpers';
 import TeaCardList from '../components/TeaCardList';
 import HeroTea from '../components/HeroTea';
+import Header from '../components/Header';
 
 class DiscoverScene extends Component {
+  // static navigationOptions = {
+  //   title: 'Home',
+  // }
+
   componentWillMount() {
     this.props.requestCategories();
     this.props.returnAllCategories();
@@ -46,10 +51,13 @@ class DiscoverScene extends Component {
       );
     }
     return (
-      <ScrollView style={styles.componentStyle}>
-        <HeroTea />
-        {this.renderSections()}
-      </ScrollView>
+      <View>
+        <Header />
+        <ScrollView style={styles.componentStyle}>
+          <HeroTea />
+          {this.renderSections()}
+        </ScrollView>
+      </View>
     );
   }
 

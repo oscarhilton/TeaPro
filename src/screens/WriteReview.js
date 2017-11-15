@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Text, View, StyleSheet } from 'react-native';
+import { Text, ScrollView, View, StyleSheet } from 'react-native';
 import StarRating from 'react-native-star-rating';
 import { connect } from 'react-redux';
 import { createReview } from '../actions/reviewsActions';
@@ -49,9 +49,16 @@ class WriteReview extends Component {
   render() {
     const tea = this.props.navigation.state.params;
     return (
-      <View style={styles.containerStyle}>
+      <ScrollView style={styles.containerStyle}>
         <Text>Review {tea.title}</Text>
         <View style={styles.inputFieldStyle}>
+          <View style={{ height: 45 }}>
+            <Button
+              onPress={this.sendReview.bind(this)}
+            >
+              Publish review
+            </Button>
+          </View>
           <StarRating
             rating={this.state.starCount}
             selectedStar={(rating) => this.onStarRatingPress(rating)}
@@ -69,15 +76,8 @@ class WriteReview extends Component {
             label="Review content"
             onChangeText={this.handleBodyChange.bind(this)}
           />
-          <View style={{ height: 45 }}>
-            <Button
-              onPress={this.sendReview.bind(this)}
-            >
-              Publish review
-            </Button>
-          </View>
         </View>
-      </View>
+      </ScrollView>
     );
   }
 };
