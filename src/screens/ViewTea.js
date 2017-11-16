@@ -14,37 +14,6 @@ import RatingsBar from '../components/RatingsBar';
 import UploadImage from '../components/upload/UploadImage';
 
 class ViewTea extends Component {
-  renderUserControls = (tea) => {
-    if (this.props.auth.loggedIn) {
-      const {firstName, lastName} = this.props.auth.user;
-      return (
-        <View>
-          <Button
-            onPress={this.handleAddTeaCupboard.bind(this, tea)}
-          >
-            Add tea to cupboard
-          </Button>
-          <Button
-            onPress={this.handleAddTeaWishlist.bind(this, tea)}
-          >
-            Add tea to wishlist
-          </Button>
-          <Button
-            onPress={this.handleWriteReview.bind(this, tea)}
-          >
-            Write a review
-          </Button>
-          <UploadImage />
-        </View>
-      );
-    }
-    return (
-      <Accordion
-        heading={'NOT LOGGED IN'}
-      />
-    );
-  }
-
   handleAddTeaCupboard(tea) {
     this.props.addTeaToCupboard(tea, this.props.auth.user._id);
     this.props.returnCupboardTeas(this.props.auth.user._id);
@@ -64,13 +33,43 @@ class ViewTea extends Component {
     const average = params.score / params.reviews.length;
     const roundedScore = isNaN(average) ? 0 : Math.round(average * 10) / 10;
     console.log(params);
+    const renderUserControls = () => {
+      if (this.props.auth.loggedIn) {
+        // const {firstName, lastName } = this.props.auth.user;
+        return (
+          <View>
+            <Button
+              onPress={this.handleAddTeaCupboard.bind(this, params)}
+            >
+              Add tea to cupboard
+            </Button>
+            <Button
+              onPress={this.handleAddTeaWishlist.bind(this, params)}
+            >
+              Add tea to wishlist
+            </Button>
+            <Button
+              onPress={this.handleWriteReview.bind(this, params)}
+            >
+              Write a review
+            </Button>
+            <UploadImage teaId={params._id} />
+          </View>
+        );
+      }
+      return (
+        <Accordion
+          heading={'NOT LOGGED IN'}
+        />
+      );
+    }
     return (
       <ScrollView
         style={styles.backgroundStyle}
       >
         <ViewTeaHeader tea={params} />
         <RatingsBar rating={roundedScore} />
-        {this.renderUserControls(params)}
+        {renderUserControls()}
         <Accordion
           heading={'Steep Time'}
           text={params.steeptime}
