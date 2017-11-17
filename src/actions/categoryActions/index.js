@@ -10,7 +10,7 @@ import {
  } from './types';
 
 export const requestCategories = () => dispatch => {
- dispatch({ type: REQUEST_CATEGORIES });
+  dispatch({ type: REQUEST_CATEGORIES });
 };
 
 export const returnAllCategories = () => async dispatch => {

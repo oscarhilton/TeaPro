@@ -6,6 +6,7 @@ import categories from './categoriesReducer';
 import cupboard from './cupboardReducer';
 import wishlist from './wishlistReducer';
 import moods from './moodsReducer';
+import teas from './teaReducer';
 
 export default combineReducers({
   auth,
@@ -14,5 +15,6 @@ export default combineReducers({
   categories,
   cupboard,
   wishlist,
-  moods
+  moods,
+  teas
 });

@@ -1,6 +1,14 @@
 package com.teapro;
 
 import com.facebook.react.ReactActivity;
+import com.burlap.filetransfer.FileTransferPackage;
+
+// mReactInstanceManager = ReactInstanceManager.builder()
+//     .setApplication(getApplication())
+//     .setBundleAssetName("index.android.bundle")
+//     .setJSMainModuleName("index.android")
+//     .addPackage(new MainReactPackage())
+//     .addPackage(new FileTransferPackage());
 
 public class MainActivity extends ReactActivity {
 
@@ -12,4 +20,5 @@ public class MainActivity extends ReactActivity {
     protected String getMainComponentName() {
         return "TeaPro";
     }
+
 }

@@ -3,14 +3,18 @@ import {
   TouchableOpacity
 } from 'react-native';
 import { connect } from 'react-redux';
+import { fetchTeaDetails, makeCurrentTea } from '../actions/teaActions';
 import { clearSearch } from '../actions/searchActions';
 import { goToScene } from '../actions/navActions';
 import TeaCard from './TeaCard';
 
 class TeaCardButton extends Component {
   handlePress() {
+    const { tea, teas } = this.props;
     this.props.clearSearch();
-    this.props.goToScene('ViewTea', this.props.tea);
+    this.props.fetchTeaDetails();
+    this.props.makeCurrentTea(tea._id);
+    this.props.goToScene('ViewTea');
   }
 
   render() {
@@ -24,4 +28,13 @@ class TeaCardButton extends Component {
   }
 }
 
-export default connect(null, { goToScene, clearSearch })(TeaCardButton);
+const mapStateToProps = ({ teas }) => {
+  return { teas };
+};
+
+export default connect(mapStateToProps, {
+  goToScene,
+  clearSearch,
+  fetchTeaDetails,
+  makeCurrentTea
+})(TeaCardButton);

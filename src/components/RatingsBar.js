@@ -8,10 +8,7 @@ class RatingsBar extends Component {
     return (
       <View style={styles.containerStyle} >
         <View style={styles.reviewsStyle} >
-          <CircleAvitar width={30} addStyle={styles.circleStyle} />
-          <CircleAvitar width={30} addStyle={styles.circleStyle} />
-          <CircleAvitar width={30} addStyle={styles.circleStyle} />
-          <Text>48 Reviews</Text>
+          
         </View>
         <View style={{ justifyContent: 'center' }}>
           <StarRating

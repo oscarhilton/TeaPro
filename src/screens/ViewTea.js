@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { ScrollView, StyleSheet, View } from 'react-native';
+import { ScrollView, StyleSheet, View, Text } from 'react-native';
 import { connect } from 'react-redux';
 import {
   addTeaToCupboard,
@@ -27,58 +27,75 @@ class ViewTea extends Component {
     this.props.goToScene('WriteReview', tea);
   }
 
-  render() {
-    const { navigation } = this.props;
-    const { params } = navigation.state;
-    const average = params.score / params.reviews.length;
-    const roundedScore = isNaN(average) ? 0 : Math.round(average * 10) / 10;
-    console.log(params);
-    const renderUserControls = () => {
-      if (this.props.auth.loggedIn) {
-        // const {firstName, lastName } = this.props.auth.user;
-        return (
-          <View>
-            <Button
-              onPress={this.handleAddTeaCupboard.bind(this, params)}
-            >
-              Add tea to cupboard
-            </Button>
-            <Button
-              onPress={this.handleAddTeaWishlist.bind(this, params)}
-            >
-              Add tea to wishlist
-            </Button>
-            <Button
-              onPress={this.handleWriteReview.bind(this, params)}
-            >
-              Write a review
-            </Button>
-            <UploadImage teaId={params._id} />
-          </View>
-        );
-      }
+  renderUserControls() {
+    if (this.props.auth.loggedIn) {
+      // const {firstName, lastName } = this.props.auth.user;
+      const { currentTea } = this.props.teas;
       return (
-        <Accordion
-          heading={'NOT LOGGED IN'}
-        />
+        <View>
+          <Button
+            onPress={this.handleAddTeaCupboard.bind(this, currentTea)}
+          >
+            Add tea to cupboard
+          </Button>
+          <Button
+            onPress={this.handleAddTeaWishlist.bind(this, currentTea)}
+          >
+            Add tea to wishlist
+          </Button>
+          <Button
+            onPress={this.handleWriteReview.bind(this, currentTea)}
+          >
+            Write a review
+          </Button>
+          <UploadImage teaId={currentTea._id} />
+        </View>
       );
     }
     return (
-      <ScrollView
-        style={styles.backgroundStyle}
-      >
-        <ViewTeaHeader tea={params} />
-        <RatingsBar rating={roundedScore} />
-        {renderUserControls()}
-        <Accordion
-          heading={'Steep Time'}
-          text={params.steeptime}
-        />
-        <Accordion
-          heading={'Description'}
-          text={params.description}
-        />
-      </ScrollView>
+      <Accordion
+        heading={'NOT LOGGED IN'}
+      />
+    );
+  }
+
+  renderTeaScreen() {
+    if (this.props.teas.loaded) {
+      const { currentTea } = this.props.teas;
+      console.log(currentTea, 'CURRENT TEA');
+      const average = currentTea.score / currentTea.reviews.length;
+      const roundedScore = isNaN(average) ? 0 : Math.round(average * 10) / 10;
+      return (
+        <ScrollView
+          style={styles.backgroundStyle}
+        >
+          <ViewTeaHeader tea={currentTea} />
+          <RatingsBar rating={roundedScore} />
+          {this.renderUserControls()}
+          <Accordion
+            heading={'Steep Time'}
+            text={currentTea.steeptime}
+          />
+          <Accordion
+            heading={'Description'}
+            text={currentTea.description}
+          />
+        </ScrollView>
+      );
+    }
+    return (
+      <Text>LOADING</Text>
+    );
+  }
+
+  render() {
+    // const { navigation } = this.props;
+    const { currentTea } = this.props.teas;
+    console.log(currentTea);
+    return (
+      <View style={{ flex: 1 }}>
+        {this.renderTeaScreen()}
+      </View>
     );
   }
 }
@@ -90,8 +107,8 @@ const styles = StyleSheet.create({
   }
 });
 
-const mapStateToProps = ({ auth }) => {
-  return { auth };
+const mapStateToProps = ({ auth, teas }) => {
+  return { auth, teas };
 };
 
 export default connect(mapStateToProps, {

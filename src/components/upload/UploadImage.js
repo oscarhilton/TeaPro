@@ -9,7 +9,7 @@ class UploadImage extends Component {
   handleImageSelect() {
     ImagePicker.showImagePicker(null, (response) => {
       console.log(response);
-      const { uri, fileName, fileSize, latitude, longitude, timestamp } = response;
+      const { origURL, fileName, fileSize, latitude, longitude, timestamp } = response;
       const info = {
         teaId: this.props.teaId,
         fileName,
@@ -18,7 +18,8 @@ class UploadImage extends Component {
         longitude,
         timestamp,
       };
-      this.props.uploadUserImageForTea(uri, info);
+      console.log(response);
+      this.props.uploadUserImageForTea(origURL, info);
     });
   }
 

@@ -1,7 +1,7 @@
 import React from 'react';
 import { View, Image } from 'react-native';
 
-const CircleAvitar = ({ width, addStyle }) => {
+const CircleAvitar = ({ width, addStyle, uri }) => {
   return (
     <View >
       <Image
