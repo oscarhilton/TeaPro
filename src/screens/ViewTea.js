@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { ScrollView, StyleSheet, View, Text } from 'react-native';
+import { ScrollView, StyleSheet, View } from 'react-native';
 import { connect } from 'react-redux';
 import {
   addTeaToCupboard,
@@ -7,7 +7,7 @@ import {
   returnCupboardTeas,
 } from '../actions';
 import { goToScene } from '../actions/navActions';
-import { Button } from '../components/common';
+import { Button, Spinner } from '../components/common';
 import Accordion from '../components/Accordion';
 import ViewTeaHeader from '../components/ViewTeaHeader';
 import RatingsBar from '../components/RatingsBar';
@@ -84,7 +84,7 @@ class ViewTea extends Component {
       );
     }
     return (
-      <Text>LOADING</Text>
+      <Spinner />
     );
   }
 

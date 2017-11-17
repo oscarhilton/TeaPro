@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { Text, ScrollView, View, StyleSheet } from 'react-native';
 import StarRating from 'react-native-star-rating';
 import { connect } from 'react-redux';
+import { fetchTeaDetails } from '../actions/teaActions';
 import { createReview } from '../actions/reviewsActions';
 import { requestCategories, returnAllCategories } from '../actions/categoryActions';
 import { goBack } from '../actions/navActions';
@@ -37,17 +38,17 @@ class WriteReview extends Component {
 
   async sendReview() {
     const newReview = this.state;
-    const teaId = this.props.navigation.state.params._id;
-    const { user } = this.props;
-    await this.props.createReview(user, teaId, newReview);
-    this.props.requestCategories();
-    this.props.returnAllCategories();
+    const { currentTea } = this.props.teas;
+    const { _id } = this.props.auth.user;
+    console.log(_id);
+    this.props.fetchTeaDetails();
+    await this.props.createReview(_id, currentTea._id, newReview);
     this.props.goBack();
     console.log('sent');
   }
 
   render() {
-    const tea = this.props.navigation.state.params;
+    const tea = this.props.teas.currentTea;
     return (
       <ScrollView style={styles.containerStyle}>
         <Text>Review {tea.title}</Text>
@@ -94,15 +95,14 @@ const styles = StyleSheet.create({
   }
 });
 
-const mapStateToProps = ({ auth }) => {
-  return {
-    user: auth.user._id
-  };
+const mapStateToProps = ({ auth, teas }) => {
+  return { auth, teas };
 };
 
 export default connect(mapStateToProps, {
    createReview,
    requestCategories,
    returnAllCategories,
+   fetchTeaDetails,
    goBack
  })(WriteReview);

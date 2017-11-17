@@ -1,7 +1,7 @@
 import React from 'react';
 import { View, Image } from 'react-native';
 
-const CircleAvitar = ({ width, addStyle, uri }) => {
+const CircleAvatar = ({ width, addStyle, uri }) => {
   return (
     <View >
       <Image
@@ -12,10 +12,10 @@ const CircleAvitar = ({ width, addStyle, uri }) => {
             borderWidth: 1,
             borderColor: 'white'
           }, addStyle]}
-        source={{ uri: 'https://picsum.photos/100/100/?random' }}
+        source={{ uri }}
       />
     </View>
   );
 };
 
-export default CircleAvitar;
+export default CircleAvatar;

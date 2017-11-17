@@ -9,7 +9,23 @@ import TeaCard from '../components/TeaCard';
 const background = require('../assets/images/background-teapro.png');
 
 class ViewTeaHeader extends Component {
+  renderImage() {
+    const { userImages } = this.props.tea;
+    if (userImages.length > 0) {
+      console.log(userImages);
+      const lastImage = userImages[userImages.length - 1];
+      return (
+        <Image
+          style={styles.imageStyle}
+          blurRadius={0}
+          source={{ uri: lastImage.path }}
+        />
+      );
+    }
+  }
   render() {
+    const { tea } = this.props;
+    const { title, category, origin } = tea;
     return (
       <View style={styles.componentStyle}>
         <CloseButton
@@ -19,7 +35,7 @@ class ViewTeaHeader extends Component {
         <View style={styles.detailsStyle}>
           <View style={styles.teaCardContainer}>
             <TeaCard
-              tea={this.props.tea}
+              tea={tea}
               addStyle={styles.teaCardStyle}
             />
           </View>
@@ -27,20 +43,16 @@ class ViewTeaHeader extends Component {
             <Text
               style={[styles.headerTextStyle]}
             >
-              {this.props.tea.title}
+              {title}
             </Text>
             <Text
               style={styles.originTextStyle}
             >
-              {`${this.props.tea.category.title} tea from ${this.props.tea.origin}`}
+              {`${category.title} tea from ${origin}`}
             </Text>
           </View>
         </View>
-        <Image
-          style={styles.imageStyle}
-          blurRadius={0}
-          source={{ uri: 'https://picsum.photos/200/300/?random'}}
-        />
+        {this.renderImage()}
       </View>
     );
   }

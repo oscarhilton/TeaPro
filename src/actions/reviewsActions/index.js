@@ -24,12 +24,13 @@ export const returnTeaRating = (teaId) => async dispatch => {
 
 export const returnUserReviews = (userId) => async dispatch => {
   const res = await axios.get(`${api}/api/user/${userId}/reviews`);
-  dispatch({ type: RETURN_TEA_REVIEWS, payload: {} });
+  dispatch({ type: RETURN_TEA_REVIEWS, payload: res.data });
 };
 
 export const createReview = (userId, teaId, newReview) => async dispatch => {
   const res = await axios.post(`${api}/api/teas/${teaId}/reviews/add/${userId}`, { newReview });
-  dispatch({ type: CREATE_REVIEW, payload: {} });
+  console.log(res.data);
+  dispatch({ type: CREATE_REVIEW, payload: res.data });
 };
 
 export const returnSinlgeReview = (reviewId) => async dispatch => {
