@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { ListView, StyleSheet } from 'react-native';
+import { ListView, StyleSheet, RefreshControl } from 'react-native';
 import TeaCardButton from './TeaCardButton';
 
 class TeaCardList extends Component {

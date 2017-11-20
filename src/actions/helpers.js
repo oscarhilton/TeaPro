@@ -1,13 +1,13 @@
 import { AsyncStorage } from 'react-native';
 
-export const updateUser = async (args) => {
-  const storageUser = await AsyncStorage.getItem('USER');
-  const jsonUser = JSON.parse(storageUser);
-  const updatedUser = {
-    ...jsonUser,
+export const updateAsync = async (item, args) => {
+  const storageObj = await AsyncStorage.getItem(item);
+  const jsonObj = JSON.parse(storageObj);
+  const updatedObj = {
+    ...jsonObj,
     ...args
   };
-  await AsyncStorage.setItem('USER', JSON.stringify(updatedUser));
-  console.log(updatedUser);
-  return updatedUser;
+  await AsyncStorage.setItem(item, JSON.stringify(updatedObj));
+  console.log(updatedObj);
+  return updatedObj;
 };

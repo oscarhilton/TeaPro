@@ -1,16 +1,45 @@
 import React from 'react';
+import { View, Text } from 'react-native';
 import { TabNavigator, StackNavigator, Platform } from 'react-navigation';
 // import { icon } from 'react-native-elements';
 
 import Discover from '../screens/Discover';
 import Profile from '../screens/Profile';
-import ViewTea from '../screens/ViewTea';
 import OnBoarding from '../screens/OnBoarding';
 import WriteReview from '../screens/WriteReview';
+import InfoScreen from '../screens/InfoScreen';
+import ReviewsScreen from '../screens/ReviewsScreen';
+import ViewTeaHeader from '../screens/ViewTeaHeader';
+
+export const TeaTabs = TabNavigator({
+  info: {
+    screen: InfoScreen
+  },
+  reviews: {
+    screen: ReviewsScreen
+  }
+}, {
+  tabBarComponent: () => <ViewTeaHeader />,
+  tabBarPosition: 'top',
+  initialRouteName: 'info',
+  lazy: true,
+  swipeEnabled: true,
+  animationEnabled: true
+});
+
+// TeaTabs.navigationOptions = {
+//   header: (
+//     <View style={{
+//             height: 80,
+//             marginTop: 20// only for IOS to give StatusBar Space
+//     }}>
+//       <Text>HELLO THERE</Text>
+//     </View>)
+// }; // TODO: WORK THIS THING OUT?
 
 export const TeaScreen = StackNavigator({
   ViewTea: {
-    screen: ViewTea
+    screen: TeaTabs
   },
   WriteReview: {
     screen: WriteReview
@@ -57,5 +86,8 @@ export const Navigator = StackNavigator({
   }
 }, {
   mode: 'modal',
-  headerMode: 'none'
+  headerMode: 'none',
+  navigationOptions: {
+    header: <View><Text>HELLO THERE</Text></View>
+  },
 });

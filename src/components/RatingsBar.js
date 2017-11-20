@@ -22,8 +22,12 @@ class RatingsBar extends Component {
       const renderHeads = lastThree.length > 0 ? lastThree.map((review) => <CircleAvatar key={review._id} uri={review.author.avatar} width={30} addStyle={styles.circleStyle} />) : <View />;
       return (
         <View style={styles.reviewsStyle} >
-          {renderHeads}
-          <Text>{reviews.length} reviews</Text>
+          <View style={styles.avatarStyle}>
+            {renderHeads}
+          </View>
+          <View style={styles.textContainerStyle}>
+            <Text style={styles.textStyle}>{reviews.length} reviews</Text>
+          </View>
         </View>
       );
     }
@@ -58,7 +62,24 @@ const styles = StyleSheet.create({
   },
   reviewsStyle: {
     flexDirection: 'row',
-    justifyContent: 'center'
+    alignItems: 'center'
+  },
+  avatarStyle: {
+    flexDirection: 'row',
+    zIndex: 2
+  },
+  textContainerStyle: {
+    padding: 4,
+    borderWidth: 1,
+    borderRadius: 50,
+    borderColor: '#f5f5f5',
+    backgroundColor: 'white',
+    marginLeft: -20,
+    zIndex: 1
+  },
+  textStyle: {
+    marginLeft: 30,
+    color: '#212121'
   },
   circleStyle: {
     marginRight: -8

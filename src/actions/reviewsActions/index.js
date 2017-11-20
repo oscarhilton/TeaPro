@@ -1,5 +1,7 @@
 import axios from 'axios';
+import { AsyncStorage } from 'react-native';
 import { api } from '../../api';
+import { updateAsync } from '../helpers';
 import {
   CREATE_REVIEW,
   FETCH_REVIEWS,
@@ -29,7 +31,10 @@ export const returnUserReviews = (userId) => async dispatch => {
 
 export const createReview = (userId, teaId, newReview) => async dispatch => {
   const res = await axios.post(`${api}/api/teas/${teaId}/reviews/add/${userId}`, { newReview });
-  console.log(res.data);
+  await updateAsync(String(teaId), {
+    reviews: [...res.data.reviews],
+    score: res.data.score
+  });
   dispatch({ type: CREATE_REVIEW, payload: res.data });
 };
 

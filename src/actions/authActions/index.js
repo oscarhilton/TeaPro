@@ -1,7 +1,7 @@
 import axios from 'axios';
 import { AsyncStorage } from 'react-native';
 import { api } from '../../api';
-import { updateUser } from '../helpers';
+import { updateAsync } from '../helpers';
 import {
   FETCH_USER,
   CHECK_ON_BOARDING,
@@ -58,7 +58,7 @@ export const checkOnBoarding = (id) => async dispatch => {
 
 export const submitOnboarding = (id, moods, categories) => async dispatch => {
   await axios.post(`${api}/api/user/${id}/onboardsubmit`, { moods, categories });
-  const user = await updateUser({
+  const user = await updateAsync('USER', {
     chosenMoods: moods,
     chosenCategories: categories
   });

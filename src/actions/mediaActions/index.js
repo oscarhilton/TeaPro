@@ -21,16 +21,17 @@ export const uploadUserImageForTea = (uri, data) => async dispatch => {
     data
   };
 
-  console.log(req);
-
   if (Platform.OS === 'ios') {
     NativeModules.FileTransfer.upload(req, (err, res) => {
-      console.log(err, res);
       if (res.status === 200) {
+        let payload = null;
         if (err) {
-          return dispatch({ type: UPLOAD_USER_IMAGE, payload: err });
+          payload = err;
+        } else {
+          payload = JSON.parse(res.data);
         }
-        return dispatch({ type: UPLOAD_USER_IMAGE, payload: JSON.parse(res.data) });
+        console.log(payload, 'RESULT');
+        return dispatch({ type: UPLOAD_USER_IMAGE, payload });
       }
     });
   } else if (Platform.OS === 'android') {

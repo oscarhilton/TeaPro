@@ -1,19 +1,18 @@
 import React, { Component } from 'react';
-import { ScrollView, StyleSheet, View } from 'react-native';
+import { ScrollView, StyleSheet, View, RefreshControl } from 'react-native';
 import { connect } from 'react-redux';
 import {
   addTeaToCupboard,
   addTeaToWishlist,
   returnCupboardTeas,
 } from '../actions';
+
 import { goToScene } from '../actions/navActions';
 import { Button, Spinner } from '../components/common';
 import Accordion from '../components/Accordion';
-import ViewTeaHeader from '../components/ViewTeaHeader';
-import RatingsBar from '../components/RatingsBar';
 import UploadImage from '../components/upload/UploadImage';
 
-class ViewTea extends Component {
+class InfoScreen extends Component {
   handleAddTeaCupboard(tea) {
     this.props.addTeaToCupboard(tea, this.props.auth.user._id);
     this.props.returnCupboardTeas(this.props.auth.user._id);
@@ -69,8 +68,6 @@ class ViewTea extends Component {
         <ScrollView
           style={styles.backgroundStyle}
         >
-          <ViewTeaHeader tea={currentTea} />
-          <RatingsBar rating={roundedScore} />
           {this.renderUserControls()}
           <Accordion
             heading={'Steep Time'}
@@ -103,7 +100,7 @@ class ViewTea extends Component {
 const styles = StyleSheet.create({
   backgroundStyle: {
     flex: 1,
-    backgroundColor: 'black'
+    backgroundColor: '#212121'
   }
 });
 
@@ -116,4 +113,4 @@ export default connect(mapStateToProps, {
   addTeaToWishlist,
   returnCupboardTeas,
   goToScene
-})(ViewTea);
+})(InfoScreen);
