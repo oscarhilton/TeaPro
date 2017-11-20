@@ -1,10 +1,22 @@
 import React, { Component } from 'react';
-import { View, Text, Image, StyleSheet } from 'react-native';
+import { View, Text, Image, StyleSheet, TouchableOpacity } from 'react-native';
 import { connect } from 'react-redux';
 import StarRating from 'react-native-star-rating';
 import CircleAvatar from './CircleAvatar';
+import { goToScene } from '../actions/navActions';
 
 class RatingsBar extends Component {
+  handleReviewButtonPress() {
+    console.log(this.props);
+    const { index, routes } = this.props.nav;
+    const base = routes[index];
+    const screen = base.routes[base.index];
+    const current = screen.routes[screen.index].routeName;
+    if (current !== 'reviews') {
+      this.props.goToScene('reviews');
+    }
+  }
+
   renderReviewButton() {
     const { reviews } = this.props.tea;
     console.log(reviews);
@@ -19,16 +31,27 @@ class RatingsBar extends Component {
       for (let i = 0; i < max; i++) {
         lastThree.push(reviews[i]);
       }
-      const renderHeads = lastThree.length > 0 ? lastThree.map((review) => <CircleAvatar key={review._id} uri={review.author.avatar} width={30} addStyle={styles.circleStyle} />) : <View />;
+      const renderHeads =
+            lastThree.length > 0 ?
+            lastThree.map((review) =>
+            <CircleAvatar
+              key={review._id}
+              uri={review.author.avatar}
+              width={30}
+              addStyle={styles.circleStyle}
+            />) : <View />;
       return (
-        <View style={styles.reviewsStyle} >
+        <TouchableOpacity
+          style={styles.reviewsStyle}
+          onPress={this.handleReviewButtonPress.bind(this)}
+        >
           <View style={styles.avatarStyle}>
             {renderHeads}
           </View>
           <View style={styles.textContainerStyle}>
             <Text style={styles.textStyle}>{reviews.length} reviews</Text>
           </View>
-        </View>
+        </TouchableOpacity>
       );
     }
   }
@@ -86,8 +109,8 @@ const styles = StyleSheet.create({
   }
 });
 
-const mapStateToProps = ({ teas }) => {
-  return { tea: teas.currentTea };
+const mapStateToProps = ({ teas, nav }) => {
+  return { tea: teas.currentTea, nav };
 };
 
-export default connect(mapStateToProps, null)(RatingsBar);
+export default connect(mapStateToProps, { goToScene })(RatingsBar);

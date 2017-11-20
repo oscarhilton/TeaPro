@@ -27,14 +27,14 @@ const styles = StyleSheet.create({
     borderColor: '#cccccc',
     fontSize: 14,
     lineHeight: 23,
-    height: 250
+    height: 100
   },
   labelStyle: {
     fontSize: 14,
     paddingBottom: 10
   },
   containerStyle: {
-    height: 300,
+    height: 150,
     padding: 10,
     backgroundColor: 'white'
   }

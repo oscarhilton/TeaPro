@@ -4,6 +4,7 @@ import { connect } from 'react-redux';
 import StarRating from 'react-native-star-rating';
 import { Button } from './common';
 import CircleAvatar from './CircleAvatar';
+import CommentForm from './CommentForm';
 
 class Review extends Component {
   renderVoteButtons() {
@@ -31,12 +32,14 @@ class Review extends Component {
 
   render() {
     const {
+      _id,
       author,
       title,
       content,
       rating,
       upvotes,
-      downvotes
+      downvotes,
+      comments
     } = this.props.review;
     return (
       <View style={styles.componentStyle}>
@@ -59,6 +62,10 @@ class Review extends Component {
         </View>
         <View style={styles.votesContainer}>
           {this.renderVoteButtons()}
+        </View>
+        <View>
+          <Text>{comments.length} Comments</Text>
+          <CommentForm reviewId={_id} />
         </View>
       </View>
     );
