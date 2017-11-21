@@ -26,7 +26,6 @@ export default function (state = INITIAL_STATE, action) {
         currentTea: action.payload
       };
     case CREATE_REVIEW:
-      console.log('create review tea reduce');
       return {
         ...state,
         loaded: true,

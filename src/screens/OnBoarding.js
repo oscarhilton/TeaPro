@@ -19,7 +19,7 @@ class OnBoarding extends Component {
 
   handleChoices() {
     const { currentUser, chosenCategories, chosenMoods } = this.props;
-    this.props.submitOnboarding(currentUser, chosenCategories, chosenMoods);
+    this.props.submitOnboarding(currentUser, chosenMoods, chosenCategories);
     this.props.fetchCupboardTeas();
     this.props.returnCupboardTeas(currentUser);
     this.props.goBack();

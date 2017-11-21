@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { View, Text, StyleSheet, Image } from 'react-native';
+import { View, Text, StyleSheet, Image, Animated, Easing } from 'react-native';
 import { connect } from 'react-redux';
 import Interactable from 'react-native-interactable';
 import { goBack } from '../actions/navActions';
@@ -11,6 +11,17 @@ import TeaCard from '../components/TeaCard';
 const background = require('../assets/images/background-teapro.png');
 
 class ViewTeaHeader extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      flyIn: new Animated.Value(400)
+    };
+  }
+
+  ComponentWillReceiveProps(newProps) {
+    this.setState({ crunch: newProps.reduce });
+  }
+
   renderImage() {
     const { userImages } = this.props.teas.currentTea;
     if (userImages.length > 0) {
@@ -18,7 +29,7 @@ class ViewTeaHeader extends Component {
       const lastImage = userImages[userImages.length - 1];
       return (
         <Image
-          style={styles.imageStyle}
+          style={[styles.imageStyle, { height: 300 }]}
           blurRadius={0}
           source={{ uri: lastImage.path }}
         />
@@ -27,25 +38,33 @@ class ViewTeaHeader extends Component {
   }
 
   renderHeader() {
-    const { currentTea, loaded } = this.props.teas;
+    const { collapse, currentTea, loaded } = this.props.teas;
     if (loaded) {
+      Animated.timing(
+      this.state.flyIn,
+      {
+        toValue: 0,
+        duration: 700,
+        easing: Easing.bezier(.27,.58,.69,1)
+      }
+      ).start();
       const average = currentTea.score / currentTea.reviews.length;
       const roundedScore = isNaN(average) ? 0 : Math.round(average * 10) / 10;
-      const { title, category, origin } = currentTea;
+      const { category, origin } = currentTea;
       return (
         <View>
-          <View style={styles.componentStyle}>
+          <View style={[styles.componentStyle, { height: 300 }]}>
             <CloseButton
               onPress={() => { this.props.goBack(); }}
               addStyle={styles.closeStyle}
             />
             <View style={styles.detailsStyle}>
-              <View style={styles.teaCardContainer}>
+              <Animated.View style={[styles.teaCardContainer, { marginTop: this.state.flyIn }]}>
                 <TeaCard
                   tea={currentTea}
                   addStyle={styles.teaCardStyle}
                 />
-              </View>
+              </Animated.View>
               <View style={styles.detailsTextContainerStyle}>
                 <Text
                   style={styles.originTextStyle}
@@ -78,7 +97,6 @@ class ViewTeaHeader extends Component {
 
 const styles = StyleSheet.create({
   componentStyle: {
-    height: 180,
     position: 'relative',
     backgroundColor: 'black'
   },
@@ -103,7 +121,6 @@ const styles = StyleSheet.create({
     alignItems: 'center'
   },
   imageStyle: {
-    height: 180,
     zIndex: 0,
     opacity: 0.5,
     position: 'absolute',
@@ -116,7 +133,10 @@ const styles = StyleSheet.create({
     height: 100,
     width: 90,
     justifyContent: 'center',
-    alignItems: 'center'
+    alignItems: 'center',
+    // transform: [
+    //   { rotateY: '180deg' },
+    // ],
   },
   detailsTextContainerStyle: {
     position: 'absolute',

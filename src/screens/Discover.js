@@ -5,7 +5,7 @@ import {
   StyleSheet
 } from 'react-native';
 import { connect } from 'react-redux';
-import { requestCategories, returnAllCategories } from '../actions/categoryActions';
+import { requestDiscoverCategories, returnDiscoverCategories } from '../actions/teaActions';
 import { fetchUser } from '../actions/authActions';
 import { SectionHeader, Spinner } from '../components/common';
 import { SEARCH_OFFSET } from '../components/styleHelpers';
@@ -18,44 +18,47 @@ class DiscoverScene extends Component {
   //   title: 'Home',
   // }
 
-  componentWillMount() {
-    this.props.requestCategories();
-    this.props.returnAllCategories();
-    this.props.fetchUser();
+  async componentWillMount() {
+    await this.props.fetchUser();
+    this.props.requestDiscoverCategories();
+    this.props.returnDiscoverCategories(this.props.auth.user._id);
   }
 
-  renderSections() {
-    const { categories } = this.props.categories;
-    console.log(categories);
+  renderDiscoverCategories() {
+    const { loading } = this.props.auth.discover.categories;
+    if (!loading) {
+      const { list } = this.props.auth.discover.categories;
+      console.log(list);
+      return (
+        list.map((cat) => {
+          return (
+            <View key={cat._id}>
+              <SectionHeader
+                heading={`All ${cat.title} teas`}
+              />
+              <TeaCardList
+                navigate={this.props.navigation.navigate}
+                teaList={cat.teas}
+              />
+            </View>
+          );
+        })
+      );
+    }
     return (
-      categories.map((cat) => {
-        return (
-          <View key={cat._id}>
-            <SectionHeader
-              heading={`All ${cat.title} teas`}
-            />
-            <TeaCardList
-              navigate={this.props.navigation.navigate}
-              teaList={cat.teas}
-            />
-          </View>
-        );
-      })
+      <View stlye={{ flex: 1, backgroundColor: 'white' }}>
+        <Spinner />
+      </View>
     );
   }
 
   renderContent() {
-    if (this.props.categories.loading) {
-      return (
-        <Spinner style={styles.spinnerStyle} />
-      );
-    }
     return (
       <View>
         <Header />
         <ScrollView style={styles.componentStyle}>
           <HeroTea />
-          {this.renderSections()}
+          {this.renderDiscoverCategories()}
         </ScrollView>
       </View>
     );
@@ -89,7 +92,7 @@ const mapStateToProps = ({ categories, auth }) => {
 };
 
 export default connect(mapStateToProps, {
-  requestCategories,
-  returnAllCategories,
+  requestDiscoverCategories,
+  returnDiscoverCategories,
   fetchUser
 })(DiscoverScene);

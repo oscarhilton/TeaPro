@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
-import { ScrollView, StyleSheet, View, RefreshControl } from 'react-native';
+import { Text, ScrollView, StyleSheet, View, RefreshControl } from 'react-native';
+import Interactable from 'react-native-interactable';
 import { connect } from 'react-redux';
 import {
   addTeaToCupboard,
@@ -7,12 +8,22 @@ import {
   returnCupboardTeas,
 } from '../actions';
 
+import ViewTeaHeader from './ViewTeaHeader';
+
 import { goToScene } from '../actions/navActions';
+import { scrollTrigger } from '../actions/teaActions';
 import { Button, Spinner } from '../components/common';
 import Accordion from '../components/Accordion';
 import UploadImage from '../components/upload/UploadImage';
 
 class InfoScreen extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      scroll: 400
+    };
+  }
+
   handleAddTeaCupboard(tea) {
     this.props.addTeaToCupboard(tea, this.props.auth.user._id);
     this.props.returnCupboardTeas(this.props.auth.user._id);
@@ -24,6 +35,11 @@ class InfoScreen extends Component {
 
   handleWriteReview(tea) {
     this.props.goToScene('WriteReview', tea);
+  }
+
+  handleScroll(event: Object) {
+    const reduce = 400 - event.nativeEvent.contentOffset.y;
+    this.setState({ scroll: reduce });
   }
 
   renderUserControls() {
@@ -61,23 +77,25 @@ class InfoScreen extends Component {
   renderTeaScreen() {
     if (this.props.teas.loaded) {
       const { currentTea } = this.props.teas;
-      console.log(currentTea, 'CURRENT TEA');
-      const average = currentTea.score / currentTea.reviews.length;
-      const roundedScore = isNaN(average) ? 0 : Math.round(average * 10) / 10;
       return (
-        <ScrollView
-          style={styles.backgroundStyle}
-        >
-          {this.renderUserControls()}
-          <Accordion
-            heading={'Steep Time'}
-            text={currentTea.steeptime}
-          />
-          <Accordion
-            heading={'Description'}
-            text={currentTea.description}
-          />
-        </ScrollView>
+        <View style={{ flex: 1 }}>
+          <ScrollView
+            style={styles.backgroundStyle}
+            onScroll={this.handleScroll.bind(this)}
+          >
+            <ViewTeaHeader reduce={this.state.scroll} />
+            {this.renderUserControls()}
+            <Text style={{ backgroundColor: 'white' }}>{this.state.scroll}</Text>
+            <Accordion
+              heading={'Steep Time'}
+              text={currentTea.steeptime}
+            />
+            <Accordion
+              heading={'Description'}
+              text={currentTea.description}
+            />
+          </ScrollView>
+        </View>
       );
     }
     return (
@@ -100,7 +118,9 @@ class InfoScreen extends Component {
 const styles = StyleSheet.create({
   backgroundStyle: {
     flex: 1,
-    backgroundColor: '#212121'
+    backgroundColor: '#212121',
+    left: 0,
+    right: 0
   }
 });
 
@@ -112,5 +132,6 @@ export default connect(mapStateToProps, {
   addTeaToCupboard,
   addTeaToWishlist,
   returnCupboardTeas,
-  goToScene
+  goToScene,
+  scrollTrigger
 })(InfoScreen);

@@ -43,7 +43,6 @@ class CommentForm extends Component {
     if (this.state.show) {
       return (
         <View>
-          <Text>This is happening over here</Text>
           <TextArea
             value={this.state.comment}
             onChangeText={this.handleCommentChange.bind(this)}

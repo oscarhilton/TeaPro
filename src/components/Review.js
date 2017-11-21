@@ -1,12 +1,21 @@
 import React, { Component } from 'react';
-import { View, Text, StyleSheet } from 'react-native';
+import { View, Text, StyleSheet, TouchableOpacity } from 'react-native';
 import { connect } from 'react-redux';
 import StarRating from 'react-native-star-rating';
 import { Button } from './common';
 import CircleAvatar from './CircleAvatar';
 import CommentForm from './CommentForm';
 
+import { goToScene } from '../actions/navActions';
+import { loadUser, displayUser } from '../actions/userActions';
+
 class Review extends Component {
+  handleViewUser() {
+    this.props.goToScene('UserProfile');
+    this.props.loadUser();
+    this.props.displayUser(this.props.review.author._id);
+  }
+
   renderVoteButtons() {
     const { user } = this.props.auth;
     const { author, upvotes, downvotes } = this.props.review;
@@ -44,10 +53,13 @@ class Review extends Component {
     return (
       <View style={styles.componentStyle}>
         <View style={styles.topStyle}>
-          <View style={styles.authorStyle}>
+          <TouchableOpacity
+            style={styles.authorStyle}
+            onPress={this.handleViewUser.bind(this)}
+          >
             <CircleAvatar uri={author.avatar} width={40} />
             <Text style={styles.authorNameStyle}>{author.name}</Text>
-          </View>
+          </TouchableOpacity>
           <View>
             <StarRating
               disabled
@@ -119,4 +131,4 @@ const mapStateToProps = ({ auth, teas }) => {
   return { auth, teas }
 };
 
-export default connect(mapStateToProps)(Review);
+export default connect(mapStateToProps, { goToScene, loadUser, displayUser })(Review);

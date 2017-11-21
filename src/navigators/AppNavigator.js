@@ -9,7 +9,7 @@ import OnBoarding from '../screens/OnBoarding';
 import WriteReview from '../screens/WriteReview';
 import InfoScreen from '../screens/InfoScreen';
 import ReviewsScreen from '../screens/ReviewsScreen';
-import ViewTeaHeader from '../screens/ViewTeaHeader';
+import UserProfile from '../screens/UserProfile';
 
 export const TeaTabs = TabNavigator({
   info: {
@@ -19,7 +19,7 @@ export const TeaTabs = TabNavigator({
     screen: ReviewsScreen
   }
 }, {
-  tabBarComponent: () => <ViewTeaHeader />,
+  tabBarComponent: () => <View />,
   tabBarPosition: 'top',
   initialRouteName: 'info',
   lazy: true,
@@ -83,6 +83,9 @@ export const Navigator = StackNavigator({
   },
   OnBoarding: {
     screen: OnBoarding
+  },
+  UserProfile: {
+    screen: UserProfile
   }
 }, {
   mode: 'modal',

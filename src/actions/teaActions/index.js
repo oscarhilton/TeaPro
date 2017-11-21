@@ -3,7 +3,9 @@ import { AsyncStorage } from 'react-native';
 import { api } from '../../api';
 import {
   FETCH_TEA_DETAILS,
-  MAKE_CURRENT_TEA
+  MAKE_CURRENT_TEA,
+  REQUEST_DISCOVER_CATEGORIES,
+  RETURN_DISCOVER_CATEGORIES
  } from './types';
 
 export const fetchTeaDetails = () => dispatch => {
@@ -24,4 +26,14 @@ export const makeCurrentTea = (teaId) => async dispatch => {
     console.log('GETTING FROM API!');
   }
   dispatch({ type: MAKE_CURRENT_TEA, payload });
+};
+
+export const requestDiscoverCategories = () => dispatch => {
+  dispatch({ type: REQUEST_DISCOVER_CATEGORIES });
+};
+
+export const returnDiscoverCategories = (userId) => async dispatch => {
+  const res = await axios.get(`${api}/api/user/${userId}/discover/categories`);
+  console.log(res);
+  dispatch({ type: RETURN_DISCOVER_CATEGORIES, payload: res.data });
 };
