@@ -3,6 +3,7 @@ import {
   FETCH_REVIEWS,
   RETURN_TEA_REVIEWS,
   RETURN_SINGLE_REVIEW,
+  UPVOTE_REVIEW
 } from '../actions/reviewsActions/types';
 
 const INITIAL_STATE = {
@@ -28,6 +29,8 @@ export default function (state = INITIAL_STATE, action) {
         ...state,
         chosenReview: action.payload
       };
+    case UPVOTE_REVIEW:
+      return state;
     default:
       return state;
   }

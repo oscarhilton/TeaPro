@@ -56,8 +56,9 @@ export const checkOnBoarding = (id) => async dispatch => {
   dispatch({ type: CHECK_ON_BOARDING, payload: res.data });
 };
 
-export const submitOnboarding = (id, moods, categories) => async dispatch => {
-  await axios.post(`${api}/api/user/${id}/onboardsubmit`, { moods, categories });
+export const submitOnboarding = (userId, moods, categories) => async dispatch => {
+  await axios.post(`${api}/api/user/${userId}/onboardsubmit`, { moods, categories });
+  console.log(userId);
   console.log(moods, categories);
   const user = await updateAsync('USER', {
     chosenMoods: moods,

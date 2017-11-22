@@ -9,7 +9,7 @@ class ReviewsScreen extends Component {
     console.log(reviews);
     const showReviews = reviews.map((review) => <Review key={review._id} review={review} />);
     return (
-      <ScrollView style={{ flex: 1 }}>
+      <ScrollView style={{ flex: 1, backgroundColor: 'rgb(38,37,42)' }}>
         {showReviews}
       </ScrollView>
     );

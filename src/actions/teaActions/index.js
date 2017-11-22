@@ -16,15 +16,19 @@ export const makeCurrentTea = (teaId) => async dispatch => {
   let payload = null;
   const storageTea = await AsyncStorage.getItem(String(teaId));
 
-  if (storageTea === null) {
-    payload = JSON.parse(storageTea);
-    console.log('GETTING FROM STORAGE!');
-  } else {
-    const res = await axios.get(`${api}/api/teas/${teaId}/display`);
-    payload = res.data;
-    await AsyncStorage.setItem(String(teaId), JSON.stringify(payload));
-    console.log('GETTING FROM API!');
-  }
+  // if (storageTea === null) {
+  //   payload = JSON.parse(storageTea);
+  //   console.log('GETTING FROM STORAGE!');
+  // } else {
+  //   const res = await axios.get(`${api}/api/teas/${teaId}/display`);
+  //   payload = res.data;
+  //   await AsyncStorage.setItem(String(teaId), JSON.stringify(payload));
+  //   console.log('GETTING FROM API!');
+  // }
+  
+  // STORE TEA FOR BETTER PERFORMANCE ??
+  const res = await axios.get(`${api}/api/teas/${teaId}/display`);
+  payload = res.data;
   dispatch({ type: MAKE_CURRENT_TEA, payload });
 };
 
@@ -34,6 +38,7 @@ export const requestDiscoverCategories = () => dispatch => {
 
 export const returnDiscoverCategories = (userId) => async dispatch => {
   const res = await axios.get(`${api}/api/user/${userId}/discover/categories`);
-  console.log(res);
+  // console.log(userId);
+  // console.log(res);
   dispatch({ type: RETURN_DISCOVER_CATEGORIES, payload: res.data });
 };

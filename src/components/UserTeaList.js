@@ -6,11 +6,16 @@ import { SectionHeader, Spinner } from '../components/common';
 class UserTeaList extends Component {
   renderCupboard() {
     const { heading } = this.props;
-    const { loading, teas } = this.props.cupboard;
+    const { loading, teas } = this.props.data;
     switch (loading) {
       case true:
         return (
-          <Spinner />
+          <View style={{ backgroundColor: 'white' }}>
+            <SectionHeader
+              heading={heading}
+            />
+            <Spinner />
+          </View>
         );
       case false:
         return (

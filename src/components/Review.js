@@ -2,9 +2,9 @@ import React, { Component } from 'react';
 import { View, Text, StyleSheet, TouchableOpacity } from 'react-native';
 import { connect } from 'react-redux';
 import StarRating from 'react-native-star-rating';
-import { Button } from './common';
 import CircleAvatar from './CircleAvatar';
 import CommentForm from './CommentForm';
+import VoteButtons from './VoteButtons';
 
 import { goToScene } from '../actions/navActions';
 import { loadUser, displayUser } from '../actions/userActions';
@@ -16,50 +16,31 @@ class Review extends Component {
     this.props.displayUser(this.props.review.author._id);
   }
 
-  renderVoteButtons() {
-    const { user } = this.props.auth;
-    const { author, upvotes, downvotes } = this.props.review;
-    if (user._id !== author._id) {
-      return (
-        <View style={styles.votesContainer}>
-          <Text>{upvotes} UP</Text>
-          <Text>{downvotes} DOWN</Text>
-        </View>
-      );
-    }
-    return (
-      <View style={styles.votesContainer}>
-        <View style={{ height: 50, width: 100 }}>
-          <Button>{upvotes} Helpful</Button>
-        </View>
-        <View style={{ height: 50, width: 100 }}>
-          <Button>{downvotes} Unhelpful</Button>
-        </View>
-      </View>
-    );
+  handleUpvote(target) {
+    console.log('UPVOTE!', target);
+  }
+
+  handleDownvote(target) {
+    console.log('DOWNVOTE', target);
   }
 
   render() {
+    const { auth, review } = this.props;
+    const { user } = auth;
     const {
       _id,
       author,
       title,
       content,
       rating,
+      comments,
       upvotes,
-      downvotes,
-      comments
-    } = this.props.review;
+      downvotes
+    } = review;
     return (
       <View style={styles.componentStyle}>
         <View style={styles.topStyle}>
-          <TouchableOpacity
-            style={styles.authorStyle}
-            onPress={this.handleViewUser.bind(this)}
-          >
-            <CircleAvatar uri={author.avatar} width={40} />
-            <Text style={styles.authorNameStyle}>{author.name}</Text>
-          </TouchableOpacity>
+          <Text style={styles.authorNameStyle}>{title}</Text>
           <View>
             <StarRating
               disabled
@@ -68,12 +49,30 @@ class Review extends Component {
             />
           </View>
         </View>
-        <View>
-          <Text style={styles.titleStyle}>{title}</Text>
-          <Text style={styles.contentStyle}>{content}</Text>
+        <View style={styles.commentWrapStyle}>
+          <View>
+              <TouchableOpacity
+              onPress={this.handleViewUser.bind(this)}
+              style={styles.authorStyle}
+              >
+              <CircleAvatar uri={author.avatar} width={40} />
+            </TouchableOpacity>
+          </View>
+          <View style={styles.commentStyle}>
+            <Text style={styles.titleStyle}>{author.name}</Text>
+            <Text style={styles.contentStyle}>{content}</Text>
+          </View>
         </View>
         <View style={styles.votesContainer}>
-          {this.renderVoteButtons()}
+          <VoteButtons
+            user={user._id}
+            author={author}
+            target={_id}
+            upvotes={upvotes}
+            downvotes={downvotes}
+            handleUpvote={this.handleUpvote.bind(this)}
+            handleDownvote={this.handleDownvote.bind(this)}
+          />
         </View>
         <View>
           <Text>{comments.length} Comments</Text>
@@ -87,43 +86,52 @@ class Review extends Component {
 const styles = StyleSheet.create({
   componentStyle: {
     margin: 8,
-    padding: 10,
     marginBottom: 2,
-    backgroundColor: 'white'
+    padding: 5,
+    backgroundColor: 'white',
+    borderRadius: 20,
   },
   topStyle: {
     flexDirection: 'row',
     justifyContent: 'space-between',
-    paddingBottom: 8,
     marginBottom: 8,
     borderBottomWidth: 1,
     borderColor: '#f5f5f5',
-    alignItems: 'center'
+    alignItems: 'center',
+    backgroundColor: 'rgb(236,236,236)',
+    padding: 15,
+    borderRadius: 20,
   },
   authorStyle: {
-    flexDirection: 'row',
-    alignItems: 'center'
+    marginRight: 10
+  },
+  commentWrapStyle: {
+    flexDirection: 'row'
   },
   authorNameStyle: {
     fontWeight: '600',
-    marginLeft: 15
+  },
+  commentStyle: {
+    backgroundColor: 'rgb(249,86,86)',
+    borderRadius: 20,
+    borderTopLeftRadius: 0,
+    padding: 15,
+    width: '85%'
   },
   titleStyle: {
     fontWeight: '600',
-    marginTop: 15,
     paddingBottom: 5,
-    marginBottom: 5
+    marginBottom: 5,
+    color: 'white'
   },
   contentStyle: {
-    fontWeight: '100'
+    fontWeight: '100',
+    color: 'white'
   },
   votesContainer: {
-    marginTop: 5,
-    paddingTop: 10,
-    borderTopWidth: 1,
-    borderColor: '#f5f5f5',
-    flexDirection: 'row',
-    width: '100%'
+    marginTop: 10,
+    marginLeft: 5,
+    flexDirection: 'row'
   }
 });
 

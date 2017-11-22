@@ -1,16 +1,17 @@
 import React, { Component } from 'react';
 import { View, ScrollView } from 'react-native';
 import { connect } from 'react-redux';
+import { SEARCH_OFFSET } from '../components/styleHelpers';
+import { FloatingButton } from '../components/common';
+import ChooseCategories from '../components/onBoarding/ChooseCategories';
+import ChooseMoods from '../components/onBoarding/ChooseMoods';
+
 import { goBack } from '../actions/navActions';
 import { submitOnboarding } from '../actions/authActions';
 import {
   fetchCupboardTeas,
   returnCupboardTeas,
-} from '../actions';
-import { SEARCH_OFFSET } from '../components/styleHelpers';
-import { FloatingButton } from '../components/common';
-import ChooseCategories from '../components/onBoarding/ChooseCategories';
-import ChooseMoods from '../components/onBoarding/ChooseMoods';
+} from '../actions/cupboardActions';
 
 class OnBoarding extends Component {
   handleCancel() {

@@ -2,19 +2,19 @@ import React, { Component } from 'react';
 import { Text, ScrollView, StyleSheet, View, RefreshControl } from 'react-native';
 import Interactable from 'react-native-interactable';
 import { connect } from 'react-redux';
+
+import ViewTeaHeader from './ViewTeaHeader';
+import { Button, Spinner } from '../components/common';
+import Accordion from '../components/Accordion';
+import UploadImage from '../components/upload/UploadImage';
+
+import { goToScene } from '../actions/navActions';
+import { scrollTrigger } from '../actions/teaActions';
 import {
   addTeaToCupboard,
   addTeaToWishlist,
   returnCupboardTeas,
-} from '../actions';
-
-import ViewTeaHeader from './ViewTeaHeader';
-
-import { goToScene } from '../actions/navActions';
-import { scrollTrigger } from '../actions/teaActions';
-import { Button, Spinner } from '../components/common';
-import Accordion from '../components/Accordion';
-import UploadImage from '../components/upload/UploadImage';
+} from '../actions/cupboardActions';
 
 class InfoScreen extends Component {
   constructor(props) {
@@ -44,28 +44,30 @@ class InfoScreen extends Component {
 
   renderUserControls() {
     if (this.props.auth.loggedIn) {
-      // const {firstName, lastName } = this.props.auth.user;
-      const { currentTea } = this.props.teas;
-      return (
-        <View>
-          <Button
-            onPress={this.handleAddTeaCupboard.bind(this, currentTea)}
-          >
-            Add tea to cupboard
-          </Button>
-          <Button
-            onPress={this.handleAddTeaWishlist.bind(this, currentTea)}
-          >
-            Add tea to wishlist
-          </Button>
-          <Button
-            onPress={this.handleWriteReview.bind(this, currentTea)}
-          >
-            Write a review
-          </Button>
-          <UploadImage teaId={currentTea._id} />
-        </View>
-      );
+      if (this.props.teas.loaded) {
+        const { currentTea } = this.props.teas;
+        console.log(currentTea);
+        return (
+          <View>
+            <Button
+              onPress={this.handleAddTeaCupboard.bind(this, currentTea)}
+            >
+              Add tea to cupboard
+            </Button>
+            <Button
+              onPress={this.handleAddTeaWishlist.bind(this, currentTea)}
+            >
+              Add tea to wishlist
+            </Button>
+            <Button
+              onPress={this.handleWriteReview.bind(this, currentTea)}
+            >
+              Write a review
+            </Button>
+            <UploadImage teaId={currentTea._id} />
+          </View>
+        );
+      }
     }
     return (
       <Accordion
@@ -104,9 +106,7 @@ class InfoScreen extends Component {
   }
 
   render() {
-    // const { navigation } = this.props;
-    const { currentTea } = this.props.teas;
-    console.log(currentTea);
+    // const { currentTea } = this.props.teas;
     return (
       <View style={{ flex: 1 }}>
         {this.renderTeaScreen()}

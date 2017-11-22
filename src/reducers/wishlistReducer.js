@@ -2,10 +2,10 @@ import {
   FETCH_WISHLIST_TEAS,
   RETURN_WISHLIST_TEAS,
   ADD_TEA_TO_WISHLIST
- } from '../actions/types';
+} from '../actions/wishlistActions/types';
 
 const INITIAL_STATE = {
-  loading: false
+  loading: null
 };
 
  export default function (state = INITIAL_STATE, action) {

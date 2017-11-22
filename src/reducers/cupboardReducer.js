@@ -2,7 +2,7 @@ import {
   FETCH_CUPBOARD_TEAS,
   RETURN_CUPBOARD_TEAS,
   ADD_TEA_TO_CUPBOARD
- } from '../actions/types';
+} from '../actions/cupboardActions/types';
 
 const INITIAL_STATE = {
   loading: null

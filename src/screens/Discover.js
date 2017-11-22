@@ -20,8 +20,10 @@ class DiscoverScene extends Component {
 
   async componentWillMount() {
     await this.props.fetchUser();
-    this.props.requestDiscoverCategories();
-    this.props.returnDiscoverCategories(this.props.auth.user._id);
+    if (this.props.auth.loggedIn) {
+      this.props.requestDiscoverCategories();
+      this.props.returnDiscoverCategories(this.props.auth.user._id);
+    }
   }
 
   renderDiscoverCategories() {

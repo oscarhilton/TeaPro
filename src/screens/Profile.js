@@ -1,23 +1,30 @@
 import React, { Component } from 'react';
 import { ScrollView, View } from 'react-native';
 import { connect } from 'react-redux';
-import { fetchUser, checkOnBoarding, logOutUser } from '../actions/authActions';
-import { goToScene } from '../actions/navActions';
 import { Button } from '../components/common';
 import ProfileInfo from '../components/ProfileInfo';
 import UserTeaList from '../components/UserTeaList';
 import Login from '../components/Login';
+
+import { fetchUser, checkOnBoarding, logOutUser } from '../actions/authActions';
+import { goToScene } from '../actions/navActions';
 import {
   fetchCupboardTeas,
   returnCupboardTeas,
-} from '../actions';
+} from '../actions/cupboardActions';
+import {
+  fetchWishlistTeas,
+  returnWishlistTeas,
+} from '../actions/wishlistActions';
 
 class ProfileScene extends Component {
   async componentWillMount() {
     const { user } = this.props.auth;
     await this.props.fetchUser();
     this.props.fetchCupboardTeas();
+    this.props.fetchWishlistTeas();
     this.props.returnCupboardTeas(user._id);
+    this.props.returnWishlistTeas(user._id);
   }
 
   async componentWillReceiveProps(newProps) {
@@ -43,16 +50,14 @@ class ProfileScene extends Component {
 
   isLoggedIn() {
     const { cupboard, wishlist } = this.props;
-    console.log(wishlist, cupboard);
-    // const showCupboard =
-    //   cupboard ?
-    //   return <UserTeaList user={user} cupboard={cupboard} heading={'Teas in your cupboard'} /> : return null;
+    console.log(wishlist, '<--- WISHLIST', cupboard);
     const { loggedIn, user } = this.props.auth;
     if (loggedIn) {
       return (
         <ScrollView style={{ flex: 1, backgroundColor: 'black'}}>
           <ProfileInfo user={user} />
-          <UserTeaList user={user} cupboard={cupboard} heading={'Teas in your cupboard'} />
+          <UserTeaList user={user} data={cupboard} heading={'Teas in your cupboard'} />
+          <UserTeaList user={user} data={wishlist} heading={'Teas in your wishlist'} />
           <View style={{ height: 100 }}>
             <Button
               onPress={this.handleLogOut.bind(this)}
@@ -89,6 +94,8 @@ export default connect(mapStateToProps, {
   fetchUser,
   fetchCupboardTeas,
   returnCupboardTeas,
+  fetchWishlistTeas,
+  returnWishlistTeas,
   checkOnBoarding,
   logOutUser,
   goToScene

@@ -8,7 +8,7 @@ import {
 import SafariView from 'react-native-safari-view';
 import { connect } from 'react-redux';
 import { onLoggedIn } from '../actions/authActions';
-import { fetchCupboardTeas, returnCupboardTeas } from '../actions';
+import { fetchCupboardTeas, returnCupboardTeas } from '../actions/cupboardActions';
 import { Button } from '../components/common';
 import { api } from '../api';
 
