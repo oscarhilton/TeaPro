@@ -25,7 +25,7 @@ export const makeCurrentTea = (teaId) => async dispatch => {
   //   await AsyncStorage.setItem(String(teaId), JSON.stringify(payload));
   //   console.log('GETTING FROM API!');
   // }
-  
+
   // STORE TEA FOR BETTER PERFORMANCE ??
   const res = await axios.get(`${api}/api/teas/${teaId}/display`);
   payload = res.data;

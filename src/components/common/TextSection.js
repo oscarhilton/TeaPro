@@ -8,7 +8,7 @@ import {
 const TextSection = props => {
   return (
     <View style={styles.componentStyle} >
-      <Text style={styles.textStyle} >{props.text}</Text>
+      <Text style={[styles.textStyle, props.textStyle]} >{props.text}</Text>
     </View>
   );
 };

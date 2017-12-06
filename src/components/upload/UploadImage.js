@@ -19,21 +19,28 @@ class UploadImage extends Component {
         timestamp,
       };
       console.log(response);
-      this.props.uploadUserImageForTea(origURL, info);
+      this.props.uploadUserImageForTea(origURL, this.props.user, info);
     });
   }
 
   render() {
+    console.log(this.props.user, 'AUTH');
     return (
       <View>
         <Button
           onPress={this.handleImageSelect.bind(this)}
         >
-          UPLOAD A PHOTO
+          Upload a photo
         </Button>
       </View>
     );
   }
 }
 
-export default connect(null, { uploadUserImageForTea })(UploadImage);
+const mapStateToProps = ({ auth }) => {
+  return {
+    user: auth.user._id
+  };
+};
+
+export default connect(mapStateToProps, { uploadUserImageForTea })(UploadImage);

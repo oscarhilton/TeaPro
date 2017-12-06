@@ -1,12 +1,17 @@
 import React, { Component } from 'react';
-import { ScrollView, View } from 'react-native';
+import { Text, ScrollView, View } from 'react-native';
 import { connect } from 'react-redux';
 import { Button } from '../components/common';
 import ProfileInfo from '../components/ProfileInfo';
 import UserTeaList from '../components/UserTeaList';
 import Login from '../components/Login';
+import ImageCardList from '../components/ImageCardList';
 
-import { fetchUser, checkOnBoarding, logOutUser } from '../actions/authActions';
+import {
+  fetchUser,
+  checkOnBoarding,
+  logOutUser
+} from '../actions/authActions';
 import { goToScene } from '../actions/navActions';
 import {
   fetchCupboardTeas,
@@ -16,6 +21,10 @@ import {
   fetchWishlistTeas,
   returnWishlistTeas,
 } from '../actions/wishlistActions';
+import {
+  fetchUserImages,
+  returnUserImages,
+} from '../actions/mediaActions';
 
 class ProfileScene extends Component {
   async componentWillMount() {
@@ -23,8 +32,10 @@ class ProfileScene extends Component {
     await this.props.fetchUser();
     this.props.fetchCupboardTeas();
     this.props.fetchWishlistTeas();
+    this.props.fetchUserImages();
     this.props.returnCupboardTeas(user._id);
     this.props.returnWishlistTeas(user._id);
+    this.props.returnUserImages(user._id);
   }
 
   async componentWillReceiveProps(newProps) {
@@ -49,15 +60,26 @@ class ProfileScene extends Component {
   }
 
   isLoggedIn() {
-    const { cupboard, wishlist } = this.props;
-    console.log(wishlist, '<--- WISHLIST', cupboard);
+    const { cupboard, wishlist, media } = this.props;
     const { loggedIn, user } = this.props.auth;
+    console.log(media);
     if (loggedIn) {
       return (
         <ScrollView style={{ flex: 1, backgroundColor: 'black'}}>
           <ProfileInfo user={user} />
-          <UserTeaList user={user} data={cupboard} heading={'Teas in your cupboard'} />
-          <UserTeaList user={user} data={wishlist} heading={'Teas in your wishlist'} />
+          <UserTeaList
+            user={user}
+            loading={cupboard.loading}
+            data={cupboard}
+            heading={'Teas in your cupboard'}
+          />
+          <UserTeaList
+            user={user}
+            loading={wishlist.loading}
+            data={wishlist}
+            heading={'Teas in your wishlist'}
+          />
+          <ImageCardList imageList={[1, 2]} />
           <View style={{ height: 100 }}>
             <Button
               onPress={this.handleLogOut.bind(this)}
@@ -86,8 +108,8 @@ class ProfileScene extends Component {
   }
 }
 
-const mapStateToProps = ({ auth, cupboard, wishlist }) => {
-  return { auth, cupboard, wishlist };
+const mapStateToProps = ({ auth, cupboard, wishlist, media }) => {
+  return { auth, cupboard, wishlist, media };
 };
 
 export default connect(mapStateToProps, {
@@ -96,6 +118,8 @@ export default connect(mapStateToProps, {
   returnCupboardTeas,
   fetchWishlistTeas,
   returnWishlistTeas,
+  fetchUserImages,
+  returnUserImages,
   checkOnBoarding,
   logOutUser,
   goToScene

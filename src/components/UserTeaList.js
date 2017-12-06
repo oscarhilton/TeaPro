@@ -7,7 +7,10 @@ class UserTeaList extends Component {
   renderCupboard() {
     const { heading } = this.props;
     const { loading, teas } = this.props.data;
+    console.log(loading, '<--- LOADING?')
     switch (loading) {
+      case null:
+        return (<Text>NULL</Text>);
       case true:
         return (
           <View style={{ backgroundColor: 'white' }}>

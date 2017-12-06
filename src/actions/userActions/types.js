@@ -3,3 +3,7 @@ export const DISPLAY_USER = 'display_user';
 export const FOLLOW_USER = 'follow_user';
 export const UNFOLLOW_USER = 'unfollow_user';
 export const MAKE_CHANGE = 'make_change';
+export const FETCH_USER_CUPBOARD_TEAS = 'fetch_user_cupboard_teas';
+export const RETURN_USER_CUPBOARD_TEAS = 'return_user_cupboard_teas';
+export const FETCH_USER_WISHLIST_TEAS = 'fetch_user_wishlist_teas';
+export const RETURN_USER_WISHLIST_TEAS = 'return_user_wishlist_teas';

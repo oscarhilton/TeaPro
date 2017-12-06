@@ -6,6 +6,7 @@ import { connect } from 'react-redux';
 import ViewTeaHeader from './ViewTeaHeader';
 import { Button, Spinner } from '../components/common';
 import Accordion from '../components/Accordion';
+import TeaMoodsList from '../components/TeaMoodsList';
 import UploadImage from '../components/upload/UploadImage';
 
 import { goToScene } from '../actions/navActions';
@@ -25,6 +26,7 @@ class InfoScreen extends Component {
   }
 
   handleAddTeaCupboard(tea) {
+
     this.props.addTeaToCupboard(tea, this.props.auth.user._id);
     this.props.returnCupboardTeas(this.props.auth.user._id);
   }
@@ -43,16 +45,22 @@ class InfoScreen extends Component {
   }
 
   renderUserControls() {
-    if (this.props.auth.loggedIn) {
-      if (this.props.teas.loaded) {
+    console.log(this.props, 'PROPS!');
+    const { loggedIn, user } = this.props.auth;
+    const { cupboard } = user;
+    const { loaded, currentTea } = this.props.teas;
+    const cupboardButtonText = cupboard.indexOf(currentTea._id) > - 1;
+    if (loggedIn) {
+      if (loaded) {
         const { currentTea } = this.props.teas;
         console.log(currentTea);
+
         return (
           <View>
             <Button
               onPress={this.handleAddTeaCupboard.bind(this, currentTea)}
             >
-              Add tea to cupboard
+              {cupboardButtonText ? 'Remove tea from cupboard' : 'Add tea to cupboard'}
             </Button>
             <Button
               onPress={this.handleAddTeaWishlist.bind(this, currentTea)}
@@ -85,9 +93,8 @@ class InfoScreen extends Component {
             style={styles.backgroundStyle}
             onScroll={this.handleScroll.bind(this)}
           >
-            <ViewTeaHeader reduce={this.state.scroll} />
+            <ViewTeaHeader />
             {this.renderUserControls()}
-            <Text style={{ backgroundColor: 'white' }}>{this.state.scroll}</Text>
             <Accordion
               heading={'Steep Time'}
               text={currentTea.steeptime}
@@ -95,6 +102,10 @@ class InfoScreen extends Component {
             <Accordion
               heading={'Description'}
               text={currentTea.description}
+              textStyle={styles.descriptionStyle}
+            />
+            <TeaMoodsList
+              moods={currentTea.moods}
             />
           </ScrollView>
         </View>
@@ -121,6 +132,11 @@ const styles = StyleSheet.create({
     backgroundColor: '#212121',
     left: 0,
     right: 0
+  },
+  descriptionStyle: {
+    color: '#212121',
+    fontSize: 20,
+    fontFamily: 'Georgia'
   }
 });
 

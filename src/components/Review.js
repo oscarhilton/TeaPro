@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { View, Text, StyleSheet, TouchableOpacity } from 'react-native';
 import { connect } from 'react-redux';
+import moment from 'moment';
 import StarRating from 'react-native-star-rating';
 import CircleAvatar from './CircleAvatar';
 import CommentForm from './CommentForm';
@@ -11,9 +12,9 @@ import { loadUser, displayUser } from '../actions/userActions';
 
 class Review extends Component {
   handleViewUser() {
-    this.props.goToScene('UserProfile');
     this.props.loadUser();
     this.props.displayUser(this.props.review.author._id);
+    this.props.goToScene('UserProfile');
   }
 
   handleUpvote(target) {
@@ -32,15 +33,17 @@ class Review extends Component {
       author,
       title,
       content,
+      createdAt,
       rating,
       comments,
       upvotes,
       downvotes
     } = review;
+    const date = moment(createdAt).fromNow();
     return (
       <View style={styles.componentStyle}>
         <View style={styles.topStyle}>
-          <Text style={styles.authorNameStyle}>{title}</Text>
+          <Text style={styles.authorNameStyle}>{title} {date}</Text>
           <View>
             <StarRating
               disabled
@@ -139,4 +142,8 @@ const mapStateToProps = ({ auth, teas }) => {
   return { auth, teas }
 };
 
-export default connect(mapStateToProps, { goToScene, loadUser, displayUser })(Review);
+export default connect(mapStateToProps, {
+  goToScene,
+  loadUser,
+  displayUser
+})(Review);

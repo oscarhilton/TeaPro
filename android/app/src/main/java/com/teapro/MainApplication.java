@@ -3,6 +3,7 @@ package com.teapro;
 import android.app.Application;
 
 import com.facebook.react.ReactApplication;
+import com.burlap.filetransfer.FileTransferPackage;
 import com.wix.interactable.Interactable;
 import com.imagepicker.ImagePickerPackage;
 import com.oblador.vectoricons.VectorIconsPackage;
@@ -26,6 +27,7 @@ public class MainApplication extends Application implements ReactApplication {
     protected List<ReactPackage> getPackages() {
       return Arrays.<ReactPackage>asList(
           new MainReactPackage(),
+            new FileTransferPackage(),
             new Interactable(),
             new ImagePickerPackage(),
             new VectorIconsPackage()

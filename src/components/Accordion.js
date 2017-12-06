@@ -7,7 +7,7 @@ class Accordion extends Component {
     return (
       <View>
         <SectionHeader heading={this.props.heading} />
-        <TextSection text={this.props.text} />
+        <TextSection textStyle={this.props.textStyle} text={this.props.text} />
       </View>
     );
   }

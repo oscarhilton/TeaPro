@@ -5,13 +5,15 @@ import axios from 'axios';
 import { api } from '../../api';
 
 import {
-  UPLOAD_USER_IMAGE
+  UPLOAD_USER_IMAGE,
+  FETCH_USER_IMAGES,
+  RETURN_USER_IMAGES
 } from './types';
 
-export const uploadUserImageForTea = (uri, data) => async dispatch => {
+export const uploadUserImageForTea = (uri, userId, data) => async dispatch => {
   const req = {
     uri, // either an 'assets-library' url (for files from photo library) or an image dataURL
-    uploadUrl: `${api}/api/userupload/tea`,
+    uploadUrl: `${api}/api/userupload/${userId}/tea`,
     fileName: data.fileName,
     mimeType: 'image/jpeg',
     fileKey: 'file',
@@ -30,7 +32,6 @@ export const uploadUserImageForTea = (uri, data) => async dispatch => {
         } else {
           payload = JSON.parse(res.data);
         }
-        console.log(payload, 'RESULT');
         return dispatch({ type: UPLOAD_USER_IMAGE, payload });
       }
     });
@@ -46,4 +47,12 @@ export const uploadUserImageForTea = (uri, data) => async dispatch => {
 
   // const res = await axios.post('http://httpbin.org/post', data);
   // dispatch({ type: RETURN_ALL_CATEGORIES, payload: res.data });
+};
+
+export const fetchUserImages = () => dispatch => {
+  dispatch({ type: FETCH_USER_IMAGES });
+};
+
+export const returnUserImages = () => dispatch => {
+  dispatch({ type: RETURN_USER_IMAGES });
 };

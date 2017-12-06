@@ -13,6 +13,7 @@ const INITIAL_STATE = {
      case FETCH_WISHLIST_TEAS:
        return {
          ...state,
+         teas: [],
          loading: true
        };
      case RETURN_WISHLIST_TEAS:

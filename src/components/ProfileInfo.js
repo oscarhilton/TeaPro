@@ -12,7 +12,7 @@ const ProfileInfo = (props) => {
       </View>
       <View style={styles.profileDetailsStlye} >
         <View style={styles.topSectionStyle} >
-          <View>
+          <View style={styles.usernameContainer}>
             <Text
               style={styles.usernameStlye}
             >
@@ -26,7 +26,7 @@ const ProfileInfo = (props) => {
       <Image
         style={styles.imageStyle}
         blurRadius={0}
-        source={{ uri: 'https://picsum.photos/200/300/?random'}}
+        source={{ uri: 'https://media.istockphoto.com/vectors/cube-light-pattern-background-vector-background-blue-green-vector-id479115294?s=2048x2048'}}
       />
     </View>
   );
@@ -44,7 +44,7 @@ const ProfileInfo = (props) => {
 const styles = StyleSheet.create({
   componentStyle: {
     backgroundColor: '#000000',
-    height: 400,
+    height: 250,
     flexDirection: 'column',
     justifyContent: 'center',
     alignItems: 'center',
@@ -55,11 +55,16 @@ const styles = StyleSheet.create({
   profileDetailsStlye: {
     margin: 10
   },
+  usernameContainer: {
+    backgroundColor: 'white',
+    padding: 3,
+    borderRadius: 10
+  },
   usernameStlye: {
-    fontSize: 18,
+    fontSize: 16,
     fontWeight: '600',
     textAlign: 'center',
-    color: 'white'
+    color: '#212121'
   },
   imageStyle: {
     height: 400,
@@ -79,11 +84,9 @@ const styles = StyleSheet.create({
     borderRadius: 20
   },
   profileImageStyle: {
-    width: 125,
-    height: 125,
-    borderRadius: 60,
-    borderColor: 'white',
-    borderWidth: 1
+    width: 80,
+    height: 80,
+    borderRadius: 40,
   },
   topSectionStyle: {
     zIndex: 2
