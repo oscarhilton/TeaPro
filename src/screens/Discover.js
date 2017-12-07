@@ -1,26 +1,29 @@
 import React, { Component } from 'react';
 import {
+  Text,
   ScrollView,
   View,
   StyleSheet
 } from 'react-native';
 import { connect } from 'react-redux';
+import SocketIOClient from 'socket.io-client';
+
 import { requestDiscoverCategories, returnDiscoverCategories } from '../actions/teaActions';
 import { fetchUser } from '../actions/authActions';
+
 import { SectionHeader, Spinner } from '../components/common';
 import { SEARCH_OFFSET } from '../components/styleHelpers';
 import TeaCardList from '../components/TeaCardList';
 import HeroTea from '../components/HeroTea';
 import Header from '../components/Header';
+import Notifications from '../components/Notifications';
 
 class DiscoverScene extends Component {
-  // static navigationOptions = {
-  //   title: 'Home',
-  // }
-
   async componentWillMount() {
+    const { user } = this.props.auth;
     await this.props.fetchUser();
     if (this.props.auth.loggedIn) {
+      console.log('bla', this.props.auth.user._id);
       this.props.requestDiscoverCategories();
       this.props.returnDiscoverCategories(this.props.auth.user._id);
     }
@@ -30,7 +33,6 @@ class DiscoverScene extends Component {
     const { loading } = this.props.auth.discover.categories;
     if (!loading) {
       const { list } = this.props.auth.discover.categories;
-      console.log(list);
       return (
         list.map((cat) => {
           return (
@@ -54,6 +56,18 @@ class DiscoverScene extends Component {
     );
   }
 
+  renderNotifications() {
+    if (this.props.auth.loggedIn) {
+      return (
+        <Notifications
+          user={this.props.auth.user}
+          socket={this.props.navigation.socket}
+        />
+      );
+    }
+    return (<Text>User not signed in</Text>);
+  }
+
   renderContent() {
     return (
       <View>
@@ -62,6 +76,7 @@ class DiscoverScene extends Component {
           <HeroTea />
           {this.renderDiscoverCategories()}
         </ScrollView>
+        {this.renderNotifications()}
       </View>
     );
   }

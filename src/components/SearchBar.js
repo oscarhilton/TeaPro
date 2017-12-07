@@ -56,7 +56,6 @@ class SearchBar extends Component {
   }
 
   render() {
-    console.log(this.props.search.searchText);
     return (
       <View style={{ flex: 1 }}>
         <View style={styles.inputContainerStyle}>

@@ -28,7 +28,6 @@ class CommentForm extends Component {
   handleSendForm() {
     const { reviewId } = this.props;
     const { user } = this.props.auth;
-    console.log('SENDING');
     this.props.submitComment(reviewId, this.state.comment, user._id);
   }
 

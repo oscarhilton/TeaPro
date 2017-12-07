@@ -69,13 +69,11 @@ class ProfileScene extends Component {
           <ProfileInfo user={user} />
           <UserTeaList
             user={user}
-            loading={cupboard.loading}
             data={cupboard}
             heading={'Teas in your cupboard'}
           />
           <UserTeaList
             user={user}
-            loading={wishlist.loading}
             data={wishlist}
             heading={'Teas in your wishlist'}
           />

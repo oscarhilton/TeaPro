@@ -21,7 +21,6 @@ const INITIAL_STATE = {
          teas: action.payload
        };
      case ADD_TEA_TO_CUPBOARD:
-       console.log(state, action.payload, '<-- PAYLOAD');
        return {
          ...state,
          teas: [...state.teas, action.payload]

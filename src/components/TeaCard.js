@@ -30,18 +30,18 @@ const styles = StyleSheet.create({
     borderRadius: 8,
     flex: 1,
     position: 'relative',
-    shadowOpacity: 0.1,
-    shadowOffset: { height: 1, width: 1 },
-    shadowColor: 'black'
+    // shadowOpacity: 0.1,
+    // shadowOffset: { height: 1, width: 1 },
+    // shadowColor: 'black'
   },
   textBackgroundStyle: {
     backgroundColor: 'rgba(255,255,255,0.1)',
     borderTopLeftRadius: 8,
     borderTopRightRadius: 8,
     height: '70%',
-    shadowOpacity: 0.3,
-    shadowOffset: { height: 1 },
-    shadowColor: 'black',
+    // shadowOpacity: 0.3,
+    // shadowOffset: { height: 1 },
+    // shadowColor: 'black',
     padding: 8
   },
   titleStyle: {

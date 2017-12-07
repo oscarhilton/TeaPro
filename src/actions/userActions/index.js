@@ -7,7 +7,9 @@ import {
   FETCH_USER_CUPBOARD_TEAS,
   RETURN_USER_CUPBOARD_TEAS,
   FETCH_USER_WISHLIST_TEAS,
-  RETURN_USER_WISHLIST_TEAS
+  RETURN_USER_WISHLIST_TEAS,
+  FOLLOW_USER,
+  UNFOLLOW_USER
  } from './types';
 
  export const loadUser = () => dispatch => {
@@ -35,4 +37,18 @@ import {
  export const returnUserWishlistTeas = (userId) => async dispatch => {
   const res = await axios.get(`${api}/api/user/${userId}/wishlist/get`);
   dispatch({ type: RETURN_USER_WISHLIST_TEAS, payload: res.data });
+ };
+
+ export const followUser = (socket, authUser, userToFollow) => async dispatch => {
+  const res = await axios.post(`${api}/api/user/${userToFollow._id}/follow`, { authUser });
+  console.log(res);
+  if (res.data == 'success') {
+    alert('SUCCESS!');
+    alert(res.data);
+    socket.emit('new follower', {
+      room: userToFollow._id,
+      follower: authUser
+    });
+  }
+  dispatch({ type: FOLLOW_USER, payload: res.data });
  };

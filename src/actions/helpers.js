@@ -8,6 +8,5 @@ export const updateAsync = async (item, args) => {
     ...args
   };
   await AsyncStorage.setItem(item, JSON.stringify(updatedObj));
-  console.log(updatedObj);
   return updatedObj;
 };

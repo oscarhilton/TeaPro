@@ -39,8 +39,6 @@ class Login extends Component {
     // Call onLoggedIn function of parent component and pass user object
     this.props.onLoggedIn(user);
     this.props.fetchCupboardTeas();
-    // console.log(user, '<-- USER!!!!!');
-    console.log(user._id);
     this.props.returnCupboardTeas(user._id);
     //Close SafariView
     if (Platform.OS === 'ios') {

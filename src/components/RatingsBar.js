@@ -7,7 +7,6 @@ import { goToScene } from '../actions/navActions';
 
 class RatingsBar extends Component {
   handleReviewButtonPress() {
-    console.log(this.props);
     const { index, routes } = this.props.nav;
     const base = routes[index];
     const screen = base.routes[base.index];
@@ -19,7 +18,6 @@ class RatingsBar extends Component {
 
   renderReviewButton() {
     const { reviews } = this.props.tea;
-    console.log(reviews);
     if (reviews.length > 0) {
       const lastThree = [];
       let max = 0;

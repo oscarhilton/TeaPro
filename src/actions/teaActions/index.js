@@ -38,7 +38,5 @@ export const requestDiscoverCategories = () => dispatch => {
 
 export const returnDiscoverCategories = (userId) => async dispatch => {
   const res = await axios.get(`${api}/api/user/${userId}/discover/categories`);
-  // console.log(userId);
-  // console.log(res);
   dispatch({ type: RETURN_DISCOVER_CATEGORIES, payload: res.data });
 };

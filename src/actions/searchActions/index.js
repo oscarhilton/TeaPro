@@ -26,6 +26,5 @@ export const endSearch = () => dispatch => {
 };
 
 export const clearSearch = () => dispatch => {
-  console.log('CLEARING SEARCH');
   dispatch({ type: CLEAR_SEARCH });
 };

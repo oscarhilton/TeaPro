@@ -41,7 +41,6 @@ export const fetchUser = () => async dispatch => {
       user: userObj
     };
   }
-  console.log(res);
   dispatch({ type: FETCH_USER, payload: res });
 };
 
@@ -52,14 +51,11 @@ export const logOutUser = () => async dispatch => {
 
 export const checkOnBoarding = (id) => async dispatch => {
   const res = await axios.get(`${api}/api/user/${id}/onboardstatus`);
-  console.log(res.data);
   dispatch({ type: CHECK_ON_BOARDING, payload: res.data });
 };
 
 export const submitOnboarding = (userId, moods, categories) => async dispatch => {
   await axios.post(`${api}/api/user/${userId}/onboardsubmit`, { moods, categories });
-  console.log(userId);
-  console.log(moods, categories);
   const user = await updateAsync('USER', {
     chosenMoods: moods,
     chosenCategories: categories
