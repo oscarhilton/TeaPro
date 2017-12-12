@@ -23,7 +23,6 @@ class DiscoverScene extends Component {
     const { user } = this.props.auth;
     await this.props.fetchUser();
     if (this.props.auth.loggedIn) {
-      console.log('bla', this.props.auth.user._id);
       this.props.requestDiscoverCategories();
       this.props.returnDiscoverCategories(this.props.auth.user._id);
     }
@@ -59,10 +58,12 @@ class DiscoverScene extends Component {
   renderNotifications() {
     if (this.props.auth.loggedIn) {
       return (
-        <Notifications
-          user={this.props.auth.user}
-          socket={this.props.navigation.socket}
-        />
+        <View style={{ position: 'absolute', bottom: 0, width: '100%' }}>
+          <Notifications
+            user={this.props.auth.user}
+            socket={this.props.navigation.socket}
+          />
+        </View>
       );
     }
     return (<Text>User not signed in</Text>);
@@ -70,7 +71,7 @@ class DiscoverScene extends Component {
 
   renderContent() {
     return (
-      <View>
+      <View style={{ flex: 1 }}>
         <Header />
         <ScrollView style={styles.componentStyle}>
           <HeroTea />
@@ -92,8 +93,7 @@ class DiscoverScene extends Component {
 
 const styles = StyleSheet.create({
   componentStyle: {
-    backgroundColor: '#18061B',
-    // paddingTop: SEARCH_OFFSET
+    backgroundColor: '#18061B'
   },
   spinnerStyle: {
     position: 'absolute',

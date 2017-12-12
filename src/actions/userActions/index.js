@@ -41,13 +41,12 @@ import {
 
  export const followUser = (socket, authUser, userToFollow) => async dispatch => {
   const res = await axios.post(`${api}/api/user/${userToFollow._id}/follow`, { authUser });
-  console.log(res);
+  console.log(authUser, 'FROM ACTION');
   if (res.data == 'success') {
     alert('SUCCESS!');
-    alert(res.data);
     socket.emit('new follower', {
       room: userToFollow._id,
-      follower: authUser
+      message: authUser.name
     });
   }
   dispatch({ type: FOLLOW_USER, payload: res.data });

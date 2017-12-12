@@ -3,10 +3,10 @@ import { View, Text, StyleSheet, Image, Animated, Easing } from 'react-native';
 import { connect } from 'react-redux';
 import Interactable from 'react-native-interactable';
 import { goBack } from '../actions/navActions';
-import { CloseButton, Spinner } from '../components/common';
-import RatingsBar from '../components/RatingsBar';
+import { CloseButton, Spinner } from './common';
+import RatingsBar from './RatingsBar';
 // import { SEARCH_OFFSET } from '../components/styleHelpers';
-import TeaCard from '../components/TeaCard';
+import TeaCard from './TeaCard';
 
 const background = require('../assets/images/background-teapro.png');
 
@@ -18,10 +18,6 @@ class ViewTeaHeader extends Component {
     };
   }
 
-  ComponentWillReceiveProps(newProps) {
-    this.setState({ crunch: newProps.reduce });
-  }
-
   renderImage() {
     const { userImages } = this.props.teas.currentTea;
     if (userImages.length > 0) {
@@ -29,7 +25,7 @@ class ViewTeaHeader extends Component {
       const lastImage = userImages[userImages.length - 1];
       return (
         <Image
-          style={[styles.imageStyle, { height: 300 }]}
+          style={[styles.imageStyle, { height: 200 }]}
           blurRadius={0}
           source={{ uri: lastImage.path }}
         />
@@ -53,7 +49,7 @@ class ViewTeaHeader extends Component {
       const { category, origin } = currentTea;
       return (
         <View>
-          <View style={[styles.componentStyle, { height: 300 }]}>
+          <View style={[styles.componentStyle, { height: 200 }]}>
             <CloseButton
               onPress={() => { this.props.goBack(); }}
               addStyle={styles.closeStyle}
@@ -87,6 +83,7 @@ class ViewTeaHeader extends Component {
   }
 
   render() {
+    console.log(this.props, '<-----!! PROPS PROPS PROPS')
     return (
       <View>
         {this.renderHeader()}

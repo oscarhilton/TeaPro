@@ -7,13 +7,12 @@ class UserTeaList extends Component {
   renderCupboard() {
     const { heading } = this.props;
     const { loading, teas } = this.props.data;
-    console.log(loading, '<--- LOADING?')
     switch (loading) {
       case null:
         return (<Text>NULL</Text>);
       case true:
         return (
-          <View style={{ backgroundColor: 'white' }}>
+          <View style={{ backgroundColor: '#f2f2f2', height: 165 }}>
             <SectionHeader
               heading={heading}
             />
@@ -22,7 +21,7 @@ class UserTeaList extends Component {
         );
       case false:
         return (
-          <View>
+          <View style={{ height: 165 }}>
             <SectionHeader
               heading={heading}
             />
@@ -33,11 +32,10 @@ class UserTeaList extends Component {
         );
       default:
         return (
-          <View>
+          <View style={{ backgroundColor: '#f2f2f2', height: 165 }}>
             <SectionHeader
               heading={heading}
             />
-            <Text>Couldn't fetch teas :-(</Text>
           </View>
         );
     }

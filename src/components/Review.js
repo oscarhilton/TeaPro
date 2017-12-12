@@ -54,10 +54,10 @@ class Review extends Component {
         </View>
         <View style={styles.commentWrapStyle}>
           <View>
-              <TouchableOpacity
+            <TouchableOpacity
               onPress={this.handleViewUser.bind(this)}
               style={styles.authorStyle}
-              >
+            >
               <CircleAvatar uri={author.avatar} width={40} />
             </TouchableOpacity>
           </View>
@@ -88,11 +88,8 @@ class Review extends Component {
 
 const styles = StyleSheet.create({
   componentStyle: {
-    margin: 8,
-    marginBottom: 2,
     padding: 5,
     backgroundColor: 'white',
-    borderRadius: 20,
   },
   topStyle: {
     flexDirection: 'row',

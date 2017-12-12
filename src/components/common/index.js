@@ -1,4 +1,5 @@
 export * from './Button';
+export * from './ButtonRow';
 export * from './VoteButton';
 export * from './FloatingButton';
 export * from './Card';

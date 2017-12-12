@@ -56,3 +56,12 @@ export const fetchUserImages = () => dispatch => {
 export const returnUserImages = () => dispatch => {
   dispatch({ type: RETURN_USER_IMAGES });
 };
+
+// export const fetchTeaImages = () => dispatch => {
+//   dispatch({ type: FETCH_TEA_IMAGES });
+// };
+//
+// export const returnTeaImages = () => async dispatch => {
+//   const res = async axios.get();
+//   dispatch({ type: RETURN_TEA_IMAGES, payload: res.data });
+// };

@@ -7,9 +7,12 @@ import Discover from '../screens/Discover';
 import Profile from '../screens/Profile';
 import OnBoarding from '../screens/OnBoarding';
 import WriteReview from '../screens/WriteReview';
+import UserProfile from '../screens/UserProfile';
+import TeaTabWrapper from './TeaTabWrapper';
 import InfoScreen from '../screens/InfoScreen';
 import ReviewsScreen from '../screens/ReviewsScreen';
-import UserProfile from '../screens/UserProfile';
+import PhotosScreen from '../screens/PhotosScreen';
+import ViewTeaHeader from '../components/ViewTeaHeader';
 
 export const TeaTabs = TabNavigator({
   info: {
@@ -17,14 +20,29 @@ export const TeaTabs = TabNavigator({
   },
   reviews: {
     screen: ReviewsScreen
+  },
+  photos: {
+    screen: PhotosScreen
   }
 }, {
-  tabBarComponent: () => <View />,
+  tabBarOptions: {
+    style: {
+      backgroundColor: 'white',
+      height: 40
+    },
+    labelStyle: {
+      fontSize: 14,
+      fontWeight: '600'
+    }
+  },
   tabBarPosition: 'top',
   initialRouteName: 'info',
   lazy: true,
   swipeEnabled: true,
-  animationEnabled: true
+  animationEnabled: true,
+  navigationOptions: {
+    header: <ViewTeaHeader />
+  }
 });
 
 // TeaTabs.navigationOptions = {
@@ -45,7 +63,7 @@ export const TeaScreen = StackNavigator({
     screen: WriteReview
   }
 }, {
-  headerMode: 'none'
+
 });
 
 export const Tabs = TabNavigator({
@@ -89,8 +107,5 @@ export const Navigator = StackNavigator({
   }
 }, {
   mode: 'modal',
-  headerMode: 'none',
-  navigationOptions: {
-    header: <View><Text>HELLO THERE</Text></View>
-  },
+  headerMode: 'none'
 });

@@ -3,11 +3,9 @@ import { Text, ScrollView, StyleSheet, View, RefreshControl } from 'react-native
 import Interactable from 'react-native-interactable';
 import { connect } from 'react-redux';
 
-import ViewTeaHeader from './ViewTeaHeader';
-import { Button, Spinner } from '../components/common';
+import { Button, Spinner, ButtonRow } from '../components/common';
 import Accordion from '../components/Accordion';
-import TeaMoodsList from '../components/TeaMoodsList';
-import UploadImage from '../components/upload/UploadImage';
+import HealthMoodsTabs from '../components/HealthMoodsTabs';
 
 import { goToScene } from '../actions/navActions';
 import { scrollTrigger } from '../actions/teaActions';
@@ -18,13 +16,6 @@ import {
 } from '../actions/cupboardActions';
 
 class InfoScreen extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      scroll: 400
-    };
-  }
-
   handleAddTeaCupboard(tea) {
 
     this.props.addTeaToCupboard(tea, this.props.auth.user._id);
@@ -39,11 +30,6 @@ class InfoScreen extends Component {
     this.props.goToScene('WriteReview', tea);
   }
 
-  handleScroll(event: Object) {
-    const reduce = 400 - event.nativeEvent.contentOffset.y;
-    this.setState({ scroll: reduce });
-  }
-
   renderUserControls() {
     console.log(this.props, 'PROPS!');
     const { loggedIn, user } = this.props.auth;
@@ -56,7 +42,7 @@ class InfoScreen extends Component {
         console.log(currentTea);
 
         return (
-          <View>
+          <ButtonRow>
             <Button
               onPress={this.handleAddTeaCupboard.bind(this, currentTea)}
             >
@@ -72,8 +58,7 @@ class InfoScreen extends Component {
             >
               Write a review
             </Button>
-            <UploadImage teaId={currentTea._id} />
-          </View>
+          </ButtonRow>
         );
       }
     }
@@ -91,10 +76,7 @@ class InfoScreen extends Component {
         <View style={{ flex: 1 }}>
           <ScrollView
             style={styles.backgroundStyle}
-            onScroll={this.handleScroll.bind(this)}
           >
-            <ViewTeaHeader />
-            {this.renderUserControls()}
             <Accordion
               heading={'Steep Time'}
               text={currentTea.steeptime}
@@ -104,7 +86,9 @@ class InfoScreen extends Component {
               text={currentTea.description}
               textStyle={styles.descriptionStyle}
             />
-            <TeaMoodsList
+            {this.renderUserControls()}
+            <HealthMoodsTabs
+              navigation={this.props.navigation}
               moods={currentTea.moods}
             />
           </ScrollView>

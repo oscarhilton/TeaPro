@@ -9,6 +9,7 @@ import moods from './moodsReducer';
 import teas from './teaReducer';
 import users from './userReducer';
 import media from './mediaReducer';
+import notifications from './notificationReducer';
 
 export default combineReducers({
   auth,
@@ -20,5 +21,6 @@ export default combineReducers({
   moods,
   teas,
   users,
-  media
+  media,
+  notifications
 });

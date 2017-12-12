@@ -41,6 +41,7 @@ class UserProfile extends Component {
   handleFollow(currentUser, userToFollow) {
     // alert(currentUser);
     // alert(userToFollow);
+    console.log(currentUser, userToFollow, 'FROM HANDLE FOLLOW');
     const { socket } = this.props.navigation;
     this.props.followUser(socket, currentUser, userToFollow);
   }
@@ -49,7 +50,8 @@ class UserProfile extends Component {
     const { currentUser } = this.props;
     const { userProfile } = this.props.users;
     console.log(this.props, 'PROPS');
-    if (currentUser !== userProfile._id) {
+    // if (currentUser !== userProfile._id) {
+    if (true) {
       return (
         <Button
           onPress={this.handleFollow.bind(
@@ -106,7 +108,7 @@ const styles = StyleSheet.create({
 
 const mapStateToProps = ({ auth, users }) => {
   return {
-    currentUser: auth.user._id,
+    currentUser: auth.user,
     users
   };
 };
