@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { Text, ScrollView, View } from 'react-native';
 import { connect } from 'react-redux';
 import { Button } from '../components/common';
+import Accordion from '../components/Accordion';
 import ProfileInfo from '../components/ProfileInfo';
 import UserTeaList from '../components/UserTeaList';
 import Login from '../components/Login';
@@ -67,7 +68,6 @@ class ProfileScene extends Component {
       return (
         <ScrollView style={{ flex: 1, backgroundColor: 'black'}}>
           <ProfileInfo user={user} />
-          <Text style={{ padding: 10, backgroundColor: 'white' }}>{user.profileBio}</Text>
           <UserTeaList
             user={user}
             data={cupboard}
@@ -79,6 +79,10 @@ class ProfileScene extends Component {
             heading={'Teas in your wishlist'}
           />
           <ImageCardList imageList={[1, 2]} />
+          <Accordion
+            heading={'Profile biography'}
+            text={user.profileBio}
+          />
           <View style={{ height: 100 }}>
             <Button
               onPress={this.handleLogOut.bind(this)}

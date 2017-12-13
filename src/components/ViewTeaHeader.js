@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import { View, Text, StyleSheet, Image, Animated, Easing } from 'react-native';
 import { connect } from 'react-redux';
-import Interactable from 'react-native-interactable';
+import StarRating from 'react-native-star-rating';
+
 import { goBack } from '../actions/navActions';
 import { CloseButton, Spinner } from './common';
 import RatingsBar from './RatingsBar';
@@ -25,7 +26,7 @@ class ViewTeaHeader extends Component {
       const lastImage = userImages[userImages.length - 1];
       return (
         <Image
-          style={[styles.imageStyle, { height: 200 }]}
+          style={[styles.imageStyle, { height: 240 }]}
           blurRadius={0}
           source={{ uri: lastImage.path }}
         />
@@ -49,7 +50,7 @@ class ViewTeaHeader extends Component {
       const { category, origin } = currentTea;
       return (
         <View>
-          <View style={[styles.componentStyle, { height: 200 }]}>
+          <View style={[styles.componentStyle, { height: 240 }]}>
             <CloseButton
               onPress={() => { this.props.goBack(); }}
               addStyle={styles.closeStyle}
@@ -67,11 +68,20 @@ class ViewTeaHeader extends Component {
                 >
                   {`${category.title} tea from ${origin}`}
                 </Text>
+                <StarRating
+                  disabled
+                  starSize={12}
+                  starColor={'#212121'}
+                  maxStars={5}
+                  rating={roundedScore}
+                  starStyle={{
+                    color: 'white'
+                  }}
+                />
               </View>
             </View>
             {this.renderImage()}
           </View>
-          <RatingsBar rating={roundedScore} />
         </View>
       );
     }
@@ -140,6 +150,8 @@ const styles = StyleSheet.create({
     backgroundColor: 'rgba(25,25,25,0.5)',
     borderTopLeftRadius: 5,
     borderTopRightRadius: 5,
+    flexDirection: 'row',
+    justifyContent: 'space-between',
     padding: 10,
     bottom: 0,
     left: 0,
