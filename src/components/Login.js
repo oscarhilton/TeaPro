@@ -4,6 +4,7 @@ import {
   StyleSheet,
   Platform,
   View,
+  Image
 } from 'react-native';
 import SafariView from 'react-native-safari-view';
 import { connect } from 'react-redux';
@@ -72,16 +73,22 @@ class Login extends Component {
   render() {
     return (
       <View style={styles.container}>
-        <Button
-          onPress={this.loginWithGoogle}
-        >
-          Login with google
-        </Button>
-        <Button
-          onPress={this.loginWithFacebook}
-        >
-          Login with facebook
-        </Button>
+        <View style={styles.bottomButtons}>
+          <Button
+            onPress={this.loginWithGoogle}
+          >
+            Login with google
+          </Button>
+          <Button
+            onPress={this.loginWithFacebook}
+          >
+            Login with facebook
+          </Button>
+        </View>
+        <Image
+          style={styles.background}
+          source={{ uri: 'https://i.imgur.com/knz227O.jpg'}}
+        />
       </View>
     );
   }
@@ -102,6 +109,17 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
+  },
+  bottomButtons: {
+    position: 'absolute',
+    bottom: 40,
+    left: '15%',
+    width: '70%',
+    zIndex: 3
+  },
+  background: {
+    width: '100%',
+    height: '100%'
   }
 });
 

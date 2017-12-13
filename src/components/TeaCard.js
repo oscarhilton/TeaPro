@@ -6,9 +6,12 @@ import {
 } from 'react-native';
 
 const TeaCard = (props) => {
-  const { title, category, score, reviews } = props.tea;
+  const { title, category, score, reviews, flavoured } = props.tea;
   const average = score / reviews.length;
   const roundedScore = isNaN(average) ? '' : Math.round(average * 10) / 10;
+  const isFlavoured = flavoured
+        ? (<View style={styles.flavouredStyle}></View>)
+        : null;
   return (
     <View style={[styles.teaCardStyle, { backgroundColor: category.background }, props.addStyle]}>
       <View style={styles.textBackgroundStyle}>
@@ -19,6 +22,7 @@ const TeaCard = (props) => {
       <Text style={styles.scoreStlye}>
         {roundedScore}
       </Text>
+      {isFlavoured}
     </View>
   );
 };
@@ -56,6 +60,16 @@ const styles = StyleSheet.create({
     position: 'absolute',
     bottom: 8,
     right: 8,
+  },
+  flavouredStyle: {
+    position: 'absolute',
+    bottom: 0,
+    left: 0,
+    width: 8,
+    height: 8,
+    borderRadius: 4,
+    margin: 8,
+    backgroundColor: 'yellow'
   }
 });
 

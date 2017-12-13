@@ -1,19 +1,43 @@
 import React, { Component } from 'react';
-import { Image, Text, View, StyleSheet } from 'react-native';
-import TeaCard from './TeaCard';
-import { CardSection } from './common';
+import { Image, View, StyleSheet } from 'react-native';
+import ImageSlider from 'react-native-image-slider';
+// import TeaCard from './TeaCard';
+// import { CardSection } from './common';
 
 class HeroTea extends Component {
+  constructor(props) {
+        super(props);
+
+        this.state = {
+            position: 0,
+            interval: null
+        };
+    }
+
+  componentWillMount() {
+    this.setState({ interval: setInterval(() => {
+        this.setState({ position: this.state.position === 1 ? 0 : this.state.position + 1 });
+    }, 5000) });
+  }
+
+  componentWillUnmount() {
+    clearInterval(this.state.interval);
+  }
+
   render() {
     return (
       <View style={styles.componentStyle} >
         <View style={styles.heroStyle}>
-          <Image
+          <ImageSlider
             style={styles.imageStyle}
-            source={{ uri: 'https://ae01.alicdn.com/kf/HTB1xey5PXXXXXXhaXXXq6xXFXXXl/Black-Pottery-Japanese-Style-Tea-Cup-And-Saucer-Vintage-Kung-Fu-Teacup-Hand-Made-Ceramic-Tea.jpg' }}
+            height={270}
+            images={[
+              'https://scontent-lht6-1.xx.fbcdn.net/v/t1.0-9/23231451_10155940770709623_1263750874333768773_n.jpg?oh=922a59a773e0b5a3f38a97f7a8317b26&oe=5ACCFB4C',
+              'https://scontent-lht6-1.xx.fbcdn.net/v/t1.0-9/23379845_10155940741994623_4970984937602014572_n.jpg?oh=5b05930bf7eacf0af90486d47b39a011&oe=5AC3FD8F'
+            ]}
+            position={this.state.position}
+            onPositionChanged={position => this.setState({ position })}
           />
-          <View style={styles.teaCardStyle} >
-          </View>
         </View>
       </View>
     );
@@ -25,32 +49,12 @@ const styles = StyleSheet.create({
     position: 'relative'
   },
   heroStyle: {
-    borderBottomWidth: 1,
     padding: 0,
-    flexDirection: 'row',
-    position: 'relative'
   },
   imageStyle: {
-    height: 400,
     flex: 1,
     width: null
   },
-  textStyle: {
-    backgroundColor: '#403C40',
-    color: 'white',
-    width: 'auto',
-    height: 'auto',
-    padding: 5,
-    position: 'absolute',
-    margin: 10,
-    fontSize: 10,
-    borderRadius: 10
-  },
-  teaCardStyle: {
-    position: 'absolute',
-    bottom: 10,
-    right: 10
-  }
 });
 
 // <Text style={styles.textStyle} >{this.props.heroText}HELLO!</Text>

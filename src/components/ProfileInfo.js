@@ -1,13 +1,15 @@
 import React from 'react';
 import { View, Text, Image, StyleSheet } from 'react-native';
 
-const ProfileInfo = (props) => {
+import UserFollowScoreButton from './UserFollowScoreButton';
+
+const ProfileInfo = ({ user }) => {
   return (
     <View style={styles.componentStyle} >
       <View style={styles.profileImageComponentStyle} >
         <Image
           style={styles.profileImageStyle}
-          source={{ uri: props.user.avatar}}
+          source={{ uri: user.avatar}}
         />
       </View>
       <View style={styles.profileDetailsStlye} >
@@ -16,12 +18,14 @@ const ProfileInfo = (props) => {
             <Text
               style={styles.usernameStlye}
             >
-            {props.user.name}
+            {user.name}
             </Text>
           </View>
         </View>
-        <View style={styles.bottomSectionStyle} >
-        </View>
+      </View>
+      <View style={styles.bottomSectionStyle} >
+        <UserFollowScoreButton followScore={user.following.length} followText={'Following'} />
+        <UserFollowScoreButton followScore={user.followers.length} followText={'Followers'} />
       </View>
       <Image
         style={styles.imageStyle}
@@ -44,7 +48,7 @@ const ProfileInfo = (props) => {
 const styles = StyleSheet.create({
   componentStyle: {
     backgroundColor: '#000000',
-    height: 250,
+    height: 280,
     flexDirection: 'column',
     justifyContent: 'center',
     alignItems: 'center',
@@ -90,6 +94,12 @@ const styles = StyleSheet.create({
   },
   topSectionStyle: {
     zIndex: 2
+  },
+  bottomSectionStyle: {
+    position: 'absolute',
+    bottom: 0,
+    flex: 1,
+    flexDirection: 'row'
   }
 });
 

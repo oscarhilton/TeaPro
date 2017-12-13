@@ -67,6 +67,7 @@ class ProfileScene extends Component {
       return (
         <ScrollView style={{ flex: 1, backgroundColor: 'black'}}>
           <ProfileInfo user={user} />
+          <Text style={{ padding: 10, backgroundColor: 'white' }}>{user.profileBio}</Text>
           <UserTeaList
             user={user}
             data={cupboard}

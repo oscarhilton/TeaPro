@@ -20,6 +20,7 @@
     "react-native-file-transfer": "0.0.3",
     "react-native-file-transfer-android": "0.0.2",
     "react-native-image-picker": "^0.26.7",
+    "react-native-image-slider": "^1.1.5",
     "react-native-interactable": "^0.1.7",
     "react-native-progress-bar": "^0.1.2",
     "react-native-progress-bar-classic": "^1.2.1",

@@ -4,6 +4,7 @@ import {
   Text,
   TextInput,
   Image,
+  TouchableOpacity,
   Dimensions,
   StyleSheet
 } from 'react-native';
@@ -28,6 +29,10 @@ class SearchBar extends Component {
     } else {
       this.props.returnSearch(searchText);
     }
+  }
+
+  toggleOpen() {
+    this.props.handleToggle();
   }
 
   renderSpinner() {
@@ -69,6 +74,12 @@ class SearchBar extends Component {
             style={styles.inputStyle}
           />
           {this.renderSpinner()}
+          <TouchableOpacity
+            style={styles.openToggle}
+            onPress={this.toggleOpen.bind(this)}
+          >
+
+          </TouchableOpacity>
         </View>
         {this.renderResults()}
       </View>
@@ -94,6 +105,12 @@ const styles = StyleSheet.create({
   inputStyle: {
     fontSize: 14,
     flex: 1,
+  },
+  openToggle: {
+    position: 'absolute',
+    right: 0,
+    width: 30,
+    height: '100%'
   }
 });
 
