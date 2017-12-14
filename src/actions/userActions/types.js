@@ -7,3 +7,5 @@ export const FETCH_USER_CUPBOARD_TEAS = 'fetch_user_cupboard_teas';
 export const RETURN_USER_CUPBOARD_TEAS = 'return_user_cupboard_teas';
 export const FETCH_USER_WISHLIST_TEAS = 'fetch_user_wishlist_teas';
 export const RETURN_USER_WISHLIST_TEAS = 'return_user_wishlist_teas';
+export const FETCH_USER_LIST = 'fetch_user_list';
+export const RETURN_USER_LIST = 'return_user_list';

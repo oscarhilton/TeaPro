@@ -4,6 +4,10 @@ import { View, Text, Image, StyleSheet } from 'react-native';
 import UserFollowScoreButton from './UserFollowScoreButton';
 
 const ProfileInfo = ({ user }) => {
+
+  const numFollowing = user.following ? user.following.length : 0;
+  const numFollowers = user.followers ? user.followers.length : 0;
+
   return (
     <View style={styles.componentStyle} >
       <View style={styles.profileImageComponentStyle} >
@@ -24,8 +28,16 @@ const ProfileInfo = ({ user }) => {
         </View>
       </View>
       <View style={styles.bottomSectionStyle} >
-        <UserFollowScoreButton followScore={user.following.length} followText={'Following'} />
-        <UserFollowScoreButton followScore={user.followers.length} followText={'Followers'} />
+        <UserFollowScoreButton
+          followScore={numFollowing}
+          followText={'Following'}
+          users={user.following}
+        />
+        <UserFollowScoreButton
+          followScore={numFollowers}
+          followText={'Followers'} 
+          users={user.followers}
+        />
       </View>
       <Image
         style={styles.imageStyle}

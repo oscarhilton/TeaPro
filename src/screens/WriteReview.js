@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
-import { Text, ScrollView, View, StyleSheet } from 'react-native';
+import { Text, Picker, ScrollView, View, StyleSheet } from 'react-native';
 import StarRating from 'react-native-star-rating';
 import { connect } from 'react-redux';
+import UploadImage from '../components/upload/UploadImage';
 import { fetchTeaDetails } from '../actions/teaActions';
 import { createReview } from '../actions/reviewsActions';
 import { requestCategories, returnAllCategories } from '../actions/categoryActions';
@@ -36,15 +37,29 @@ class WriteReview extends Component {
     });
   }
 
+  handleImageChoice(origURL, user, info) {
+    alert(origUrl);
+    this.setState({
+      image: {
+        origURL,
+        user,
+        info
+      }
+    });
+  }
+
   async sendReview() {
-    const newReview = this.state;
+    const { titleText, bodyText, starCount } = this.state;
     const { currentTea } = this.props.teas;
     const { _id } = this.props.auth.user;
-    console.log(_id);
-    this.props.fetchTeaDetails();
-    await this.props.createReview(_id, currentTea._id, newReview);
-    this.props.goBack();
-    console.log('sent');
+    if (titleText.length > 0 && bodyText.length > 0 && starCount > 0) {
+      console.log(_id);
+      this.props.fetchTeaDetails();
+      await this.props.createReview(_id, currentTea._id, newReview);
+      this.props.goBack();
+    } else {
+      alert('Fill all fields!');
+    }
   }
 
   render() {
@@ -77,6 +92,11 @@ class WriteReview extends Component {
             label="Review content"
             onChangeText={this.handleBodyChange.bind(this)}
           />
+          <Picker>
+            <Picker.Item label="Java" value="java" />
+            <Picker.Item label="JavaScript" value="js" />
+          </Picker>
+          <UploadImage sendToForm={this.handleImageChoice.bind(this)} teaId={tea} />
         </View>
       </ScrollView>
     );

@@ -18,13 +18,16 @@ class UploadImage extends Component {
         longitude,
         timestamp,
       };
-      console.log(response);
-      this.props.uploadUserImageForTea(origURL, this.props.user, info);
+      this.handleSendToForm(origURL, info);
+      // this.props.uploadUserImageForTea(origURL, this.props.user, info);
     });
   }
 
+  handleSendToForm(origUrl, info) {
+    this.props.sendToForm(origUrl, this.props.user, info);
+  }
+
   render() {
-    console.log(this.props.user, 'AUTH');
     return (
       <View>
         <Button

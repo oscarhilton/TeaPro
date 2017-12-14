@@ -1,6 +1,7 @@
 /* @flow */
 import React, { Component } from 'react';
 import {
+  ScrollView,
   View,
   Text,
   StyleSheet,
@@ -78,14 +79,14 @@ class UserProfile extends Component {
         return (<Text>loading</Text>);
       case false:
         return (
-          <View>
+          <ScrollView style={{ flex: 1, backgroundColor: 'black'}}>
             <ProfileInfo user={userProfile} />
             <View style={{ height: 60 }}>
               {this.renderFollowUser()}
             </View>
             <UserTeaList data={{ ...cupboard }} heading={`Teas in ${name}'s cupboard`} />
             <UserTeaList data={{ ...wishlist }} heading={`Teas in ${name}'s wishlist`} />
-          </View>
+          </ScrollView>
         );
       default:
         return;

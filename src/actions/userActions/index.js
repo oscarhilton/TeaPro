@@ -9,7 +9,9 @@ import {
   FETCH_USER_WISHLIST_TEAS,
   RETURN_USER_WISHLIST_TEAS,
   FOLLOW_USER,
-  UNFOLLOW_USER
+  UNFOLLOW_USER,
+  FETCH_USER_LIST,
+  RETURN_USER_LIST
  } from './types';
 
  export const loadUser = () => dispatch => {
@@ -50,4 +52,13 @@ import {
     });
   }
   dispatch({ type: FOLLOW_USER, payload: res.data });
+ };
+
+ export const fetchUsersList = () => dispatch => {
+   dispatch({ type: FETCH_USER_LIST });
+ };
+
+ export const returnUsersList = (userList) => async dispatch => {
+   const res = await axios.post(`${api}/api/users`, { userList });
+   dispatch({ type: RETURN_USER_LIST, payload: res.data });
  };

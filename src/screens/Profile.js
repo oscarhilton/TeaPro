@@ -43,10 +43,11 @@ class ProfileScene extends Component {
     if (this.props.auth.loggedIn !== newProps.auth.loggedIn) {
       const { loggedIn, user, onBoard } = newProps.auth;
       if (loggedIn) {
+        alert(onBoard);
         await this.props.checkOnBoarding(user._id);
-        if (!onBoard) {
-          this.props.goToScene('OnBoarding', user);
-        }
+        // if (!onBoard) {
+        //   this.props.goToScene('OnBoarding', user);
+        // }
       }
     }
   }
@@ -65,6 +66,7 @@ class ProfileScene extends Component {
     const { loggedIn, user } = this.props.auth;
     console.log(media);
     if (loggedIn) {
+      const profileBio = user.profileBio ? user.profileBio : 'No Bio';
       return (
         <ScrollView style={{ flex: 1, backgroundColor: 'black'}}>
           <ProfileInfo user={user} />
@@ -81,7 +83,7 @@ class ProfileScene extends Component {
           <ImageCardList imageList={[1, 2]} />
           <Accordion
             heading={'Profile biography'}
-            text={user.profileBio}
+            text={profileBio}
           />
           <View style={{ height: 100 }}>
             <Button

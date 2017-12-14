@@ -17,7 +17,7 @@ import {
 
 const INITIAL_STATE = {
   loggedIn: false,
-  onBoard: false,
+  onBoard: null,
   discover: {
     categories: {
       loading: false,

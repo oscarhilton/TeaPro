@@ -7,14 +7,22 @@ import {
   TouchableOpacity,
   StyleSheet,
 } from 'react-native';
+import { connect } from 'react-redux';
+import { fetchUsersList, returnUsersList } from '../actions/userActions';
+import { goToScene } from '../actions/navActions';
 
-export default class UserFollowScoreButton extends Component {
+class UserFollowScoreButton extends Component {
   handleShowUsers() {
-    alert('hello!');
+    const { users, followScore } = this.props;
+    if (followScore > 0) {
+      this.props.fetchUsersList();
+      this.props.returnUsersList(users);
+      this.props.goToScene('UserList');
+    }
   }
 
   render() {
-    const { followScore, followText } = this.props;
+    const { users, followScore, followText } = this.props;
     return (
       <View style={styles.container}>
         <TouchableOpacity
@@ -34,3 +42,13 @@ const styles = StyleSheet.create({
     padding: 10
   },
 });
+
+const mapStateToProps = () => {
+
+};
+
+export default connect(null, {
+  fetchUsersList,
+  returnUsersList,
+  goToScene
+})(UserFollowScoreButton);

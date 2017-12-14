@@ -7,11 +7,16 @@ import {
   FETCH_USER_CUPBOARD_TEAS,
   RETURN_USER_CUPBOARD_TEAS,
   FETCH_USER_WISHLIST_TEAS,
-  RETURN_USER_WISHLIST_TEAS
+  RETURN_USER_WISHLIST_TEAS,
+  FETCH_USER_LIST,
+  RETURN_USER_LIST
 } from '../actions/userActions/types';
 
 const INITIAL_STATE = {
   loading: null,
+  userList: {
+    loading: null
+  },
   userProfile: {},
   cupboard: {
     loading: null
@@ -63,6 +68,23 @@ export default function (state = INITIAL_STATE, action) {
         wishlist: {
           loading: false,
           teas: action.payload
+        }
+      };
+    case FETCH_USER_LIST:
+      return {
+        ...state,
+        userList: {
+          ...state.userList,
+          loading: true
+        }
+      };
+    case RETURN_USER_LIST:
+      return {
+        ...state,
+        userList: {
+          ...state.userList,
+          loading: false,
+          list: action.payload
         }
       };
     default:

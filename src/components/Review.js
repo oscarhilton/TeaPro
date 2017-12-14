@@ -25,7 +25,7 @@ class Review extends Component {
     console.log('DOWNVOTE', target);
   }
 
-  render() {
+  renderReview() {
     const { auth, review } = this.props;
     const { user } = auth;
     const {
@@ -40,47 +40,57 @@ class Review extends Component {
       downvotes
     } = review;
     const date = moment(createdAt).fromNow();
-    return (
-      <View style={styles.componentStyle}>
-        <View style={styles.topStyle}>
-          <Text style={styles.authorNameStyle}>{title} {date}</Text>
-          <View>
-            <StarRating
-              disabled
-              starSize={12}
-              rating={rating}
+    if (user && review) {
+      return (
+        <View style={styles.componentStyle}>
+          <View style={styles.topStyle}>
+            <Text style={styles.authorNameStyle}>{title} {date}</Text>
+            <View>
+              <StarRating
+                disabled
+                starSize={12}
+                rating={rating}
+              />
+            </View>
+          </View>
+          <View style={styles.commentWrapStyle}>
+            <View>
+              <TouchableOpacity
+                onPress={this.handleViewUser.bind(this)}
+                style={styles.authorStyle}
+              >
+                <CircleAvatar uri={author.avatar} width={40} />
+              </TouchableOpacity>
+            </View>
+            <View style={styles.commentStyle}>
+              <Text style={styles.titleStyle}>{author.name}</Text>
+              <Text style={styles.contentStyle}>{content}</Text>
+            </View>
+          </View>
+          <View style={styles.votesContainer}>
+            <VoteButtons
+              user={user._id}
+              author={author}
+              target={_id}
+              upvotes={upvotes}
+              downvotes={downvotes}
+              handleUpvote={this.handleUpvote.bind(this)}
+              handleDownvote={this.handleDownvote.bind(this)}
             />
           </View>
-        </View>
-        <View style={styles.commentWrapStyle}>
           <View>
-            <TouchableOpacity
-              onPress={this.handleViewUser.bind(this)}
-              style={styles.authorStyle}
-            >
-              <CircleAvatar uri={author.avatar} width={40} />
-            </TouchableOpacity>
-          </View>
-          <View style={styles.commentStyle}>
-            <Text style={styles.titleStyle}>{author.name}</Text>
-            <Text style={styles.contentStyle}>{content}</Text>
+            <Text>{comments.length} Comments</Text>
+            <CommentForm reviewId={_id} />
           </View>
         </View>
-        <View style={styles.votesContainer}>
-          <VoteButtons
-            user={user._id}
-            author={author}
-            target={_id}
-            upvotes={upvotes}
-            downvotes={downvotes}
-            handleUpvote={this.handleUpvote.bind(this)}
-            handleDownvote={this.handleDownvote.bind(this)}
-          />
-        </View>
-        <View>
-          <Text>{comments.length} Comments</Text>
-          <CommentForm reviewId={_id} />
-        </View>
+      )
+    }
+  }
+
+  render() {
+    return (
+      <View>
+        {this.renderReview()}
       </View>
     );
   }

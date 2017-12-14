@@ -45,7 +45,8 @@ class ViewTeaHeader extends Component {
         easing: Easing.bezier(.27,.58,.69,1)
       }
       ).start();
-      const average = currentTea.score / currentTea.reviews.length;
+      const numReviews = currentTea.reviews.length;
+      const average = currentTea.score / numReviews;
       const roundedScore = isNaN(average) ? 0 : Math.round(average * 10) / 10;
       const { category, origin } = currentTea;
       return (
@@ -68,16 +69,19 @@ class ViewTeaHeader extends Component {
                 >
                   {`${category.title} tea from ${origin}`}
                 </Text>
-                <StarRating
-                  disabled
-                  starSize={12}
-                  starColor={'#212121'}
-                  maxStars={5}
-                  rating={roundedScore}
-                  starStyle={{
-                    color: 'white'
-                  }}
-                />
+                <View style={styles.ratingStyle}>
+                  <StarRating
+                    disabled
+                    starSize={12}
+                    starColor={'#212121'}
+                    maxStars={5}
+                    rating={roundedScore}
+                    starStyle={{
+                      color: 'white'
+                    }}
+                  />
+                  <Text style={styles.reviewNumberText}>{numReviews} reviews</Text>
+                </View>
               </View>
             </View>
             {this.renderImage()}
@@ -166,6 +170,14 @@ const styles = StyleSheet.create({
   originTextStyle: {
     color: 'white',
     fontSize: 12,
+  },
+  ratingStyle: {
+    flexDirection: 'row'
+  },
+  reviewNumberText: {
+    color: 'white',
+    marginLeft: 5,
+    fontSize: 12
   }
 });
 

@@ -8,10 +8,10 @@ import Profile from '../screens/Profile';
 import OnBoarding from '../screens/OnBoarding';
 import WriteReview from '../screens/WriteReview';
 import UserProfile from '../screens/UserProfile';
-import TeaTabWrapper from './TeaTabWrapper';
 import InfoScreen from '../screens/InfoScreen';
 import ReviewsScreen from '../screens/ReviewsScreen';
 import PhotosScreen from '../screens/PhotosScreen';
+import UserList from '../screens/UserList';
 import ViewTeaHeader from '../components/ViewTeaHeader';
 
 export const TeaTabs = TabNavigator({
@@ -104,6 +104,9 @@ export const Navigator = StackNavigator({
   },
   UserProfile: {
     screen: UserProfile
+  },
+  UserList: {
+    screen: UserList
   }
 }, {
   mode: 'modal',
