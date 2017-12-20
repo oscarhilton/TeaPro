@@ -15,7 +15,7 @@ import {
   returnCupboardTeas,
 } from '../actions/cupboardActions';
 
-class InfoScreen extends Component {
+class TeaInfoScreen extends Component {
   handleAddTeaCupboard(tea) {
 
     this.props.addTeaToCupboard(tea, this.props.auth.user._id);
@@ -134,4 +134,4 @@ export default connect(mapStateToProps, {
   returnCupboardTeas,
   goToScene,
   scrollTrigger
-})(InfoScreen);
+})(TeaInfoScreen);

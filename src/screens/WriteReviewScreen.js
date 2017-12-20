@@ -9,7 +9,7 @@ import { requestCategories, returnAllCategories } from '../actions/categoryActio
 import { goBack } from '../actions/navActions';
 import { Input, TextArea, Button } from '../components/common';
 
-class WriteReview extends Component {
+class WriteReviewScreen extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -125,4 +125,4 @@ export default connect(mapStateToProps, {
    returnAllCategories,
    fetchTeaDetails,
    goBack
- })(WriteReview);
+ })(WriteReviewScreen);

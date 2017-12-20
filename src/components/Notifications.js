@@ -41,7 +41,6 @@ class Notifications extends Component {
   }
 
   render() {
-    console.log(this.props.notifications);
     const { notifications } = this.props;
     const notificationsList = notifications.list.map((note) => {
       return (

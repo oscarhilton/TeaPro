@@ -11,6 +11,7 @@ import { connect } from 'react-redux';
 import { onLoggedIn } from '../actions/authActions';
 import { fetchCupboardTeas, returnCupboardTeas } from '../actions/cupboardActions';
 import { Button } from '../components/common';
+import ImageBackground from './ImageBackground';
 import { api } from '../api';
 
 class Login extends Component {
@@ -72,7 +73,9 @@ class Login extends Component {
 
   render() {
     return (
-      <View style={styles.container}>
+      <ImageBackground
+        image={"https://i.imgur.com/knz227O.jpg"}
+      >
         <View style={styles.bottomButtons}>
           <Button
             onPress={this.loginWithGoogle}
@@ -85,11 +88,7 @@ class Login extends Component {
             Login with facebook
           </Button>
         </View>
-        <Image
-          style={styles.background}
-          source={{ uri: 'https://i.imgur.com/knz227O.jpg'}}
-        />
-      </View>
+      </ImageBackground>
     );
   }
 }
@@ -105,11 +104,6 @@ const styles = StyleSheet.create({
     height: 300,
     width: 400
   },
-  content: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-  },
   bottomButtons: {
     position: 'absolute',
     bottom: 40,
@@ -117,9 +111,10 @@ const styles = StyleSheet.create({
     width: '70%',
     zIndex: 3
   },
-  background: {
-    width: '100%',
-    height: '100%'
+  content: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
   }
 });
 

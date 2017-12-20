@@ -6,7 +6,7 @@ import reduxThunk from 'redux-thunk';
 import SocketIOClient from 'socket.io-client';
 import { addNavigationHelpers, NavigationActions } from 'react-navigation';
 
-import { Navigator } from './src/navigators/AppNavigator';
+import { RootNavigator } from './src/navigators/RootNavigator';
 import reducers from './src/reducers';
 
 import { api } from './src/api';
@@ -38,7 +38,7 @@ class App extends Component {
   render() {
     const { dispatch, nav } = this.props;
     return (
-      <Navigator
+      <RootNavigator
         navigation={addNavigationHelpers({
           dispatch,
           state: nav,

@@ -1,10 +1,11 @@
 import React, { Component } from 'react';
-import { View, ScrollView } from 'react-native';
+import { View, ScrollView, Text} from 'react-native';
 import { connect } from 'react-redux';
 import { SEARCH_OFFSET } from '../components/styleHelpers';
 import { FloatingButton } from '../components/common';
 import ChooseCategories from '../components/onBoarding/ChooseCategories';
 import ChooseMoods from '../components/onBoarding/ChooseMoods';
+import { SectionHeader } from '../components/common';
 
 import { goBack } from '../actions/navActions';
 import { submitOnboarding } from '../actions/authActions';
@@ -13,7 +14,11 @@ import {
   returnCupboardTeas,
 } from '../actions/cupboardActions';
 
-class OnBoarding extends Component {
+class OnBoardingScreen extends Component {
+  static navigationOptions = {
+    tabBarVisible: false,
+  };
+
   handleCancel() {
     this.props.goBack();
   }
@@ -29,8 +34,10 @@ class OnBoarding extends Component {
   render() {
     return (
       <View style={{ flex: 1, backgroundColor: '#212121' }}>
-        <ScrollView style={{ paddingBottom: 200, paddingTop: SEARCH_OFFSET }}>
+        <ScrollView style={{ paddingBottom: 200 }}>
+          <SectionHeader heading={"Choose your favourite teas"} />
           <ChooseCategories />
+          <SectionHeader heading={"Choose your interests"} />
           <ChooseMoods />
         </ScrollView>
         <FloatingButton
@@ -62,4 +69,4 @@ export default connect(mapStateToProps, {
   submitOnboarding,
   fetchCupboardTeas,
   returnCupboardTeas
-})(OnBoarding);
+})(OnBoardingScreen);

@@ -51,6 +51,6 @@ export const returnSinlgeReview = (reviewId) => async dispatch => {
 };
 
 export const submitComment = (reviewId, comment, userId) => async dispatch => {
-  const res = await axios.post(`${api}/api/reviews/${reviewId}/${comment}/comments/${userId}`);
+  const res = await axios.post(`${api}/api/reviews/${reviewId}/comments`, { userId, content: comment });
   dispatch({ type: SUBMIT_COMMENT, payload: {} });
 };

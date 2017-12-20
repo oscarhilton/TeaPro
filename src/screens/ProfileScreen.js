@@ -27,7 +27,7 @@ import {
   returnUserImages,
 } from '../actions/mediaActions';
 
-class ProfileScene extends Component {
+class ProfileScreen extends Component {
   async componentWillMount() {
     const { user } = this.props.auth;
     await this.props.fetchUser();
@@ -54,7 +54,7 @@ class ProfileScene extends Component {
 
   handleOpenOnBoarding() {
     const { user } = this.props.auth;
-    this.props.goToScene('OnBoarding', user);
+    this.props.goToScene('OnBoarding', user)
   }
 
   handleLogOut() {
@@ -128,4 +128,4 @@ export default connect(mapStateToProps, {
   checkOnBoarding,
   logOutUser,
   goToScene
-})(ProfileScene);
+})(ProfileScreen);

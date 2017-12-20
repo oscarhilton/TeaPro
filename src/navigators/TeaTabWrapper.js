@@ -7,14 +7,14 @@ import {
   StyleSheet,
 } from 'react-native';
 import { TabNavigator } from 'react-navigation';
-import InfoScreen from '../screens/InfoScreen';
+import TeaInfoScreen from '../screens/TeaInfoScreen';
 import ReviewsScreen from '../screens/ReviewsScreen';
 import PhotosScreen from '../screens/PhotosScreen';
 import ViewTeaHeader from '../components/ViewTeaHeader';
 
 const TeaTabs = TabNavigator({
   info: {
-    screen: InfoScreen
+    screen: TeaInfoScreen
   },
   reviews: {
     screen: ReviewsScreen
@@ -27,7 +27,8 @@ const TeaTabs = TabNavigator({
   initialRouteName: 'info',
   lazy: true,
   swipeEnabled: true,
-  animationEnabled: true
+  animationEnabled: true,
+  backBehavior: 'none'
 });
 
 class TeaTabWrapper extends Component {

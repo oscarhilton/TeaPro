@@ -18,7 +18,7 @@ import HeroTea from '../components/HeroTea';
 import Header from '../components/Header';
 import Notifications from '../components/Notifications';
 
-class DiscoverScene extends Component {
+class DiscoverScreen extends Component {
   async componentWillMount() {
     const { user } = this.props.auth;
     await this.props.fetchUser();
@@ -112,4 +112,4 @@ export default connect(mapStateToProps, {
   requestDiscoverCategories,
   returnDiscoverCategories,
   fetchUser
-})(DiscoverScene);
+})(DiscoverScreen);

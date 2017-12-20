@@ -8,7 +8,7 @@ import {
  } from './types';
 
 export const addTeaToCupboard = (tea, userId) => async dispatch => {
-  await axios.post(`${api}/api/user/${userId}/cupboard/add/${tea._id}`);
+  await axios.post(`${api}/api/user/${userId}/cupboard/add/${tea._id}`, { teaTitle: tea.title });
   dispatch({ type: ADD_TEA_TO_CUPBOARD, payload: tea });
 };
 

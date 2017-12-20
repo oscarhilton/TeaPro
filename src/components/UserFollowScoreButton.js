@@ -13,8 +13,8 @@ import { goToScene } from '../actions/navActions';
 
 class UserFollowScoreButton extends Component {
   handleShowUsers() {
-    const { users, followScore } = this.props;
-    if (followScore > 0) {
+    const { users, followScore, loading } = this.props;
+    if (followScore > 0 && !loading) {
       this.props.fetchUsersList();
       this.props.returnUsersList(users);
       this.props.goToScene('UserList');
@@ -43,11 +43,13 @@ const styles = StyleSheet.create({
   },
 });
 
-const mapStateToProps = () => {
-
+const mapStateToProps = ({ users }) => {
+  return {
+    loading: users.userList.loading
+  };
 };
 
-export default connect(null, {
+export default connect(mapStateToProps, {
   fetchUsersList,
   returnUsersList,
   goToScene

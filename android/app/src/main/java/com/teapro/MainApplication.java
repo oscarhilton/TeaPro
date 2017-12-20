@@ -3,6 +3,8 @@ package com.teapro;
 import android.app.Application;
 
 import com.facebook.react.ReactApplication;
+import com.dieam.reactnativepushnotification.ReactNativePushNotificationPackage;
+import com.burlap.filetransfer.FileTransferPackage;
 import com.burlap.filetransfer.FileTransferPackage;
 import com.wix.interactable.Interactable;
 import com.imagepicker.ImagePickerPackage;
@@ -27,6 +29,8 @@ public class MainApplication extends Application implements ReactApplication {
     protected List<ReactPackage> getPackages() {
       return Arrays.<ReactPackage>asList(
           new MainReactPackage(),
+            new ReactNativePushNotificationPackage(),
+            new FileTransferPackage(),
             new FileTransferPackage(),
             new Interactable(),
             new ImagePickerPackage(),

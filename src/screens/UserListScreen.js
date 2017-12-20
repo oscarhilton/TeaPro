@@ -11,7 +11,19 @@ import { connect } from 'react-redux';
 
 import UserListItem from '../components/UserListItem';
 
-class UserList extends Component {
+import {
+  loadUser,
+  displayUser
+} from '../actions/userActions';
+import { goToScene } from '../actions/navActions';
+
+class UserListScreen extends Component {
+  handleShowUser(user) {
+    this.props.loadUser();
+    this.props.displayUser(user);
+    this.props.goToScene('UserProfile');
+  }
+
   renderUserList() {
     const { users } = this.props;
     const { loading, list } = users;
@@ -21,7 +33,12 @@ class UserList extends Component {
       case true:
         return <Text>Loading</Text>;
       case false:
-        const userList = list.map(user => <UserListItem user={user} />)
+        const userList = list.map(
+          user =>
+          <UserListItem
+              user={user}
+              handleClick={this.handleShowUser.bind(this)}
+          />);
         return (
           <View style={styles.container}>
             {userList}
@@ -52,4 +69,8 @@ const mapStateToProps = ({ users }) => {
   };
 };
 
-export default connect(mapStateToProps)(UserList);
+export default connect(mapStateToProps, {
+  loadUser,
+  displayUser,
+  goToScene
+})(UserListScreen);

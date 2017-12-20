@@ -1,9 +1,9 @@
 import { NavigationActions } from 'react-navigation';
-import { Navigator } from '../navigators/AppNavigator';
+import { RootNavigator } from '../navigators/RootNavigator';
 
-const initialState = Navigator.router.getStateForAction(NavigationActions.init());
+const initialState = RootNavigator.router.getStateForAction(NavigationActions.init());
 
 export default (state = initialState, action) => {
-  const nextState = Navigator.router.getStateForAction(action, state);
+  const nextState = RootNavigator.router.getStateForAction(action, state);
   return nextState || state;
 };

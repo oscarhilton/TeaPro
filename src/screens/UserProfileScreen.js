@@ -24,7 +24,7 @@ import {
   // returnUserImages,
 } from '../actions/userActions';
 
-class UserProfile extends Component {
+class UserProfileScreen extends Component {
   componentWillReceiveProps(newProps) {
     const { loading, userProfile } = newProps.users;
     if (userProfile !== this.props.users.userProfile) {
@@ -120,4 +120,4 @@ export default connect(mapStateToProps, {
   fetchUserWishlistTeas,
   returnUserWishlistTeas,
   followUser
-})(UserProfile);
+})(UserProfileScreen);

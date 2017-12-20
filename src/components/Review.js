@@ -40,11 +40,12 @@ class Review extends Component {
       downvotes
     } = review;
     const date = moment(createdAt).fromNow();
+    const showComments = comments.map(comment => <View>{comment.name}</View>);
     if (user && review) {
       return (
         <View style={styles.componentStyle}>
           <View style={styles.topStyle}>
-            <Text style={styles.authorNameStyle}>{title} {date}</Text>
+            <Text style={styles.authorNameStyle}>{title}</Text>
             <View>
               <StarRating
                 disabled
@@ -54,6 +55,10 @@ class Review extends Component {
             </View>
           </View>
           <View style={styles.commentWrapStyle}>
+            <View style={styles.commentStyle}>
+              <Text style={styles.titleStyle}>{author.name} - {date}</Text>
+              <Text style={styles.contentStyle}>{content}</Text>
+            </View>
             <View>
               <TouchableOpacity
                 onPress={this.handleViewUser.bind(this)}
@@ -61,10 +66,6 @@ class Review extends Component {
               >
                 <CircleAvatar uri={author.avatar} width={40} />
               </TouchableOpacity>
-            </View>
-            <View style={styles.commentStyle}>
-              <Text style={styles.titleStyle}>{author.name}</Text>
-              <Text style={styles.contentStyle}>{content}</Text>
             </View>
           </View>
           <View style={styles.votesContainer}>
@@ -80,6 +81,7 @@ class Review extends Component {
           </View>
           <View>
             <Text>{comments.length} Comments</Text>
+            {showComments}
             <CommentForm reviewId={_id} />
           </View>
         </View>
@@ -108,9 +110,7 @@ const styles = StyleSheet.create({
     borderBottomWidth: 1,
     borderColor: '#f5f5f5',
     alignItems: 'center',
-    backgroundColor: 'rgb(236,236,236)',
-    padding: 15,
-    borderRadius: 20,
+    padding: 10,
   },
   authorStyle: {
     marginRight: 10
@@ -122,21 +122,17 @@ const styles = StyleSheet.create({
     fontWeight: '600',
   },
   commentStyle: {
-    backgroundColor: 'rgb(249,86,86)',
-    borderRadius: 20,
-    borderTopLeftRadius: 0,
-    padding: 15,
-    width: '85%'
+    padding: 10,
+    paddingTop: 0
   },
   titleStyle: {
     fontWeight: '600',
     paddingBottom: 5,
     marginBottom: 5,
-    color: 'white'
+    color: 'red'
   },
   contentStyle: {
-    fontWeight: '100',
-    color: 'white'
+    fontWeight: '100'
   },
   votesContainer: {
     marginTop: 10,

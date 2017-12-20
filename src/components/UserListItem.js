@@ -5,18 +5,22 @@ import {
   View,
   Text,
   StyleSheet,
+  TouchableOpacity
 } from 'react-native';
 
 import CircleAvatar from './CircleAvatar';
 
-const UserListItem = ({ user }) => {
+const UserListItem = ({ user, handleClick }) => {
   return (
-    <View style={styles.container}>
+    <TouchableOpacity
+      style={styles.container}
+      onPress={handleClick.bind(this, user._id)}
+    >
       <CircleAvatar width={50} uri={user.avatar} />
       <View style={styles.name}>
         <Text>{user.name}</Text>
       </View>
-    </View>
+    </TouchableOpacity>
   );
 };
 

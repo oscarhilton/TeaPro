@@ -3,6 +3,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import {
+  ScrollView,
   View,
   Text,
   TouchableOpacity,
@@ -33,7 +34,7 @@ class PhotosScreen extends Component {
       const displayImages = photos.map((photo, index) => (
         <TouchableOpacity
           onPress={this.handleOpenGallery.bind(this, index)}
-          style={{ width: '33.33%', height: 125 }}
+          style={{ width: '100%', height: 300 }}
           key={index}
         >
           <GalleryImage photo={photo} />
@@ -48,15 +49,12 @@ class PhotosScreen extends Component {
     console.log(this.props, 'photo props');
     const { tea } = this.props;
     return (
-      <View style={styles.container}>
+      <ScrollView style={styles.container}>
         <View style={styles.gallery}>
           {this.renderPhotoList()}
         </View>
-        <View style={styles.galleryOpen}>
-
-        </View>
         <UploadImage teaId={tea} />
-      </View>
+      </ScrollView>
     );
   }
 }
