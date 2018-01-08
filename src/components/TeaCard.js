@@ -39,7 +39,7 @@ const styles = StyleSheet.create({
     // shadowColor: 'black'
   },
   textBackgroundStyle: {
-    backgroundColor: 'rgba(255,255,255,0.1)',
+    backgroundColor: 'rgba(255,255,255,0.08)',
     borderTopLeftRadius: 8,
     borderTopRightRadius: 8,
     height: '70%',

@@ -7,9 +7,20 @@ import {
   ADD_TEA_TO_CUPBOARD,
  } from './types';
 
+import { newNotification } from '../notificationActions';
+import { failedConnection } from '../connectionActions';
+
 export const addTeaToCupboard = (tea, userId) => async dispatch => {
-  await axios.post(`${api}/api/user/${userId}/cupboard/add/${tea._id}`, { teaTitle: tea.title });
-  dispatch({ type: ADD_TEA_TO_CUPBOARD, payload: tea });
+  const res = await axios.post(`${api}/api/user/${userId}/cupboard/add/${tea._id}`,
+  { teaTitle: tea.title }
+  ).catch(err => console.log(err));
+
+  if (res && res.status === 200) {
+    dispatch(newNotification(res.data.message));
+    dispatch({ type: ADD_TEA_TO_CUPBOARD, payload: tea });
+  } else {
+    dispatch(failedConnection());
+  }
 };
 
 export const fetchCupboardTeas = () => dispatch => {
@@ -33,6 +44,10 @@ export const fetchCupboardTeas = () => dispatch => {
 // };
 
 export const returnCupboardTeas = (userId) => async dispatch => {
-  const res = await axios.post(`${api}/api/user/${userId}/cupboard`);
-  dispatch({ type: RETURN_CUPBOARD_TEAS, payload: res.data });
+  const res = await axios.post(`${api}/api/user/${userId}/cupboard`).catch(err => console.log(err));
+  if (res && res.status === 200) {
+    dispatch({ type: RETURN_CUPBOARD_TEAS, payload: res.data });
+  } else {
+    dispatch(failedConnection());
+  }
 };

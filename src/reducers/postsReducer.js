@@ -1,11 +1,18 @@
 import {
   SUBMIT_POST,
   FETCH_HOT_POSTS,
-  RETURN_HOT_POSTS
+  RETURN_HOT_POSTS,
+  FETCH_FOLLOWER_POSTS,
+  RETURN_FOLLOWER_POSTS
 } from '../actions/postActions/types';
 
 const INITIAL_STATE = {
-  loading: null
+  hot: {
+    loading: null
+  },
+  followers: {
+    loading: null
+  }
 };
 
 export default function (state = INITIAL_STATE, action) {
@@ -15,13 +22,32 @@ export default function (state = INITIAL_STATE, action) {
     case FETCH_HOT_POSTS:
       return {
         ...state,
-        loading: true
-      }
+        hot: {
+          loading: true
+        }
+      };
     case RETURN_HOT_POSTS:
       return {
         ...state,
-        loading: false,
-        hot: [...action.payload]
+        hot: {
+          loading: false,
+          list: action.payload
+        }
+      };
+    case FETCH_FOLLOWER_POSTS:
+      return {
+        ...state,
+        followers: {
+          loading: true
+        }
+      };
+    case RETURN_FOLLOWER_POSTS:
+      return {
+        ...state,
+        followers: {
+          loading: false,
+          list: action.payload
+        }
       }
     default:
       return state;

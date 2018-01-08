@@ -14,25 +14,22 @@ export default function (state = INITIAL_STATE, action) {
     case NEW_NOTIFICATION:
       return {
         ...state,
-        list: [
-          {
-            message: action.payload,
-            timeStamp: new Date()
-          },
-          ...state.list
-        ]
+        popup: {
+          message: action.payload,
+          timeStamp: new Date()
+        }
       };
     case FETCH_NOTIFICATIONS:
       return {
         ...state,
         loading: true
-      }
+      };
     case GET_NOTIFICATIONS:
       return {
         ...state,
         loading: false,
         list: action.payload
-      }
+      };
     default:
       return state;
   }

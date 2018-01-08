@@ -10,7 +10,7 @@ const SectionHeader = props => {
 const styles = StyleSheet.create({
   headingStyle: {
     fontSize: 12,
-    textAlign: 'center',
+    textAlign: 'left',
     fontFamily: 'Futura',
     color: '#212121',
     padding: 10,

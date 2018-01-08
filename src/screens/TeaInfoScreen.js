@@ -16,8 +16,9 @@ import {
 } from '../actions/cupboardActions';
 
 class TeaInfoScreen extends Component {
+  static navigationOptions = {
+  };
   handleAddTeaCupboard(tea) {
-
     this.props.addTeaToCupboard(tea, this.props.auth.user._id);
     this.props.returnCupboardTeas(this.props.auth.user._id);
   }
@@ -74,7 +75,7 @@ class TeaInfoScreen extends Component {
       const { currentTea } = this.props.teas;
       return (
         <View style={{ flex: 1 }}>
-          <ScrollView
+          <View
             style={styles.backgroundStyle}
           >
             <Accordion
@@ -91,7 +92,7 @@ class TeaInfoScreen extends Component {
               navigation={this.props.navigation}
               moods={currentTea.moods}
             />
-          </ScrollView>
+          </View>
         </View>
       );
     }

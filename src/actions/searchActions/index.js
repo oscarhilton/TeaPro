@@ -8,13 +8,19 @@ import {
   END_SEARCH
 } from './types';
 
+import { failedConnection } from '../connectionActions';
+
 export const startSearch = () => dispatch => {
   dispatch({ type: START_SEARCH });
 };
 
 export const returnSearch = (term) => async dispatch => {
   const res = await axios.get(`${api}/api/search/${term}`);
-  dispatch({ type: RETURN_SEARCH, payload: res.data });
+  if (res && res.status === 200) {
+    dispatch({ type: RETURN_SEARCH, payload: res.data });
+  } else {
+    dispatch(failedConnection());
+  }
 };
 
 export const updateSearch = (searchText) => dispatch => {

@@ -7,9 +7,16 @@ import {
   ADD_TEA_TO_WISHLIST
  } from './types';
 
+import { failedConnection } from '../connectionActions';
+
 export const addTeaToWishlist = (tea, userId) => async dispatch => {
- const res = await axios.post(`${api}/api/user/wishlist/add`, { teaId: tea._id, userId });
- dispatch({ type: ADD_TEA_TO_WISHLIST, payload: tea });
+ const res = await axios.post(`${api}/api/user/wishlist/add`, { teaId: tea._id, userId })
+                        .catch(err => console.log(err));
+ if (res && res.status === 200) {
+   dispatch({ type: ADD_TEA_TO_WISHLIST, payload: tea });
+ } else {
+   dispatch(failedConnection());
+ }
 };
 
 export const fetchWishlistTeas = () => dispatch => {
@@ -17,6 +24,11 @@ export const fetchWishlistTeas = () => dispatch => {
 };
 
 export const returnWishlistTeas = (userId) => async dispatch => {
- const res = await axios.get(`${api}/api/user/${userId}/wishlist/get`);
- dispatch({ type: RETURN_WISHLIST_TEAS, payload: res.data });
+ const res = await axios.get(`${api}/api/user/${userId}/wishlist/get`)
+                        .catch(err => console.log(err));
+ if (res && res.status === 200) {
+   dispatch({ type: RETURN_WISHLIST_TEAS, payload: res.data });
+ } else {
+   dispatch(failedConnection());
+ }
 };

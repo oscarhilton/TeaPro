@@ -28,7 +28,8 @@ class UserFollowScoreButton extends Component {
         <TouchableOpacity
           onPress={this.handleShowUsers.bind(this)}
         >
-          <Text>{followScore} {followText}</Text>
+          <Text style={styles.numberStyle}>{followScore}</Text>
+          <Text style={styles.textStyle}>{followText.toUpperCase()}</Text>
         </TouchableOpacity>
       </View>
     );
@@ -38,9 +39,20 @@ class UserFollowScoreButton extends Component {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: 'rgb(212,249,196)',
+    backgroundColor: '#fff',
     padding: 10
   },
+  numberStyle: {
+    textAlign: 'center',
+    fontSize: 14,
+    marginBottom: 2,
+    color: '#212121'
+  },
+  textStyle: {
+    textAlign: 'center',
+    fontSize: 10,
+    color: '#212121'
+  }
 });
 
 const mapStateToProps = ({ users }) => {

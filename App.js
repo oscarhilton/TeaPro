@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { BackHandler } from 'react-native';
+import { BackHandler, View } from 'react-native';
 import { Provider, connect } from 'react-redux';
 import { createStore, applyMiddleware } from 'redux';
 import reduxThunk from 'redux-thunk';
@@ -10,6 +10,8 @@ import { RootNavigator } from './src/navigators/RootNavigator';
 import reducers from './src/reducers';
 
 import { api } from './src/api';
+
+import Notifications from './src/components/Notifications';
 // import Header from './src/components/Header';
 
 const store = createStore(reducers, {}, applyMiddleware(reduxThunk));
@@ -38,19 +40,26 @@ class App extends Component {
   render() {
     const { dispatch, nav } = this.props;
     return (
-      <RootNavigator
-        navigation={addNavigationHelpers({
-          dispatch,
-          state: nav,
-          socket: this.state.socket
-        })}
-      />
+      <View style={{ flex: 1 }}>
+        <RootNavigator
+          navigation={addNavigationHelpers({
+            dispatch,
+            state: nav,
+            socket: this.state.socket
+          })}
+        />
+        <Notifications
+          user={this.props.auth.user}
+          socket={this.state.socket}
+        />
+      </View>
     );
   }
 }
 
-const mapStateToProps = ({ nav }) => ({
-  nav
+const mapStateToProps = ({ nav, auth }) => ({
+  nav,
+  auth
 });
 
 const AppWithNavigationState = connect(mapStateToProps)(App);

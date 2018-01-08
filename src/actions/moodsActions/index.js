@@ -7,13 +7,19 @@ import {
   REMOVE_MOOD_FROM_USER
  } from './types';
 
+import { failedConnection } from '../connectionActions';
+
 export const fetchAllMoods = () => dispatch => {
   dispatch({ type: FETCH_ALL_MOODS });
 };
 
 export const returnAllMoods = () => async dispatch => {
-  const res = await axios.get(`${api}/api/moods/all`);
-  dispatch({ type: RETURN_ALL_MOODS, payload: res.data });
+  const res = await axios.get(`${api}/api/moods/all`).catch(err => console.log(err));
+  if (res && res.status === 200) {
+    dispatch({ type: RETURN_ALL_MOODS, payload: res.data });
+  } else {
+    dispatch(failedConnection());
+  }
 };
 
 export const addMoodToUser = (id) => dispatch => {

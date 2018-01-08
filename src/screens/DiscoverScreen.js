@@ -16,9 +16,14 @@ import { SEARCH_OFFSET } from '../components/styleHelpers';
 import TeaCardList from '../components/TeaCardList';
 import HeroTea from '../components/HeroTea';
 import Header from '../components/Header';
-import Notifications from '../components/Notifications';
 
 class DiscoverScreen extends Component {
+  static navigationOptions = {
+    tabBarIcon: () => (
+      <Text>hi</Text>
+    )
+  }
+
   async componentWillMount() {
     const { user } = this.props.auth;
     await this.props.fetchUser();
@@ -55,20 +60,6 @@ class DiscoverScreen extends Component {
     );
   }
 
-  renderNotifications() {
-    if (this.props.auth.loggedIn) {
-      return (
-        <View style={{ position: 'absolute', bottom: 0, width: '100%' }}>
-          <Notifications
-            user={this.props.auth.user}
-            socket={this.props.navigation.socket}
-          />
-        </View>
-      );
-    }
-    return (<Text>User not signed in</Text>);
-  }
-
   renderContent() {
     return (
       <View style={{ flex: 1 }}>
@@ -77,7 +68,6 @@ class DiscoverScreen extends Component {
           <HeroTea />
           {this.renderDiscoverCategories()}
         </ScrollView>
-        {this.renderNotifications()}
       </View>
     );
   }
@@ -92,9 +82,6 @@ class DiscoverScreen extends Component {
 }
 
 const styles = StyleSheet.create({
-  componentStyle: {
-    backgroundColor: '#18061B'
-  },
   spinnerStyle: {
     position: 'absolute',
     top: 0,

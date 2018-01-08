@@ -12,45 +12,75 @@ import {
   UPVOTE_REVIEW
  } from './types';
 
+import { failedConnection } from '../connectionActions';
+
 export const fetchReviews = () => dispatch => {
   dispatch({ type: FETCH_REVIEWS });
 };
 
 export const returnTeaReviews = (teaId) => async dispatch => {
   const res = await axios.get(`${api}/api/teas/${teaId}/reviews/all`);
-  dispatch({ type: RETURN_TEA_REVIEWS, payload: res.data });
+  if (res && res.status === 200) {
+    dispatch({ type: RETURN_TEA_REVIEWS, payload: res.data });
+  } else {
+    dispatch(failedConnection());
+  }
 };
 
 export const returnTeaRating = (teaId) => async dispatch => {
   const res = await axios.get(`${api}/api/teas/${teaId}/reviews/rating`);
-  dispatch({ type: RETURN_TEA_RATING, payload: res.data });
+  if (res && res.status === 200) {
+    dispatch({ type: RETURN_TEA_RATING, payload: res.data });
+  } else {
+    dispatch(failedConnection());
+  }
 };
 
 export const returnUserReviews = (userId) => async dispatch => {
   const res = await axios.get(`${api}/api/user/${userId}/reviews`);
-  dispatch({ type: RETURN_TEA_REVIEWS, payload: res.data });
+  if (res && res.status === 200) {
+    dispatch({ type: RETURN_TEA_REVIEWS, payload: res.data });
+  } else {
+    dispatch(failedConnection());
+  }
 };
 
 export const createReview = (userId, teaId, newReview) => async dispatch => {
   const res = await axios.post(`${api}/api/teas/${teaId}/reviews/add/${userId}`, { newReview });
-  await updateAsync(String(teaId), {
-    reviews: [...res.data.reviews],
-    score: res.data.score
-  });
-  dispatch({ type: CREATE_REVIEW, payload: res.data });
+  if (res && res.status === 200) {
+    await updateAsync(String(teaId), {
+      reviews: [...res.data.reviews],
+      score: res.data.score
+    });
+    dispatch({ type: CREATE_REVIEW, payload: res.data });
+  } else {
+    dispatch(failedConnection());
+  }
 };
 
 export const upvoteReview = (reviewId) => async dispatch => {
   const res = await axios.get(`${api}/api/reviews/${reviewId}/upvote`);
-  dispatch({ type: UPVOTE_REVIEW, payload: {} });
+  if (res && res.status === 200) {
+    dispatch({ type: UPVOTE_REVIEW, payload: {} });
+  } else {
+    dispatch(failedConnection());
+  }
 };
 
 export const returnSinlgeReview = (reviewId) => async dispatch => {
   const res = await axios.get(`${api}/api/reviews/${reviewId}`);
-  dispatch({ type: RETURN_SINGLE_REVIEW, payload: {} });
+  if (res && res.status === 200) {
+    dispatch({ type: RETURN_SINGLE_REVIEW, payload: {} });
+  } else {
+    dispatch(failedConnection());
+  }
 };
 
 export const submitComment = (reviewId, comment, userId) => async dispatch => {
   const res = await axios.post(`${api}/api/reviews/${reviewId}/comments`, { userId, content: comment });
-  dispatch({ type: SUBMIT_COMMENT, payload: {} });
+  if (res && res.status === 200) {
+    dispatch({ type: SUBMIT_COMMENT, payload: {} });
+  } else {
+    dispatch(failedConnection());
+  }
 };

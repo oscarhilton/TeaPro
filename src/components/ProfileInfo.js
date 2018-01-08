@@ -35,15 +35,15 @@ const ProfileInfo = ({ user }) => {
         />
         <UserFollowScoreButton
           followScore={numFollowers}
-          followText={'Followers'} 
+          followText={'Followers'}
           users={user.followers}
         />
       </View>
-      <Image
+      {/* <Image
         style={styles.imageStyle}
         blurRadius={0}
         source={{ uri: 'https://media.istockphoto.com/vectors/cube-light-pattern-background-vector-background-blue-green-vector-id479115294?s=2048x2048'}}
-      />
+      /> */}
     </View>
   );
 };
@@ -59,11 +59,17 @@ const ProfileInfo = ({ user }) => {
 
 const styles = StyleSheet.create({
   componentStyle: {
-    backgroundColor: '#000000',
-    height: 280,
+    backgroundColor: '#F64041',
+    height: 270,
     flexDirection: 'column',
-    justifyContent: 'center',
-    alignItems: 'center',
+    shadowOffset: {
+      height: 3,
+      width: 1
+    },
+    shadowColor: '#000',
+    shadowOpacity: 0.2,
+    zIndex: 2,
+    justifyContent: 'center'
   },
   profileImageComponentStyle: {
     margin: 10
@@ -72,15 +78,12 @@ const styles = StyleSheet.create({
     margin: 10
   },
   usernameContainer: {
-    backgroundColor: 'white',
-    padding: 3,
-    borderRadius: 10
   },
   usernameStlye: {
-    fontSize: 16,
-    fontWeight: '600',
+    fontSize: 18,
+    fontWeight: '800',
     textAlign: 'center',
-    color: '#212121'
+    color: '#fff'
   },
   imageStyle: {
     height: 400,
@@ -90,7 +93,7 @@ const styles = StyleSheet.create({
     top: 0,
     bottom: 0,
     left: 0,
-    right: 0
+    right: 0,
   },
   rankStyle: {
     fontSize: 12,
@@ -100,9 +103,10 @@ const styles = StyleSheet.create({
     borderRadius: 20
   },
   profileImageStyle: {
-    width: 80,
-    height: 80,
-    borderRadius: 40,
+    width: 60,
+    height: 60,
+    borderRadius: 30,
+    alignSelf: 'center'
   },
   topSectionStyle: {
     zIndex: 2

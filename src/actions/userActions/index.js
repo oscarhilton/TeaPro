@@ -14,13 +14,20 @@ import {
   RETURN_USER_LIST
  } from './types';
 
+ import { failedConnection } from '../connectionActions';
+
  export const loadUser = () => dispatch => {
    dispatch({ type: LOAD_USER });
  };
 
  export const displayUser = (userId) => async dispatch => {
-   const res = await axios.get(`${api}/api/user/view/${userId}`);
-   dispatch({ type: DISPLAY_USER, payload: res.data });
+   const res = await axios.get(`${api}/api/user/view/${userId}`)
+               .catch(err => console.log(err));
+  if (res && res.status === 200) {
+    dispatch({ type: DISPLAY_USER, payload: res.data });
+  } else {
+    dispatch(failedConnection());
+  }
  };
 
  export const fetchUserCupboardTeas = () => dispatch => {
@@ -28,8 +35,13 @@ import {
  };
 
  export const returnUserCupboardTeas = (userId) => async dispatch => {
-   const res = await axios.post(`${api}/api/user/${userId}/cupboard`);
-   dispatch({ type: RETURN_USER_CUPBOARD_TEAS, payload: res.data });
+   const res = await axios.post(`${api}/api/user/${userId}/cupboard`)
+               .catch(err => console.log(err));
+  if (res && res.status === 200) {
+    dispatch({ type: RETURN_USER_CUPBOARD_TEAS, payload: res.data });
+  } else {
+    dispatch(failedConnection());
+  }
  };
 
  export const fetchUserWishlistTeas = () => dispatch => {
@@ -37,21 +49,27 @@ import {
  };
 
  export const returnUserWishlistTeas = (userId) => async dispatch => {
-  const res = await axios.get(`${api}/api/user/${userId}/wishlist/get`);
-  dispatch({ type: RETURN_USER_WISHLIST_TEAS, payload: res.data });
+  const res = await axios.get(`${api}/api/user/${userId}/wishlist/get`)
+               .catch(err => console.log(err));
+  if (res && res.status === 200) {
+    dispatch({ type: RETURN_USER_WISHLIST_TEAS, payload: res.data });
+  } else {
+    dispatch(failedConnection());
+  }
  };
 
  export const followUser = (socket, authUser, userToFollow) => async dispatch => {
-  const res = await axios.post(`${api}/api/user/${userToFollow._id}/follow`, { authUser });
-  console.log(authUser, 'FROM ACTION');
-  if (res.data == 'success') {
-    alert('SUCCESS!');
+  const res = await axios.post(`${api}/api/user/${userToFollow._id}/follow`, { authUser })
+               .catch(err => console.log(err));
+  if (res && res.status === 200) {
     socket.emit('new follower', {
       room: userToFollow._id,
       message: authUser.name
     });
+    dispatch({ type: FOLLOW_USER, payload: res.data });
+  } else {
+    dispatch(failedConnection());
   }
-  dispatch({ type: FOLLOW_USER, payload: res.data });
  };
 
  export const fetchUsersList = () => dispatch => {
@@ -59,6 +77,11 @@ import {
  };
 
  export const returnUsersList = (userList) => async dispatch => {
-   const res = await axios.post(`${api}/api/users`, { userList });
-   dispatch({ type: RETURN_USER_LIST, payload: res.data });
+   const res = await axios.post(`${api}/api/users`, { userList })
+               .catch(err => console.log(err));
+  if (res && res.status === 200) {
+    dispatch({ type: RETURN_USER_LIST, payload: res.data });
+  } else {
+    dispatch(failedConnection());
+  }
  };

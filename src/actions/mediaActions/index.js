@@ -1,5 +1,5 @@
 import { NativeModules, Platform } from 'react-native';
-var AndroidFileTransfer = require('react-native-file-transfer-android');
+const AndroidFileTransfer = require('react-native-file-transfer-android');
 
 import axios from 'axios';
 import { api } from '../../api';

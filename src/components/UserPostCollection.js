@@ -6,32 +6,18 @@ import {
   Text,
   StyleSheet,
 } from 'react-native';
-import { connect } from 'react-redux';
-
-import {
-  fetchHotPosts,
-  returnHotPosts
-} from '../actions/postActions';
 
 import UserPostList from './UserPostList';
 import { SectionHeader } from './common';
 
-class HotPosts extends Component {
-  componentWillMount() {
-    this.props.fetchHotPosts();
-    this.props.returnHotPosts();
-  }
-
+class UserPostCollection extends Component {
   renderPosts() {
-    const { posts } = this.props;
-    const { loading } = posts;
+    const { collection, loading } = this.props;
     switch (loading){
       case true:
         return <Text>Loading</Text>;
       case false:
-        console.log(this.props.posts, '<---- HOT');
-        const { hot } = this.props.posts;
-        return <UserPostList posts={hot} />;
+        return <UserPostList posts={collection} />;
       case null:
         return <Text>ready</Text>;
       default:
@@ -40,9 +26,10 @@ class HotPosts extends Component {
   }
 
   render() {
+    const { heading } = this.props;
     return (
       <View style={styles.container}>
-        <SectionHeader heading={'Hot posts'} />
+        <SectionHeader heading={heading} />
         {this.renderPosts()}
       </View>
     );
@@ -59,4 +46,4 @@ const mapStateToProps = ({ posts }) => {
   return { posts };
 };
 
-export default connect(mapStateToProps, { fetchHotPosts, returnHotPosts })(HotPosts);
+export default UserPostCollection;

@@ -22,14 +22,20 @@ export const MainNavigator = TabNavigator({
   lazy: true,
   swipeEnabled: true,
   animationEnabled: true,
+  showIcon: true,
   tabBarOptions: {
     activeTintColor: 'red',  // Color of tab when pressed
     inactiveTintColor: '#b5b5b5', // Color of tab when not pressed
+    showLabel: true,
     labelStyle: {
       fontSize: 11,
     },
     style: {
       backgroundColor: '#fff', // Makes Android tab bar white instead of standard blue
-      height: 50
+      height: 40,
+      paddingTop: 5
+      // borderTopLeftRadius: 15,
+      // borderTopRightRadius: 15,
+      // borderWidth: 1
     }
 } });

@@ -16,9 +16,10 @@ class Notifications extends Component {
   constructor(props) {
     super(props);
     const { user, socket } = this.props;
-    socket.emit('subscribe', user._id); //59f4b1d01bc84b3b80ad34e0
-    socket.on('conversation private post', this.displayNotification.bind(this));
-    socket.on('incoming new follower', this.handleIncomingFollower.bind(this));
+    console.log(this.props);
+    // socket.emit('subscribe', user._id); //59f4b1d01bc84b3b80ad34e0
+    // socket.on('conversation private post', this.displayNotification.bind(this));
+    // socket.on('incoming new follower', this.handleIncomingFollower.bind(this));
   }
 
   handleIncomingFollower(data) {
@@ -31,33 +32,24 @@ class Notifications extends Component {
     console.log(data, '<<<<<<<<<<<<!!!!');
   }
 
-  handlePress() {
-    const { user, socket } = this.props;
-    socket.emit('send message', {
-      room: user._id,
-      message: `Some message ${user.name}, ${user.oauth_id}`
-    });
-    this.props.newNotification("New notifcation bla");
+  renderPopup() {
+    const { notifications } = this.props;
+    if (notifications.popup) {
+      const { message, timestamp } = notifications.popup;
+      return (
+        <View style={styles.container}>
+          <Text style={styles.textStyle}>{message}</Text>
+          <Text style={styles.timeStyle}>{moment(timestamp).fromNow()}</Text>
+        </View>
+      );
+    }
+    return;
   }
 
   render() {
-    const { notifications } = this.props;
-    const notificationsList = notifications.list.map((note) => {
-      return (
-        <View>
-          <Text>{note.message}</Text>
-          <Text>{moment(note.timeStamp).fromNow()}</Text>
-        </View>
-      );
-    });
     return (
-      <View style={styles.container}>
-        {/* {notificationsList} */}
-        {/* <TouchableOpacity
-          onPress={this.handlePress.bind(this)}
-        >
-          <Text style={styles.textStyle}>Give me one of them notifications</Text>
-        </TouchableOpacity> */}
+      <View>
+        {this.renderPopup()}
       </View>
     );
   }
@@ -67,16 +59,31 @@ const styles = StyleSheet.create({
   container: {
     backgroundColor: 'white',
     position: 'absolute',
-    bottom: 0,
-    paddingHorizontal: 10,
-    paddingVertical: 5,
-    borderWidth: 1,
-    margin: 5,
-    borderRadius: 20
+    bottom: 50,
+    paddingHorizontal: 15,
+    paddingVertical: 10,
+    shadowColor: '#000000',
+    shadowOffset: {
+      width: 1,
+      height: 2
+    },
+    shadowOpacity: 0.3,
+    width: '95%',
+    flex: 1,
+    justifyContent: 'space-between',
+    borderRadius: 10,
+    margin: '2.5%',
+    marginBottom: 0
   },
   textStyle: {
     color: '#212121',
-    fontSize: 12
+    fontSize: 14,
+    marginBottom: 15
+  },
+  timeStyle: {
+    color: 'rgb(144,144,144)',
+    fontSize: 11,
+    alignSelf: 'flex-end'
   }
 });
 

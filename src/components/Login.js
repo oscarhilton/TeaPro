@@ -9,7 +9,28 @@ import {
 import SafariView from 'react-native-safari-view';
 import { connect } from 'react-redux';
 import { onLoggedIn } from '../actions/authActions';
-import { fetchCupboardTeas, returnCupboardTeas } from '../actions/cupboardActions';
+
+import {
+  fetchCupboardTeas,
+  returnCupboardTeas
+} from '../actions/cupboardActions';
+import {
+  fetchWishlistTeas,
+  returnWishlistTeas
+} from '../actions/wishlistActions';
+import {
+  fetchFollowerPosts,
+  returnFollowerPosts
+} from '../actions/postActions';
+import {
+  fetchNotifications,
+  getNotifications
+} from '../actions/notificationActions';
+import {
+  requestDiscoverCategories,
+  returnDiscoverCategories
+} from '../actions/teaActions';
+
 import { Button } from '../components/common';
 import ImageBackground from './ImageBackground';
 import { api } from '../api';
@@ -42,6 +63,14 @@ class Login extends Component {
     this.props.onLoggedIn(user);
     this.props.fetchCupboardTeas();
     this.props.returnCupboardTeas(user._id);
+    this.props.fetchWishlistTeas();
+    this.props.returnWishlistTeas(user._id);
+    this.props.fetchFollowerPosts();
+    this.props.returnFollowerPosts(user.followers);
+    this.props.fetchNotifications();
+    this.props.getNotifications(user._id);
+    this.props.requestDiscoverCategories();
+    this.props.returnDiscoverCategories(user._id);
     //Close SafariView
     if (Platform.OS === 'ios') {
       SafariView.dismiss();
@@ -118,4 +147,16 @@ const styles = StyleSheet.create({
   }
 });
 
-export default connect(null, { onLoggedIn, fetchCupboardTeas, returnCupboardTeas })(Login);
+export default connect(null, {
+  onLoggedIn,
+  fetchCupboardTeas,
+  returnCupboardTeas,
+  fetchWishlistTeas,
+  returnWishlistTeas,
+  fetchFollowerPosts,
+  returnFollowerPosts,
+  fetchNotifications,
+  getNotifications,
+  requestDiscoverCategories,
+  returnDiscoverCategories
+})(Login);
