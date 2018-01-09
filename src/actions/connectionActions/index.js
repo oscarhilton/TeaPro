@@ -4,15 +4,11 @@ import {
  } from './types';
 
 export const successfulConnection = () => dispatch => {
+  alert('CONNECTED!');
   dispatch({ type: CONNECTION_SUCCESS });
 };
 
 export const failedConnection = () => dispatch => {
-  alert('CONNECTION FAILED');
+  // alert('CONNECTION FAILED');
   dispatch({ type: CONNECTION_FAILURE });
 };
-
-// export const failedConnection = () => dispatch => {
-//   alert('CONNECTION FAILED');
-//   dispatch({ type: CONNECTION_FAILURE });
-// };

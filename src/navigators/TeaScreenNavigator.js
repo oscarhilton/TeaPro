@@ -1,11 +1,15 @@
+import React from 'react';
 import { StackNavigator } from 'react-navigation';
 
 import WriteReviewScreen from '../screens/WriteReviewScreen';
-import { TeaTabs } from './TeaViewNavigator';
+import { TeaTabWrapper } from './TeaTabWrapper';
 
 export const TeaScreenNavigator = StackNavigator({
   ViewTea: {
-    screen: TeaTabs
+    screen: TeaTabWrapper,
+    navigationOptions: ({navigation}) => ({
+      header: false
+    })
   },
   WriteReviewScreen: {
     screen: WriteReviewScreen

@@ -5,10 +5,15 @@ import {
   FETCH_CUPBOARD_TEAS,
   RETURN_CUPBOARD_TEAS,
   ADD_TEA_TO_CUPBOARD,
+  FAILED_LOAD
  } from './types';
 
 import { newNotification } from '../notificationActions';
 import { failedConnection } from '../connectionActions';
+
+const failedLoad = () => dispatch => {
+  dispatch({ type: FAILED_LOAD });
+};
 
 export const addTeaToCupboard = (tea, userId) => async dispatch => {
   const res = await axios.post(`${api}/api/user/${userId}/cupboard/add/${tea._id}`,
@@ -19,7 +24,8 @@ export const addTeaToCupboard = (tea, userId) => async dispatch => {
     dispatch(newNotification(res.data.message));
     dispatch({ type: ADD_TEA_TO_CUPBOARD, payload: tea });
   } else {
-    dispatch(failedConnection());
+    failedConnection();
+    dispatch(failedLoad());
   }
 };
 
@@ -48,6 +54,7 @@ export const returnCupboardTeas = (userId) => async dispatch => {
   if (res && res.status === 200) {
     dispatch({ type: RETURN_CUPBOARD_TEAS, payload: res.data });
   } else {
-    dispatch(failedConnection());
+    failedConnection();
+    dispatch(failedLoad());
   }
 };

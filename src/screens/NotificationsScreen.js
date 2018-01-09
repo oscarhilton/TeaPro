@@ -13,6 +13,8 @@ import { connect } from 'react-redux';
 import PostForm from '../components/PostForm';
 import NotificationItem from '../components/NotificationItem';
 import UserPostCollection from '../components/UserPostCollection';
+import ConnectionRetry from '../components/ConnectionRetry';
+import Login from '../components/Login';
 import { SectionHeader } from '../components/common';
 
 const notificationIcon = require('../assets/images/notification.png');
@@ -31,7 +33,7 @@ import {
 
 class NotificationsScreen extends Component {
   static navigationOptions = () => ({
-    title: 'Notifications',
+    title: 'Posts',
     tabBarIcon: () => (
       <Image source={notificationIcon} style={{ width: 18, height: 18 }} />
     )
@@ -40,6 +42,14 @@ class NotificationsScreen extends Component {
   componentWillMount() {
     this.props.fetchHotPosts();
     this.props.returnHotPosts();
+
+    const { user } = this.props;
+    if (user) {
+      this.fetchData();
+    }
+  }
+
+  fetchData() {
     if (this.props.user) {
       this.props.fetchFollowerPosts();
       this.props.returnFollowerPosts(this.props.user.followers);
@@ -50,36 +60,38 @@ class NotificationsScreen extends Component {
   }
 
   renderNotifications() {
-    const { notifications, user } = this.props;
-    if (user) {
-      switch (notifications.loading) {
-        case null:
-          return <Text>NULL</Text>;
-        case true:
-          return <Text>Loading</Text>;
-        case false:
-          const { list } = notifications;
-          const notificationList = list.map(note => {
+    const { notifications, user, connection } = this.props;
+    if (connection.connected) {
+      if (user) {
+        switch (notifications.loading) {
+          case null:
+            return <Text>NULL</Text>;
+          case true:
+            return <Text>Loading</Text>;
+          case false:
+            const { list } = notifications;
+            const notificationList = list.map(note => {
+              return (
+                <View>
+                  <NotificationItem
+                    timestamp={note.timestamp}
+                    message={note.message}
+                  />
+                </View>
+              );
+             });
             return (
               <View>
-                <NotificationItem
-                  timestamp={note.timestamp}
-                  message={note.message}
-                />
+                <SectionHeader heading={'Notifications'} />
+                {notificationList}
               </View>
             );
-           });
-          return (
-            <View>
-              <SectionHeader heading={'Notifications'} />
-              {notificationList}
-            </View>
-          );
-        default:
-          return <Text>Default</Text>;
+          default:
+            return <Text>Default</Text>;
+        }
       }
     }
-    return <Text>No User!!!</Text>;
+    return;
   }
 
   renderPostForm() {
@@ -101,23 +113,35 @@ class NotificationsScreen extends Component {
         />
       );
     }
-    return <Text>No User</Text>;
+    return <Login />;
+  }
+
+  checkConnecton() {
+    const { connection } = this.props;
+    console.log(connection);
+    if (connection.connected || connection.connected === null) {
+      const { hot, followers } = this.props.posts;
+      return (
+        <ScrollView style={styles.container}>
+          {/* {this.renderPostForm()} */}
+          <UserPostCollection
+            heading={'Hot Posts'}
+            collection={hot.list}
+            loading={hot.loading}
+          />
+          {this.renderFollowerPosts()}
+          {this.renderNotifications()}
+        </ScrollView>
+      );
+    }
+    return <ConnectionRetry />;
   }
 
   render() {
-    const { hot, followers } = this.props.posts;
     return (
-      <ScrollView style={styles.container}>
-        <SectionHeader heading={'Posts'} />
-        {this.renderPostForm()}
-        <UserPostCollection
-          heading={'Hot Posts'}
-          collection={hot.list}
-          loading={hot.loading}
-        />
-        {this.renderFollowerPosts()}
-        {this.renderNotifications()}
-      </ScrollView>
+      <View style={styles.container}>
+        {this.checkConnecton()}
+      </View>
     );
   }
 }
@@ -128,11 +152,12 @@ const styles = StyleSheet.create({
   },
 });
 
-const mapStateToProps = ({ auth, notifications, posts }) => {
+const mapStateToProps = ({ auth, notifications, posts, connection }) => {
   return {
     user: auth.user,
     notifications,
-    posts
+    posts,
+    connection
   };
 };
 

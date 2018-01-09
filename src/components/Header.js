@@ -54,8 +54,7 @@ const styles = StyleSheet.create({
     borderBottomLeftRadius: 20,
     borderBottomRightRadius: 20,
     shadowOpacity: 0.5,
-    shadowOffset: { height: 3 },
-    paddingTop: 20
+    shadowOffset: { height: 3 }
   }
 });
 

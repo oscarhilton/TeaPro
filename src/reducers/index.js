@@ -11,6 +11,7 @@ import users from './userReducer';
 import media from './mediaReducer';
 import notifications from './notificationReducer';
 import posts from './postsReducer';
+import connection from './connectionReducer';
 
 export default combineReducers({
   auth,
@@ -24,5 +25,6 @@ export default combineReducers({
   users,
   posts,
   media,
-  notifications
+  notifications,
+  connection
 });

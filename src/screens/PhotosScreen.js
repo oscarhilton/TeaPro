@@ -49,20 +49,19 @@ class PhotosScreen extends Component {
     console.log(this.props, 'photo props');
     const { tea } = this.props;
     return (
-      <ScrollView style={styles.container}>
+      <View style={styles.container}>
         <View style={styles.gallery}>
           {this.renderPhotoList()}
         </View>
         <UploadImage teaId={tea} />
-      </ScrollView>
+      </View>
     );
   }
 }
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
-    backgroundColor: '#f3f3f3'
+    flex: 1
   },
   gallery: {
     flex: 1,

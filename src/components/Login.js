@@ -103,7 +103,7 @@ class Login extends Component {
   render() {
     return (
       <ImageBackground
-        image={"https://i.imgur.com/knz227O.jpg"}
+        image={'https://i.imgur.com/knz227O.jpg'}
       >
         <View style={styles.bottomButtons}>
           <Button

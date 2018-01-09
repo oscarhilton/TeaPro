@@ -1,7 +1,8 @@
 import {
   FETCH_WISHLIST_TEAS,
   RETURN_WISHLIST_TEAS,
-  ADD_TEA_TO_WISHLIST
+  ADD_TEA_TO_WISHLIST,
+  FAILED_LOAD
 } from '../actions/wishlistActions/types';
 
 const INITIAL_STATE = {
@@ -25,6 +26,11 @@ const INITIAL_STATE = {
        return {
          ...state,
          teas: [action.payload, ...state.teas]
+       };
+     case FAILED_LOAD:
+       return {
+         ...state,
+         loading: null
        };
      default:
        return state;

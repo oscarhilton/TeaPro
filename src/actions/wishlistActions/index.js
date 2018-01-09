@@ -4,10 +4,15 @@ import { api } from '../../api';
 import {
   FETCH_WISHLIST_TEAS,
   RETURN_WISHLIST_TEAS,
-  ADD_TEA_TO_WISHLIST
+  ADD_TEA_TO_WISHLIST,
+  FAILED_LOAD
  } from './types';
 
 import { failedConnection } from '../connectionActions';
+
+const failedLoad = () => dispatch => {
+  dispatch({ type: FAILED_LOAD });
+};
 
 export const addTeaToWishlist = (tea, userId) => async dispatch => {
  const res = await axios.post(`${api}/api/user/wishlist/add`, { teaId: tea._id, userId })
@@ -15,7 +20,8 @@ export const addTeaToWishlist = (tea, userId) => async dispatch => {
  if (res && res.status === 200) {
    dispatch({ type: ADD_TEA_TO_WISHLIST, payload: tea });
  } else {
-   dispatch(failedConnection());
+   failedConnection();
+   dispatch(failedLoad());
  }
 };
 
@@ -29,6 +35,7 @@ export const returnWishlistTeas = (userId) => async dispatch => {
  if (res && res.status === 200) {
    dispatch({ type: RETURN_WISHLIST_TEAS, payload: res.data });
  } else {
-   dispatch(failedConnection());
+   failedConnection();
+   dispatch(failedLoad());
  }
 };

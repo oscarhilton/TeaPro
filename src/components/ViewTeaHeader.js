@@ -5,11 +5,8 @@ import StarRating from 'react-native-star-rating';
 
 import { goBack } from '../actions/navActions';
 import { CloseButton, Spinner } from './common';
-import RatingsBar from './RatingsBar';
 // import { SEARCH_OFFSET } from '../components/styleHelpers';
 import TeaCard from './TeaCard';
-
-const background = require('../assets/images/background-teapro.png');
 
 class ViewTeaHeader extends Component {
   constructor(props) {
@@ -22,12 +19,14 @@ class ViewTeaHeader extends Component {
   renderImage() {
     const { userImages } = this.props.teas.currentTea;
     if (userImages.length > 0) {
-      console.log(userImages);
       const lastImage = userImages[userImages.length - 1];
       return (
-        <Image
-          style={[styles.imageStyle, { height: 240 }]}
-          blurRadius={0}
+        <Animated.Image
+          style={[styles.imageStyle, {
+            height: this.props.headerHeight,
+            opacity: this.props.headerOpactiy
+          }]}
+          blurRadius={this.props.headerOpactiy}
           source={{ uri: lastImage.path }}
         />
       );
@@ -51,7 +50,7 @@ class ViewTeaHeader extends Component {
       const { category, origin } = currentTea;
       return (
         <View>
-          <View style={[styles.componentStyle, { height: 240 }]}>
+          <Animated.View style={[styles.componentStyle, { height: this.props.headerHeight }]}>
             <CloseButton
               onPress={() => { this.props.goBack(); }}
               addStyle={styles.closeStyle}
@@ -85,7 +84,7 @@ class ViewTeaHeader extends Component {
               </View>
             </View>
             {this.renderImage()}
-          </View>
+          </Animated.View>
         </View>
       );
     }
@@ -97,7 +96,6 @@ class ViewTeaHeader extends Component {
   }
 
   render() {
-    console.log(this.props, '<-----!! PROPS PROPS PROPS')
     return (
       <View>
         {this.renderHeader()}
@@ -109,7 +107,8 @@ class ViewTeaHeader extends Component {
 const styles = StyleSheet.create({
   componentStyle: {
     position: 'relative',
-    backgroundColor: 'black'
+    backgroundColor: 'black',
+    overflow: 'hidden'
   },
   closeStyle: {
     position: 'absolute',

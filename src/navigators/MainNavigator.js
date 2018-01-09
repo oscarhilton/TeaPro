@@ -16,7 +16,6 @@ export const MainNavigator = TabNavigator({
     screen: NotificationsScreen
   }
 }, {
-  headerMode: 'top',        // I don't want a NavBar at top
   tabBarPosition: 'bottom',  // So your Android tabs go bottom
   initialRouteName: 'Discover',
   lazy: true,
@@ -34,8 +33,5 @@ export const MainNavigator = TabNavigator({
       backgroundColor: '#fff', // Makes Android tab bar white instead of standard blue
       height: 40,
       paddingTop: 5
-      // borderTopLeftRadius: 15,
-      // borderTopRightRadius: 15,
-      // borderWidth: 1
     }
 } });

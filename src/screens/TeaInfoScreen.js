@@ -8,7 +8,6 @@ import Accordion from '../components/Accordion';
 import HealthMoodsTabs from '../components/HealthMoodsTabs';
 
 import { goToScene } from '../actions/navActions';
-import { scrollTrigger } from '../actions/teaActions';
 import {
   addTeaToCupboard,
   addTeaToWishlist,
@@ -16,8 +15,6 @@ import {
 } from '../actions/cupboardActions';
 
 class TeaInfoScreen extends Component {
-  static navigationOptions = {
-  };
   handleAddTeaCupboard(tea) {
     this.props.addTeaToCupboard(tea, this.props.auth.user._id);
     this.props.returnCupboardTeas(this.props.auth.user._id);
@@ -32,7 +29,6 @@ class TeaInfoScreen extends Component {
   }
 
   renderUserControls() {
-    console.log(this.props, 'PROPS!');
     const { loggedIn, user } = this.props.auth;
     const { cupboard } = user;
     const { loaded, currentTea } = this.props.teas;
@@ -40,8 +36,6 @@ class TeaInfoScreen extends Component {
     if (loggedIn) {
       if (loaded) {
         const { currentTea } = this.props.teas;
-        console.log(currentTea);
-
         return (
           <ButtonRow>
             <Button
@@ -133,6 +127,5 @@ export default connect(mapStateToProps, {
   addTeaToCupboard,
   addTeaToWishlist,
   returnCupboardTeas,
-  goToScene,
-  scrollTrigger
+  goToScene
 })(TeaInfoScreen);

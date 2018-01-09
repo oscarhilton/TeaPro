@@ -14,17 +14,20 @@ import { fetchUser } from '../actions/authActions';
 import { SectionHeader, Spinner } from '../components/common';
 import { SEARCH_OFFSET } from '../components/styleHelpers';
 import TeaCardList from '../components/TeaCardList';
+import ConnectionRetry from '../components/ConnectionRetry';
 import HeroTea from '../components/HeroTea';
 import Header from '../components/Header';
 
 class DiscoverScreen extends Component {
-  static navigationOptions = {
-    tabBarIcon: () => (
-      <Text>hi</Text>
-    )
+  static navigationOptions = () => ({
+    title: 'Discover'
+  });
+
+  componentWillMount() {
+    this.fetchData();
   }
 
-  async componentWillMount() {
+  async fetchData() {
     const { user } = this.props.auth;
     await this.props.fetchUser();
     if (this.props.auth.loggedIn) {
@@ -36,6 +39,7 @@ class DiscoverScreen extends Component {
   renderDiscoverCategories() {
     const { loading } = this.props.auth.discover.categories;
     if (!loading) {
+      const { navigate } = this.props.navigation;
       const { list } = this.props.auth.discover.categories;
       return (
         list.map((cat) => {
@@ -45,7 +49,7 @@ class DiscoverScreen extends Component {
                 heading={`All ${cat.title} teas`}
               />
               <TeaCardList
-                navigate={this.props.navigation.navigate}
+                navigate={navigate}
                 teaList={cat.teas}
               />
             </View>
@@ -72,10 +76,18 @@ class DiscoverScreen extends Component {
     );
   }
 
+  checkConnecton() {
+    const { connected } = this.props.connection;
+    if (connected || connected == null) {
+      return this.renderContent();
+    }
+    return <ConnectionRetry />;
+  }
+
   render() {
     return (
       <View style={{ flex: 1 }} >
-        {this.renderContent()}
+        {this.checkConnecton()}
       </View>
     );
   }
@@ -91,8 +103,8 @@ const styles = StyleSheet.create({
   }
 });
 
-const mapStateToProps = ({ categories, auth }) => {
-  return { categories, auth };
+const mapStateToProps = ({ categories, auth, connection }) => {
+  return { categories, auth, connection };
 };
 
 export default connect(mapStateToProps, {

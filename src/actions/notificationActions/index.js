@@ -17,7 +17,8 @@ export const fetchNotifications = () => dispatch => {
 };
 
 export const getNotifications = (userId) => async dispatch => {
-  const res = await axios.get(`${api}/api/user/${userId}/notifications`);
+  const res = await axios.get(`${api}/api/user/${userId}/notifications`)
+                         .catch(err => console.log(err));
   if (res && res.status === 200) {
     dispatch({ type: GET_NOTIFICATIONS, payload: res.data });
   } else {

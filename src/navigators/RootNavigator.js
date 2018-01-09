@@ -27,5 +27,5 @@ export const RootNavigator = StackNavigator({
   }
 }, {
   mode: 'modal',
-  headerMode: 'none'
+  headerMode: 'screen'
 });

@@ -1,7 +1,8 @@
 import {
   FETCH_CUPBOARD_TEAS,
   RETURN_CUPBOARD_TEAS,
-  ADD_TEA_TO_CUPBOARD
+  ADD_TEA_TO_CUPBOARD,
+  FAILED_LOAD
 } from '../actions/cupboardActions/types';
 
 const INITIAL_STATE = {
@@ -24,6 +25,11 @@ const INITIAL_STATE = {
        return {
          ...state,
          teas: [...state.teas, action.payload]
+       };
+     case FAILED_LOAD:
+       return {
+         ...state,
+         loading: null
        };
      default:
        return state;

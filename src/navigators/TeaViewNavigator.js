@@ -4,7 +4,6 @@ import { TabNavigator } from 'react-navigation';
 import TeaInfoScreen from '../screens/TeaInfoScreen';
 import ReviewsScreen from '../screens/ReviewsScreen';
 import PhotosScreen from '../screens/PhotosScreen';
-import ViewTeaHeader from '../components/ViewTeaHeader';
 
 export const TeaTabs = TabNavigator({
   info: {
@@ -31,8 +30,5 @@ export const TeaTabs = TabNavigator({
   initialRouteName: 'info',
   lazy: true,
   swipeEnabled: true,
-  animationEnabled: true,
-  navigationOptions: {
-    header: <ViewTeaHeader />
-  }
+  animationEnabled: true
 });

@@ -28,6 +28,10 @@ import {
 } from '../actions/mediaActions';
 
 class ProfileScreen extends Component {
+  static navigationOptions = () => ({
+    title: 'Profile'
+  });
+
   async componentWillMount() {
     const { user } = this.props.auth;
     await this.props.fetchUser();

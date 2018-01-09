@@ -14,7 +14,7 @@ import {
   RETURN_USER_LIST
  } from './types';
 
- import { failedConnection } from '../connectionActions';
+ import { failedConnection, successfulConnection } from '../connectionActions';
 
  export const loadUser = () => dispatch => {
    dispatch({ type: LOAD_USER });
@@ -60,7 +60,7 @@ import {
 
  export const followUser = (socket, authUser, userToFollow) => async dispatch => {
   const res = await axios.post(`${api}/api/user/${userToFollow._id}/follow`, { authUser })
-               .catch(err => console.log(err));
+                         .catch(err => console.log(err));
   if (res && res.status === 200) {
     socket.emit('new follower', {
       room: userToFollow._id,

@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { ScrollView } from 'react-native';
+import { View } from 'react-native';
 import { connect } from 'react-redux';
 import Review from '../components/Review';
 
@@ -9,9 +9,9 @@ class ReviewsScreen extends Component {
     console.log(reviews);
     const showReviews = reviews.map((review) => <Review key={review._id} review={review} />);
     return (
-      <ScrollView style={{ flex: 1, backgroundColor: 'rgb(38,37,42)' }}>
+      <View style={{ flex: 1, backgroundColor: 'rgb(38,37,42)' }}>
         {showReviews}
-      </ScrollView>
+      </View>
     );
   }
 }

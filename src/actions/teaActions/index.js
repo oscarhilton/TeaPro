@@ -8,7 +8,7 @@ import {
   RETURN_DISCOVER_CATEGORIES
  } from './types';
 
-import { failedConnection } from '../connectionActions';
+import { failedConnection, successfulConnection } from '../connectionActions';
 
 export const fetchTeaDetails = () => dispatch => {
   dispatch({ type: FETCH_TEA_DETAILS });
@@ -32,6 +32,7 @@ export const makeCurrentTea = (teaId) => async dispatch => {
   const res = await axios.get(`${api}/api/teas/${teaId}/display`);
   if (res && res.status === 200) {
     payload = res.data;
+    successfulConnection();
     dispatch({ type: MAKE_CURRENT_TEA, payload });
   } else {
     dispatch(failedConnection());
@@ -46,6 +47,7 @@ export const returnDiscoverCategories = (userId) => async dispatch => {
   const res = await axios.get(`${api}/api/user/${userId}/discover/categories`)
                          .catch(err => console.log(err));
   if (res && res.status === 200) {
+    successfulConnection();
     dispatch({ type: RETURN_DISCOVER_CATEGORIES, payload: res.data });
   } else {
     dispatch(failedConnection());

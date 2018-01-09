@@ -9,7 +9,7 @@ import {
   SUBMIT_ON_BOARDING
 } from './types';
 
-import { failedConnection } from '../connectionActions';
+import { failedConnection, successfulConnection } from '../connectionActions';
 
 export const onLoggedIn = (user) => async dispatch => {
   let res;
@@ -58,6 +58,7 @@ export const checkOnBoarding = (id) => async dispatch => {
   const res = await axios.get(`${api}/api/user/${id}/onboardstatus`)
                          .catch(err => console.log(err));
   if (res && res.status === 200) {
+    successfulConnection();
     dispatch({ type: CHECK_ON_BOARDING, payload: res.data });
   } else {
     dispatch(failedConnection());
@@ -71,6 +72,7 @@ export const submitOnboarding = (userId, moods, categories) => async dispatch =>
       chosenMoods: moods,
       chosenCategories: categories
     });
+    successfulConnection();
     dispatch({ type: SUBMIT_ON_BOARDING, payload: user });
   } else {
     dispatch(failedConnection());

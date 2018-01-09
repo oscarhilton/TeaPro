@@ -24,11 +24,16 @@ class PostForm extends Component {
   }
 
   handleSubmit() {
-    const { user, submitPost } = this.props;
+    const { user } = this.props;
     const { post } = this.state;
     if (user && post.length > 1) {
-      submitPost(user, post);
-      alert('hi');
+      alert('sending now');
+      this.props.submitPost(user, post);
+      this.setState = {
+        post: ''
+      };
+    } else {
+      alert('err');
     }
   }
 

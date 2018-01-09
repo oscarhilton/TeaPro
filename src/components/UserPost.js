@@ -10,6 +10,7 @@ import { connect } from 'react-redux';
 import moment from 'moment';
 
 import { VoteButton } from './common';
+import CircleAvatar from './CircleAvatar';
 
 class UserPost extends Component {
   constructor(props) {
@@ -25,8 +26,10 @@ class UserPost extends Component {
   }
 
   renderUpvoteButton(author, upvotes, user) {
-    if (author._id !== user._id) {
-      return <Text>{upvotes} upvotes</Text>;
+    if (author && user) {
+      if (author._id !== user._id) {
+        return <Text>{upvotes} upvotes</Text>;
+      }
     }
     return (
       <VoteButton
@@ -37,21 +40,38 @@ class UserPost extends Component {
     );
   }
 
-  render() {
+  renderPost() {
     const { post, user } = this.props;
-    const { author, content, createdAt } = post;
-    const { upvotes } = this.state;
-    const date = moment(createdAt).fromNow();
-    return (
-      <View style={styles.container}>
-        <View style={styles.inside}>
-          <View style={styles.top}>
-            <Text>{author.name}</Text>
-            <Text style={styles.date}>{date}</Text>
+    if (post) {
+      const { author, content, createdAt } = post;
+      const { upvotes } = this.state;
+      const date = moment(createdAt).fromNow();
+      return (
+        <View style={styles.container}>
+          <View>
+            <CircleAvatar uri={author.avatar} width={50} />
           </View>
-          <Text>{content}</Text>
+          <View style={styles.inside}>
+            <View>
+              <View style={styles.top}>
+                <Text style={styles.name}>{author.name}</Text>
+                <Text style={styles.date}>{date}</Text>
+              </View>
+              <Text style={styles.content}>{content}</Text>
+            </View>
+            <View>
+              {this.renderUpvoteButton(author, upvotes, user)}
+            </View>
+          </View>
         </View>
-        {this.renderUpvoteButton(author, upvotes, user)}
+      );
+    }
+  }
+
+  render() {
+    return (
+      <View>
+        {this.renderPost()}
       </View>
     );
   }
@@ -61,20 +81,24 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: 'white',
-    padding: 10,
     borderColor: '#f5f5f5',
-    borderBottomWidth: 1
+    borderBottomWidth: 1,
+    flexDirection: 'row',
+    paddingVertical: 20,
+    paddingHorizontal: 10,
   },
   inside: {
-    padding: 10,
-    backgroundColor: 'rgb(232,251,213)',
-    borderRadius: 8
+    paddingLeft: 10,
+    flex: 1
   },
   top: {
     flexDirection: 'row',
     justifyContent: 'space-between',
     paddingBottom: 5
 
+  },
+  name: {
+    fontWeight: '800'
   },
   date: {
     color: '#212121',
@@ -84,6 +108,10 @@ const styles = StyleSheet.create({
     borderColor: '#f5f5f5',
     borderRadius: 15,
     paddingVertical: 3
+  },
+  content: {
+    marginTop: 5,
+    marginBottom: 5
   }
 });
 
