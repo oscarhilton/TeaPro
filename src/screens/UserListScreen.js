@@ -18,6 +18,10 @@ import {
 import { goToScene } from '../actions/navActions';
 
 class UserListScreen extends Component {
+  static navigationOptions = ({ navigation }) => ({
+    title: navigation.state.params.title
+  });
+
   handleShowUser(user) {
     this.props.loadUser();
     this.props.displayUser(user);

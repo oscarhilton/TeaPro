@@ -3,22 +3,22 @@ import { StackNavigator } from 'react-navigation';
 // import { icon } from 'react-native-elements';
 
 import { OnBoardingNavigator } from './OnBoardingNavigator';
-import { TeaScreenNavigator } from './TeaScreenNavigator';
-import { MainNavigator } from './MainNavigator';
-import { ProfileNavigator } from './ProfileNavigator';
-
+import ProfileScreen from '../screens/ProfileScreen';
 import UserProfileScreen from '../screens/UserProfileScreen';
 import UserListScreen from '../screens/UserListScreen';
 
-export const RootNavigator = StackNavigator({
-  Tabs: {
-    screen: MainNavigator,
+export const ProfileNavigator = StackNavigator({
+  Profile: {
+    screen: ProfileScreen
   },
-  ViewTea: {
-    screen: TeaScreenNavigator,
-    navigationOptions: ({navigation}) => ({
-      header: false
-    })
+  UserProfile: {
+    screen: UserProfileScreen
+  },
+  OnBoarding: {
+    screen: OnBoardingNavigator
+  },
+  UserList: {
+    screen: UserListScreen
   }
 }, {
   mode: 'modal',

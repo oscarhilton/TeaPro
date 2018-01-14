@@ -1,11 +1,13 @@
 import React, { Component } from 'react';
-import { Text, ScrollView, StyleSheet, View, RefreshControl } from 'react-native';
+import { Text, ScrollView, StyleSheet, View } from 'react-native';
 import Interactable from 'react-native-interactable';
 import { connect } from 'react-redux';
 
-import { Button, Spinner, ButtonRow } from '../components/common';
+import { Button, Spinner, ButtonRow, SectionHeader } from '../components/common';
 import Accordion from '../components/Accordion';
 import HealthMoodsTabs from '../components/HealthMoodsTabs';
+import TagsList from '../components/TagsList';
+import TeaCardList from '../components/TeaCardList';
 
 import { goToScene } from '../actions/navActions';
 import {
@@ -25,7 +27,7 @@ class TeaInfoScreen extends Component {
   }
 
   handleWriteReview(tea) {
-    this.props.goToScene('WriteReview', tea);
+    this.props.goToScene('WriteReviewScreen', tea);
   }
 
   renderUserControls() {
@@ -86,6 +88,20 @@ class TeaInfoScreen extends Component {
               navigation={this.props.navigation}
               moods={currentTea.moods}
             />
+            <View>
+              <SectionHeader heading={'Taste'} />
+              <TagsList tags={[{ title: 'test tag 1' }, { title: 'Really really long tag' }, { title: 'test tag 3' }, { title: 'test tag 2' }, { title: 'test tag 3' }, { title: 'test tag 2' }, { title: 'test tag 3' }]} />
+              <SectionHeader heading={'Aroma'} />
+              <TagsList tags={[{ title: 'test tag A' }, { title: 'test tag B' }, { title: 'test tag C' }]} />
+            </View>
+            <SectionHeader
+              heading={'Related teas'}
+            />
+            <View style={{ height: 120 }}>
+              <TeaCardList
+                teaList={[currentTea, currentTea, currentTea, currentTea, currentTea, currentTea, currentTea, currentTea, currentTea, currentTea, currentTea, currentTea]}
+              />
+            </View>
           </View>
         </View>
       );

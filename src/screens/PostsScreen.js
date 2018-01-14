@@ -15,7 +15,9 @@ import NotificationItem from '../components/NotificationItem';
 import UserPostCollection from '../components/UserPostCollection';
 import ConnectionRetry from '../components/ConnectionRetry';
 import Login from '../components/Login';
-import { SectionHeader } from '../components/common';
+import { SectionHeader, Button } from '../components/common';
+
+import { goToScene } from '../actions/navActions';
 
 const notificationIcon = require('../assets/images/notification.png');
 
@@ -31,13 +33,15 @@ import {
   returnFollowerPosts
 } from '../actions/postActions';
 
-class NotificationsScreen extends Component {
-  static navigationOptions = () => ({
-    title: 'Posts',
-    tabBarIcon: () => (
-      <Image source={notificationIcon} style={{ width: 18, height: 18 }} />
-    )
-  });
+
+class PostsScreen extends Component {
+  static navigationOptions = ({navigation}) => {
+    const {params = {}} = navigation.state;
+    return {
+      title: 'Posts',
+      headerRight: <Button onPress={params.handleNewPost}>Write a new post</Button>
+    };
+  };
 
   componentWillMount() {
     this.props.fetchHotPosts();
@@ -49,6 +53,15 @@ class NotificationsScreen extends Component {
     }
   }
 
+  componentDidMount() {
+    this.props.navigation.setParams({ handleNewPost: this.NewPost });
+  }
+
+  NewPost() {
+    alert(7);
+    // this.props.goToScene('WritePostScreen');
+  }
+
   fetchData() {
     if (this.props.user) {
       this.props.fetchFollowerPosts();
@@ -57,6 +70,10 @@ class NotificationsScreen extends Component {
     } else {
       alert('not signed in');
     }
+  }
+
+  handleGoToWritePost() {
+    this.props.goToScene('WritePostScreen');
   }
 
   renderNotifications() {
@@ -123,7 +140,7 @@ class NotificationsScreen extends Component {
       const { hot, followers } = this.props.posts;
       return (
         <ScrollView style={styles.container}>
-          {/* {this.renderPostForm()} */}
+          {this.renderPostForm()}
           <UserPostCollection
             heading={'Hot Posts'}
             collection={hot.list}
@@ -162,10 +179,11 @@ const mapStateToProps = ({ auth, notifications, posts, connection }) => {
 };
 
 export default connect(mapStateToProps, {
+  goToScene,
   fetchNotifications,
   getNotifications,
   fetchHotPosts,
   returnHotPosts,
   fetchFollowerPosts,
   returnFollowerPosts
-})(NotificationsScreen);
+})(PostsScreen);

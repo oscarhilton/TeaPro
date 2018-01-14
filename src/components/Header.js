@@ -51,6 +51,7 @@ const styles = StyleSheet.create({
     right: 0,
     flex: 1,
     zIndex: 999,
+    paddingTop: 20,
     borderBottomLeftRadius: 20,
     borderBottomRightRadius: 20,
     shadowOpacity: 0.5,

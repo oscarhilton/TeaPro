@@ -6,14 +6,14 @@ import {
   TouchableOpacity
 } from 'react-native';
 
-const VoteButton = ({ onPress, children, style }) => {
+import IconText from '../IconText';
+
+const VoteButton = ({ onPress, votes, image, style }) => {
   return (
     <TouchableOpacity
       onPress={onPress}
     >
-      <View style={[styles.container, style]}>
-        {children}
-      </View>
+      <IconText uri={image} text={votes} />
     </TouchableOpacity>
   );
 };

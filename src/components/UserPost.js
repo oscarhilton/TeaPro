@@ -5,18 +5,21 @@ import {
   View,
   Text,
   StyleSheet,
+  Image
 } from 'react-native';
 import { connect } from 'react-redux';
 import moment from 'moment';
 
 import { VoteButton } from './common';
-import CircleAvatar from './CircleAvatar';
+import ViewUserAvatar from './ViewUserAvatar';
+import IconText from './IconText';
 
 class UserPost extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      upvotes: this.props.post.upvotes
+      upvotes: this.props.post.upvotes,
+      downvotes: this.props.post.downvotes || null
     };
   }
 
@@ -25,31 +28,38 @@ class UserPost extends Component {
     alert('upvote!');
   }
 
-  renderUpvoteButton(author, upvotes, user) {
-    if (author && user) {
-      if (author._id !== user._id) {
-        return <Text>{upvotes} upvotes</Text>;
+  handleDownvote() {
+    this.setState({ upvotes: this.state.downvotes + 1 });
+    alert('downvote!');
+  }
+
+  renderVoteButton(author, votes, user, text, func) {
+    if (votes !== null) {
+      if (author && user) {
+        if (author._id !== user._id) {
+          return <IconText uri='https://image.flaticon.com/icons/png/512/149/149219.png' text={votes} />;
+        }
       }
+      return (
+        <VoteButton
+          onPress={func}
+          votes={votes}
+          image={'https://image.flaticon.com/icons/png/512/149/149219.png'}
+        />
+      );
     }
-    return (
-      <VoteButton
-        onPress={this.handleUpvote.bind(this)}
-      >
-        <Text>Upvote this post ({upvotes})</Text>
-      </VoteButton>
-    );
   }
 
   renderPost() {
     const { post, user } = this.props;
     if (post) {
       const { author, content, createdAt } = post;
-      const { upvotes } = this.state;
+      const { upvotes, downvotes } = this.state;
       const date = moment(createdAt).fromNow();
       return (
         <View style={styles.container}>
           <View>
-            <CircleAvatar uri={author.avatar} width={50} />
+            <ViewUserAvatar id={author._id} avatar={author.avatar} width={50} />
           </View>
           <View style={styles.inside}>
             <View>
@@ -57,10 +67,20 @@ class UserPost extends Component {
                 <Text style={styles.name}>{author.name}</Text>
                 <Text style={styles.date}>{date}</Text>
               </View>
-              <Text style={styles.content}>{content}</Text>
+              <View>
+                <Text style={styles.content}>{content}</Text>
+              </View>
+              <View stlye={styles.postImageContainer}>
+                <Image
+                  style={styles.postImage}
+                  source={{ uri: 'https://s3-us-west-1.amazonaws.com/cbtl-images/Production/Drupal/s3fs-public/styles/menu_image/public/menu_icons/tea_slate.jpg?itok=CjMcog9I' }}
+                />
+              </View>
             </View>
-            <View>
-              {this.renderUpvoteButton(author, upvotes, user)}
+            <View style={styles.iconSet}>
+              {this.renderVoteButton(author, upvotes, user, 'upvote', this.handleUpvote.bind(this))}
+              {this.renderVoteButton(author, downvotes, user, 'downvote', this.handleDownvote.bind(this))}
+              <IconText uri='https://image.flaticon.com/icons/png/512/149/149307.png' />
             </View>
           </View>
         </View>
@@ -112,6 +132,24 @@ const styles = StyleSheet.create({
   content: {
     marginTop: 5,
     marginBottom: 5
+  },
+  iconSet: {
+    flex: 1,
+    flexDirection: 'row',
+    marginTop: 20,
+    justifyContent: 'flex-start',
+    alignItems: 'flex-start'
+  },
+  postImage: {
+    width: '100%',
+    height: 150,
+    borderRadius: 10
+  },
+  postImageContainer: {
+    padding: 10,
+    borderWidth: 1,
+    borderColor: '#ccc',
+    marginTop: 10
   }
 });
 

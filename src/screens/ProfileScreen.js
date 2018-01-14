@@ -29,7 +29,10 @@ import {
 
 class ProfileScreen extends Component {
   static navigationOptions = () => ({
-    title: 'Profile'
+    title: 'Profile',
+    navigationOptions: ({navigation}) => ({
+      header: false
+    })
   });
 
   async componentWillMount() {
@@ -84,7 +87,7 @@ class ProfileScreen extends Component {
             data={wishlist}
             heading={'Teas in your wishlist'}
           />
-          <ImageCardList imageList={[1, 2]} />
+          {/* <ImageCardList imageList={[1, 2]} /> */}
           <Accordion
             heading={'Profile biography'}
             text={profileBio}

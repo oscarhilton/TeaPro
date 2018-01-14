@@ -10,6 +10,10 @@ import { goBack } from '../actions/navActions';
 import { Input, TextArea, Button } from '../components/common';
 
 class WriteReviewScreen extends Component {
+  static navigationOptions = ({ navigation }) => ({
+    title: `Review ${navigation.state.params.title}`
+  });
+
   constructor(props) {
     super(props);
     this.state = {
@@ -37,26 +41,21 @@ class WriteReviewScreen extends Component {
     });
   }
 
-  handleImageChoice(origURL, user, info) {
-    alert(origUrl);
-    this.setState({
-      image: {
-        origURL,
-        user,
-        info
-      }
-    });
+  handleImageChoice(res, user) {
+    this.setState({ image: res, user });
+    console.log(this.state);
   }
 
   async sendReview() {
     const { titleText, bodyText, starCount } = this.state;
     const { currentTea } = this.props.teas;
-    const { _id } = this.props.auth.user;
+    const { user } = this.props.auth;
     if (titleText.length > 0 && bodyText.length > 0 && starCount > 0) {
-      console.log(_id);
-      this.props.fetchTeaDetails();
-      await this.props.createReview(_id, currentTea._id, newReview);
-      this.props.goBack();
+      // this.props.fetchTeaDetails();
+      this.props.createReview(user._id, currentTea._id, this.state);
+      // await this.props.createReview(_id, currentTea._id, this.state);
+      // alert('New review submitted');
+      // this.props.goBack();
     } else {
       alert('Fill all fields!');
     }
@@ -93,8 +92,8 @@ class WriteReviewScreen extends Component {
             onChangeText={this.handleBodyChange.bind(this)}
           />
           <Picker>
-            <Picker.Item label="Java" value="java" />
-            <Picker.Item label="JavaScript" value="js" />
+            <Picker.Item label="Brand 1" value="1" />
+            <Picker.Item label="Brand 2" value="1" />
           </Picker>
           <UploadImage sendToForm={this.handleImageChoice.bind(this)} teaId={tea} />
         </View>
@@ -106,8 +105,7 @@ class WriteReviewScreen extends Component {
 const styles = StyleSheet.create({
   containerStyle: {
     flex: 1,
-    backgroundColor: 'white',
-    paddingTop: 100
+    backgroundColor: 'white'
   },
   inputFieldStyle: {
     backgroundColor: '#f1f1f1',

@@ -40,12 +40,12 @@ export const TeaTabs = TabNavigator({
 });
 
 const HEADER_MAX_HEIGHT = 350;
-const HEADER_MIN_HEIGHT = 80;
+const HEADER_MIN_HEIGHT = 100;
 const HEADER_SCROLL_DISTANCE = HEADER_MAX_HEIGHT - HEADER_MIN_HEIGHT;
 
 export class TeaTabWrapper extends Component {
-  static navigationOptions = () => ({
-    title: 'Tea'
+  static navigationOptions = ({ navigation }) => ({
+    title: navigation.state.params.title
   });
 
   constructor(props) {
@@ -65,7 +65,7 @@ export class TeaTabWrapper extends Component {
 
     const headerOpaciy = this.state.scrollY.interpolate({
       inputRange: [0, HEADER_SCROLL_DISTANCE],
-      outputRange: [0.8, 0],
+      outputRange: [0.8, 0.2],
       extrapolate: 'clamp'
     });
 
@@ -103,7 +103,8 @@ const styles = StyleSheet.create({
   },
   heading: {
     width: '100%',
-    position: 'absolute'
+    position: 'absolute',
+    zIndex: 2
   },
   scrollViewContent: {
     marginTop: HEADER_MAX_HEIGHT

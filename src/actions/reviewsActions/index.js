@@ -13,6 +13,7 @@ import {
  } from './types';
 
 import { failedConnection } from '../connectionActions';
+import { uploadAnImage } from '../mediaActions';
 
 export const fetchReviews = () => dispatch => {
   dispatch({ type: FETCH_REVIEWS });
@@ -46,16 +47,26 @@ export const returnUserReviews = (userId) => async dispatch => {
 };
 
 export const createReview = (userId, teaId, newReview) => async dispatch => {
-  const res = await axios.post(`${api}/api/teas/${teaId}/reviews/add/${userId}`, { newReview });
-  if (res && res.status === 200) {
-    await updateAsync(String(teaId), {
-      reviews: [...res.data.reviews],
-      score: res.data.score
-    });
-    dispatch({ type: CREATE_REVIEW, payload: res.data });
+  // console.log(newReview, '<--- NEW REVIEW');
+  const { image, user } = newReview;
+  console.log(image);
+  if (image) {
+    console.log(true)
   } else {
-    dispatch(failedConnection());
+    console.log(false)
   }
+  let imageUpload = null;
+  if (image) {
+    uploadAnImage(image, user, async (resultImage) => {
+      console.log(res);
+      const res = await axios.get(`${api}/api/teas/${teaId}/reviews/add/${userId}`, { newReview, imageUpload: resultImage._id  });
+      console.log(res, '<<<<< new review res!!!');
+    });
+  }
+  // console.log(imageUpload);
+  // const res = await axios.get(`${api}/api/teas/${teaId}/reviews/add/${userId}`, { newReview, imageUpload  });
+  // console.log(res, '<<<<< new review res!!!');
+
 };
 
 export const upvoteReview = (reviewId) => async dispatch => {

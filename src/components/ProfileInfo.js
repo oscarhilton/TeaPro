@@ -32,11 +32,13 @@ const ProfileInfo = ({ user }) => {
           followScore={numFollowing}
           followText={'Following'}
           users={user.following}
+          title={`Who ${user.name}'s following`}
         />
         <UserFollowScoreButton
           followScore={numFollowers}
           followText={'Followers'}
           users={user.followers}
+          title={`${user.name}'s followers`}
         />
       </View>
       {/* <Image
@@ -75,9 +77,8 @@ const styles = StyleSheet.create({
     margin: 10
   },
   profileDetailsStlye: {
-    margin: 10
-  },
-  usernameContainer: {
+    margin: 10,
+    marginBottom: 50
   },
   usernameStlye: {
     fontSize: 18,
@@ -98,7 +99,6 @@ const styles = StyleSheet.create({
   rankStyle: {
     fontSize: 12,
     fontWeight: '600',
-    backgroundColor: 'blue',
     color: 'white',
     borderRadius: 20
   },

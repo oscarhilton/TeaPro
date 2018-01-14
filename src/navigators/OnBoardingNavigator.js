@@ -14,6 +14,5 @@ export const OnBoardingNavigator = TabNavigator({
   }
 }, {
   swipeEnabled: false,
-  animationEnabled: true,
-  backBehavior: 'none'
+  animationEnabled: true
 });

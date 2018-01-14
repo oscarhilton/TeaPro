@@ -4,11 +4,9 @@ import { connect } from 'react-redux';
 import moment from 'moment';
 import StarRating from 'react-native-star-rating';
 import CircleAvatar from './CircleAvatar';
+import ViewUserAvatar from './ViewUserAvatar';
 import CommentForm from './CommentForm';
 import VoteButtons from './VoteButtons';
-
-import { goToScene } from '../actions/navActions';
-import { loadUser, displayUser } from '../actions/userActions';
 
 class Review extends Component {
   handleViewUser() {
@@ -29,7 +27,6 @@ class Review extends Component {
     const { auth, review } = this.props;
     const { user } = auth;
     const {
-      _id,
       author,
       title,
       content,
@@ -60,19 +57,14 @@ class Review extends Component {
               <Text style={styles.contentStyle}>{content}</Text>
             </View>
             <View>
-              <TouchableOpacity
-                onPress={this.handleViewUser.bind(this)}
-                style={styles.authorStyle}
-              >
-                <CircleAvatar uri={author.avatar} width={40} />
-              </TouchableOpacity>
+              <ViewUserAvatar id={author._id} avatar={author.avatar} width={40} />
             </View>
           </View>
           <View style={styles.votesContainer}>
             <VoteButtons
               user={user._id}
               author={author}
-              target={_id}
+              target={review._id}
               upvotes={upvotes}
               downvotes={downvotes}
               handleUpvote={this.handleUpvote.bind(this)}
@@ -82,7 +74,7 @@ class Review extends Component {
           <View>
             <Text>{comments.length} Comments</Text>
             {showComments}
-            <CommentForm reviewId={_id} />
+            <CommentForm reviewId={review._id} />
           </View>
         </View>
       )
@@ -145,8 +137,4 @@ const mapStateToProps = ({ auth, teas }) => {
   return { auth, teas }
 };
 
-export default connect(mapStateToProps, {
-  goToScene,
-  loadUser,
-  displayUser
-})(Review);
+export default connect(mapStateToProps)(Review);

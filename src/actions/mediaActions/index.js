@@ -10,6 +10,38 @@ import {
   RETURN_USER_IMAGES
 } from './types';
 
+export const uploadAnImage = (image, userId, cb) => {
+  const { uri, fileName } = image; // Pull uri and fileName off image obj
+  const req = {
+    uri, // either an 'assets-library' url (for files from photo library) or an image dataURL
+    uploadUrl: `${api}/api/upload/userupload`,
+    fileName: fileName,
+    mimeType: 'image/jpeg',
+    fileKey: 'file',
+    headers: {
+      'Content-Type': 'multipart/form-data'
+    },
+    data: {
+      image,
+      userId
+    }
+  }
+
+  if (Platform.OS === 'ios') {
+    NativeModules.FileTransfer.upload(req, (err, res) => {
+      if (res.status === 200) { // If success
+        if (!err) { // and no error
+          return cb(JSON.parse(res.data)); // send image callback
+        }
+        return console.log(err);
+      }
+    });
+  } else {
+    alert('NOT IOS');
+  }
+
+};
+
 export const uploadUserImageForTea = (uri, userId, data) => async dispatch => {
   const req = {
     uri, // either an 'assets-library' url (for files from photo library) or an image dataURL
@@ -21,7 +53,7 @@ export const uploadUserImageForTea = (uri, userId, data) => async dispatch => {
       'Content-Type': 'multipart/form-data'
     },
     data
-  };
+  }
 
   if (Platform.OS === 'ios') {
     NativeModules.FileTransfer.upload(req, (err, res) => {
@@ -44,9 +76,6 @@ export const uploadUserImageForTea = (uri, userId, data) => async dispatch => {
         }
       });
   }
-
-  // const res = await axios.post('http://httpbin.org/post', data);
-  // dispatch({ type: RETURN_ALL_CATEGORIES, payload: res.data });
 };
 
 export const fetchUserImages = () => dispatch => {

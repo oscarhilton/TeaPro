@@ -14,7 +14,7 @@ class TeaCardButton extends Component {
     this.props.clearSearch();
     this.props.fetchTeaDetails();
     this.props.makeCurrentTea(tea._id);
-    this.props.goToScene('ViewTea');
+    this.props.goToScene('ViewTea', { title: tea.title });
   }
 
   render() {

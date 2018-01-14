@@ -9,22 +9,8 @@ class UploadImage extends Component {
   handleImageSelect() {
     ImagePicker.showImagePicker(null, (response) => {
       console.log(response);
-      const { origURL, fileName, fileSize, latitude, longitude, timestamp } = response;
-      const info = {
-        teaId: this.props.teaId,
-        fileName,
-        fileSize,
-        latitude,
-        longitude,
-        timestamp,
-      };
-      this.handleSendToForm(origURL, info);
-      // this.props.uploadUserImageForTea(origURL, this.props.user, info);
+      this.props.sendToForm(response, this.props.user);
     });
-  }
-
-  handleSendToForm(origUrl, info) {
-    this.props.sendToForm(origUrl, this.props.user, info);
   }
 
   render() {

@@ -17,7 +17,7 @@ class UserFollowScoreButton extends Component {
     if (followScore > 0 && !loading) {
       this.props.fetchUsersList();
       this.props.returnUsersList(users);
-      this.props.goToScene('UserList');
+      this.props.goToScene('UserList', { title: this.props.title });
     }
   }
 

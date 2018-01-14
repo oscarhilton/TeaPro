@@ -7,7 +7,7 @@ import TeaMood from './TeaMood';
 
 const TeaMoodsList = ({ screenProps }) => {
   const { moods } = screenProps;
-  const mapMoods = moods.map(mood => <TeaMood mood={mood.mood} score={mood.score} />);
+  const mapMoods = moods.map(mood => <TeaMood key={mood._id} mood={mood.mood} score={mood.score} />);
   return (
     <View style={styles.container}>
       {mapMoods}

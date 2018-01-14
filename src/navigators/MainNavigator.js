@@ -1,20 +1,37 @@
 import React from 'react';
 import { TabNavigator } from 'react-navigation';
 
+import { PostsNavigator } from './PostsNavigator';
+
 import DiscoverScreen from '../screens/DiscoverScreen';
-import ProfileScreen from '../screens/ProfileScreen';
-import NotificationsScreen from '../screens/NotificationsScreen';
+import { ProfileNavigator } from './ProfileNavigator';
 
 export const MainNavigator = TabNavigator({
   Profile: {
-    screen: ProfileScreen
+    screen: ProfileNavigator,
+    navigationOptions: ({navigation}) => ({
+      header: false
+    })
   },
   Discover: {
-    screen: DiscoverScreen
+    screen: DiscoverScreen,
+    navigationOptions: ({navigation}) => ({
+      header: false
+    })
+  },
+  Feed: {
+    screen: PostsNavigator,
+    navigationOptions: ({navigation}) => ({
+      header: false
+    })
   },
   Notifications: {
-    screen: NotificationsScreen
+    screen: PostsNavigator,
+    navigationOptions: ({navigation}) => ({
+      header: false
+    })
   }
+
 }, {
   tabBarPosition: 'bottom',  // So your Android tabs go bottom
   initialRouteName: 'Discover',

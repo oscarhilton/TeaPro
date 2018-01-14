@@ -75,9 +75,7 @@ class ViewTeaHeader extends Component {
                     starColor={'#212121'}
                     maxStars={5}
                     rating={roundedScore}
-                    starStyle={{
-                      color: 'white'
-                    }}
+                    starColor={'#fff'}
                   />
                   <Text style={styles.reviewNumberText}>{numReviews} reviews</Text>
                 </View>
