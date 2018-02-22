@@ -135,7 +135,6 @@ class PostsScreen extends Component {
 
   checkConnecton() {
     const { connection } = this.props;
-    console.log(connection);
     if (connection.connected || connection.connected === null) {
       const { hot, followers } = this.props.posts;
       return (

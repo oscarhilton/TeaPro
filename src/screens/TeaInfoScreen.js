@@ -17,9 +17,18 @@ import {
 } from '../actions/cupboardActions';
 
 class TeaInfoScreen extends Component {
-  handleAddTeaCupboard(tea) {
-    this.props.addTeaToCupboard(tea, this.props.auth.user._id);
-    this.props.returnCupboardTeas(this.props.auth.user._id);
+  constructor(props) {
+    super(props);
+    // this.addTeaToCupboard = this.handleAddTeaCupboard.bind(this);
+  }
+
+  handleAddTeaCupboard = () => {
+    const { teas, auth } = this.props;
+    const { currentTea } = teas;
+    const { user } = auth;
+    console.log(user._id, currentTea);
+    this.props.addTeaToCupboard(currentTea, user._id);
+    this.props.returnCupboardTeas(currentTea, user._id);
   }
 
   handleAddTeaWishlist(tea) {
@@ -41,7 +50,7 @@ class TeaInfoScreen extends Component {
         return (
           <ButtonRow>
             <Button
-              onPress={this.handleAddTeaCupboard.bind(this, currentTea)}
+              onPress={this.handleAddTeaCupboard}
             >
               {cupboardButtonText ? 'Remove tea from cupboard' : 'Add tea to cupboard'}
             </Button>
@@ -69,6 +78,7 @@ class TeaInfoScreen extends Component {
   renderTeaScreen() {
     if (this.props.teas.loaded) {
       const { currentTea } = this.props.teas;
+      const { steeptime, description, moods } = currentTea;
       return (
         <View style={{ flex: 1 }}>
           <View
@@ -76,17 +86,17 @@ class TeaInfoScreen extends Component {
           >
             <Accordion
               heading={'Steep Time'}
-              text={currentTea.steeptime}
+              text={steeptime}
             />
             <Accordion
               heading={'Description'}
-              text={currentTea.description}
+              text={description}
               textStyle={styles.descriptionStyle}
             />
             {this.renderUserControls()}
             <HealthMoodsTabs
               navigation={this.props.navigation}
-              moods={currentTea.moods}
+              moods={moods}
             />
             <View>
               <SectionHeader heading={'Taste'} />
@@ -99,7 +109,7 @@ class TeaInfoScreen extends Component {
             />
             <View style={{ height: 120 }}>
               <TeaCardList
-                teaList={[currentTea, currentTea, currentTea, currentTea, currentTea, currentTea, currentTea, currentTea, currentTea, currentTea, currentTea, currentTea]}
+                teaList={[currentTea]}
               />
             </View>
           </View>

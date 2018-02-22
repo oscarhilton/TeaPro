@@ -18,17 +18,14 @@ const styles = StyleSheet.create({
   textStyle: {
     color: '#212121',
     fontSize: 14,
-    fontWeight: '600',
     paddingTop: 10,
     paddingBottom: 10
   },
   buttonStyle: {
     flex: 1,
     alignSelf: 'stretch',
-    backgroundColor: '#f1f1f1',
-    padding: 10,
-    borderBottomColor: '#ccc',
-    borderBottomWidth: 1,
+    backgroundColor: '#EFCA2B',
+    padding: 10
   }
 });
 

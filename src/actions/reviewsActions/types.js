@@ -1,3 +1,5 @@
+export const REVIEW_IMAGE_UPLOAD_FAILED = 'review_image_upload_failed';
+export const REVIEW_UPLOAD_FAILED = 'review_upload_failed';
 export const CREATE_REVIEW = 'fetch_reviews';
 export const FETCH_REVIEWS = 'fetch_reviews';
 export const RETURN_TEA_REVIEWS = 'fetch_reviews';

@@ -17,19 +17,22 @@ class ViewTeaHeader extends Component {
   }
 
   renderImage() {
-    const { userImages } = this.props.teas.currentTea;
-    if (userImages.length > 0) {
-      const lastImage = userImages[userImages.length - 1];
-      return (
-        <Animated.Image
-          style={[styles.imageStyle, {
-            height: this.props.headerHeight,
-            opacity: this.props.headerOpactiy
-          }]}
-          blurRadius={this.props.headerOpactiy}
-          source={{ uri: lastImage.path }}
-        />
-      );
+    const { reviews } = this.props.teas.currentTea;
+    if (reviews.length > 0) {
+      const lastReview = reviews[0];
+      console.log(lastReview);
+      if (lastReview.image) {
+        return (
+          <Animated.Image
+            style={[styles.imageStyle, {
+              height: this.props.headerHeight,
+              opacity: this.props.headerOpactiy
+            }]}
+            blurRadius={this.props.headerOpactiy}
+            source={{ uri: lastReview.image.path }}
+          />
+        );
+      }
     }
   }
 
@@ -66,12 +69,12 @@ class ViewTeaHeader extends Component {
                 <Text
                   style={styles.originTextStyle}
                 >
-                  {`${category.title} tea from ${origin}`}
+                  {`${category.title} tea from ${origin || 'unknown'}`}
                 </Text>
                 <View style={styles.ratingStyle}>
                   <StarRating
                     disabled
-                    starSize={12}
+                    starSize={10}
                     starColor={'#212121'}
                     maxStars={5}
                     rating={roundedScore}
@@ -166,7 +169,7 @@ const styles = StyleSheet.create({
   },
   originTextStyle: {
     color: 'white',
-    fontSize: 12,
+    fontSize: 10,
   },
   ratingStyle: {
     flexDirection: 'row'
@@ -174,7 +177,7 @@ const styles = StyleSheet.create({
   reviewNumberText: {
     color: 'white',
     marginLeft: 5,
-    fontSize: 12
+    fontSize: 10
   }
 });
 

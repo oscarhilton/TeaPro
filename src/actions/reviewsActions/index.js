@@ -3,6 +3,8 @@ import { AsyncStorage } from 'react-native';
 import { api } from '../../api';
 import { updateAsync } from '../helpers';
 import {
+  REVIEW_IMAGE_UPLOAD_FAILED,
+  REVIEW_UPLOAD_FAILED,
   CREATE_REVIEW,
   FETCH_REVIEWS,
   RETURN_TEA_REVIEWS,
@@ -46,33 +48,42 @@ export const returnUserReviews = (userId) => async dispatch => {
   }
 };
 
-export const createReview = (userId, teaId, newReview) => async dispatch => {
-  // console.log(newReview, '<--- NEW REVIEW');
-  const { image, user } = newReview;
-  console.log(image);
+export const createReview = (userId, teaId, newReview, image) => async dispatch => {
   if (image) {
-    console.log(true)
-  } else {
-    console.log(false)
-  }
-  let imageUpload = null;
-  if (image) {
-    uploadAnImage(image, user, async (resultImage) => {
-      console.log(res);
-      const res = await axios.get(`${api}/api/teas/${teaId}/reviews/add/${userId}`, { newReview, imageUpload: resultImage._id  });
-      console.log(res, '<<<<< new review res!!!');
+    uploadAnImage(image, userId, (resultImage) => {
+      console.log(resultImage);
+      if (resultImage) {
+        axios.post(`${api}/api/teas/${teaId}/reviews/add/${userId}`, { newReview, imageUpload: resultImage._id  })
+             .then((res) => {
+               console.log(res);
+               const { score, reviews } = res.data;
+               dispatch({ type: CREATE_REVIEW, payload: { score, reviews } });
+             })
+             .catch((err) => {
+               console.log(err);
+               dispatch({ type: REVIEW_UPLOAD_FAILED });
+             });
+      } else {
+        dispatch({ type: REVIEW_IMAGE_UPLOAD_FAILED });
+      }
     });
-  }
-  // console.log(imageUpload);
-  // const res = await axios.get(`${api}/api/teas/${teaId}/reviews/add/${userId}`, { newReview, imageUpload  });
-  // console.log(res, '<<<<< new review res!!!');
-
+  } else {
+    axios.post(`${api}/api/teas/${teaId}/reviews/add/${userId}`, { newReview  })
+         .then((res) => {
+           console.log(res);
+           dispatch({ type: CREATE_REVIEW });
+         })
+         .catch((err) => {
+           console.log(err);
+           dispatch({ type: REVIEW_UPLOAD_FAILED });
+         });
+  };
 };
 
 export const upvoteReview = (reviewId) => async dispatch => {
   const res = await axios.get(`${api}/api/reviews/${reviewId}/upvote`);
   if (res && res.status === 200) {
-    dispatch({ type: UPVOTE_REVIEW, payload: {} });
+    dispatch({ type: UPVOTE_REVIEW });
   } else {
     dispatch(failedConnection());
   }

@@ -17,6 +17,7 @@ class WriteReviewScreen extends Component {
   constructor(props) {
     super(props);
     this.state = {
+      sending: false,
       starCount: 0,
       titleText: '',
       bodyText: ''
@@ -43,19 +44,24 @@ class WriteReviewScreen extends Component {
 
   handleImageChoice(res, user) {
     this.setState({ image: res, user });
-    console.log(this.state);
   }
 
   async sendReview() {
-    const { titleText, bodyText, starCount } = this.state;
+    const { titleText, bodyText, starCount, image } = this.state;
     const { currentTea } = this.props.teas;
     const { user } = this.props.auth;
+    const form = {
+      titleText,
+      bodyText,
+      starCount
+    };
     if (titleText.length > 0 && bodyText.length > 0 && starCount > 0) {
       // this.props.fetchTeaDetails();
-      this.props.createReview(user._id, currentTea._id, this.state);
+      this.setState({ sending: true });
+      await this.props.createReview(user._id, currentTea._id, form, image);
       // await this.props.createReview(_id, currentTea._id, this.state);
-      // alert('New review submitted');
-      // this.props.goBack();
+      alert('New review submitted');
+      this.props.goBack();
     } else {
       alert('Fill all fields!');
     }

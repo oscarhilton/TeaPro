@@ -7,11 +7,11 @@ import {
   StyleSheet,
 } from 'react-native';
 
-export default class Tag extends Component {
+export default class CategoryThumbnail extends Component {
   render() {
     return (
       <View style={styles.container}>
-        <Text style={styles.text}>{this.props.title}</Text>
+        <Text>I'm the CategoryThumbnail component</Text>
       </View>
     );
   }
@@ -19,12 +19,6 @@ export default class Tag extends Component {
 
 const styles = StyleSheet.create({
   container: {
-    borderColor: 'rgb(63,65,83)',
-    borderWidth: 1,
-    margin: 2
+    flex: 1,
   },
-  text: {
-    color: '#212121',
-    padding: 5
-  }
 });

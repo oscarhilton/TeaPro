@@ -16,10 +16,11 @@ class Notifications extends Component {
   constructor(props) {
     super(props);
     const { user, socket } = this.props;
-    console.log(this.props);
-    // socket.emit('subscribe', user._id); //59f4b1d01bc84b3b80ad34e0
-    // socket.on('conversation private post', this.displayNotification.bind(this));
-    // socket.on('incoming new follower', this.handleIncomingFollower.bind(this));
+    if (user) {
+      socket.emit('subscribe', user._id); //59f4b1d01bc84b3b80ad34e0
+      socket.on('conversation private post', this.displayNotification.bind(this));
+      socket.on('incoming new follower', this.handleIncomingFollower.bind(this));
+    }
   }
 
   handleIncomingFollower(data) {
@@ -28,8 +29,8 @@ class Notifications extends Component {
     this.props.newNotification(message);
   }
 
-  displayNotification( data ) {
-    console.log(data, '<<<<<<<<<<<<!!!!');
+  displayNotification(data) {
+    console.log(data, ' incoming notification data');
   }
 
   renderPopup() {

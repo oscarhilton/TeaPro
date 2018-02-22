@@ -50,21 +50,20 @@ class ProfileScreen extends Component {
     if (this.props.auth.loggedIn !== newProps.auth.loggedIn) {
       const { loggedIn, user, onBoard } = newProps.auth;
       if (loggedIn) {
-        alert(onBoard);
         await this.props.checkOnBoarding(user._id);
-        // if (!onBoard) {
-        //   this.props.goToScene('OnBoarding', user);
-        // }
+        if (!onBoard && onBoard !== null) {
+          this.props.goToScene('OnBoarding', user);
+        }
       }
     }
   }
 
-  handleOpenOnBoarding() {
+  handleOpenOnBoarding = () => {
     const { user } = this.props.auth;
     this.props.goToScene('OnBoarding', user)
   }
 
-  handleLogOut() {
+  handleLogOut = () => {
     this.props.logOutUser();
   }
 
@@ -94,12 +93,12 @@ class ProfileScreen extends Component {
           />
           <View style={{ height: 100 }}>
             <Button
-              onPress={this.handleLogOut.bind(this)}
+              onPress={this.handleLogOut}
             >
               Log Out
             </Button>
             <Button
-              onPress={this.handleOpenOnBoarding.bind(this)}
+              onPress={this.handleOpenOnBoarding}
             >
               Open OnBoarding
             </Button>

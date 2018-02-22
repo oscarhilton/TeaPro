@@ -18,7 +18,8 @@ const TeaMoodsList = ({ screenProps }) => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: 'white'
+    backgroundColor: 'white',
+    padding: 5
   },
 });
 

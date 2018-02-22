@@ -6,7 +6,6 @@ import Review from '../components/Review';
 class ReviewsScreen extends Component {
   render() {
     const { reviews } = this.props.teas.currentTea;
-    console.log(reviews);
     const showReviews = reviews.map((review) => <Review key={review._id} review={review} />);
     return (
       <View style={{ flex: 1, backgroundColor: 'rgb(38,37,42)' }}>

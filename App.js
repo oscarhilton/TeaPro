@@ -39,18 +39,20 @@ class App extends Component {
   }
   render() {
     const { dispatch, nav } = this.props;
+    const { user } = this.props.auth;
+    const { socket } = this.state;
     return (
       <View style={{ flex: 1 }}>
         <RootNavigator
           navigation={addNavigationHelpers({
             dispatch,
             state: nav,
-            socket: this.state.socket
+            socket
           })}
         />
         <Notifications
-          user={this.props.auth.user}
-          socket={this.state.socket}
+          user={user}
+          socket={socket}
         />
       </View>
     );

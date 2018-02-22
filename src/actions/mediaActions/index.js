@@ -34,6 +34,8 @@ export const uploadAnImage = (image, userId, cb) => {
           return cb(JSON.parse(res.data)); // send image callback
         }
         return console.log(err);
+      } else {
+        return false;
       }
     });
   } else {

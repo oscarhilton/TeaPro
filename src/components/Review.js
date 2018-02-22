@@ -3,6 +3,7 @@ import { View, Text, StyleSheet, TouchableOpacity } from 'react-native';
 import { connect } from 'react-redux';
 import moment from 'moment';
 import StarRating from 'react-native-star-rating';
+import UserPost from './UserPost';
 import CircleAvatar from './CircleAvatar';
 import ViewUserAvatar from './ViewUserAvatar';
 import CommentForm from './CommentForm';
@@ -41,7 +42,12 @@ class Review extends Component {
     if (user && review) {
       return (
         <View style={styles.componentStyle}>
-          <View style={styles.topStyle}>
+          <UserPost post={review} rating={<StarRating
+            disabled
+            starSize={10}
+            rating={rating}
+          />} />
+          {/* <View style={styles.topStyle}>
             <Text style={styles.authorNameStyle}>{title}</Text>
             <View>
               <StarRating
@@ -75,7 +81,7 @@ class Review extends Component {
             <Text>{comments.length} Comments</Text>
             {showComments}
             <CommentForm reviewId={review._id} />
-          </View>
+          </View> */}
         </View>
       )
     }

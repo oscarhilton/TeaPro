@@ -32,8 +32,12 @@ export const TeaTabs = TabNavigator({
   animationEnabled: true,
   backBehavior: 'none',
   tabBarOptions: {
+    tabStyle: {
+      backgroundColor: '#EFCA2B'
+    },
     labelStyle: {
       fontSize: 12,
+      color: 'white'
     }
   },
   header: false
@@ -68,8 +72,6 @@ export class TeaTabWrapper extends Component {
       outputRange: [0.8, 0.2],
       extrapolate: 'clamp'
     });
-
-    // const headerOpaciy = 0.2;
 
     return (
       <View style={styles.container}>

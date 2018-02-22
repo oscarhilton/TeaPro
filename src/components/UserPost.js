@@ -50,16 +50,28 @@ class UserPost extends Component {
     }
   }
 
+  renderImage() {
+    const { image } = this.props.post;
+    if (image) {
+      return (
+        <Image
+          style={styles.postImage}
+          source={{ uri: image.path }}
+        />
+      );
+    }
+  }
+
   renderPost() {
     const { post, user } = this.props;
     if (post) {
-      const { author, content, createdAt } = post;
+      const { author, title, content, createdAt, image } = post;
       const { upvotes, downvotes } = this.state;
       const date = moment(createdAt).fromNow();
       return (
         <View style={styles.container}>
           <View>
-            <ViewUserAvatar id={author._id} avatar={author.avatar} width={50} />
+            <ViewUserAvatar id={author._id} avatar={author.avatar} width={35} />
           </View>
           <View style={styles.inside}>
             <View>
@@ -67,14 +79,15 @@ class UserPost extends Component {
                 <Text style={styles.name}>{author.name}</Text>
                 <Text style={styles.date}>{date}</Text>
               </View>
+              <View style={styles.titleContainer}>
+                <Text style={styles.title}>{title}</Text>
+                {this.props.rating}
+              </View>
               <View>
                 <Text style={styles.content}>{content}</Text>
               </View>
-              <View stlye={styles.postImageContainer}>
-                <Image
-                  style={styles.postImage}
-                  source={{ uri: 'https://s3-us-west-1.amazonaws.com/cbtl-images/Production/Drupal/s3fs-public/styles/menu_image/public/menu_icons/tea_slate.jpg?itok=CjMcog9I' }}
-                />
+              <View style={styles.postImageContainer}>
+                {this.renderImage()}
               </View>
             </View>
             <View style={styles.iconSet}>
@@ -114,20 +127,32 @@ const styles = StyleSheet.create({
   top: {
     flexDirection: 'row',
     justifyContent: 'space-between',
-    paddingBottom: 5
-
+    paddingBottom: 5,
+    alignItems: 'center',
+    marginBottom: 5
   },
   name: {
-    fontWeight: '800'
+    fontWeight: '800',
+    fontSize: 10
+  },
+  titleContainer: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'space-between',
+    marginBottom: 5
+  },
+  title: {
+    fontWeight: '600'
   },
   date: {
     color: '#212121',
-    fontSize: 11,
+    fontSize: 9,
     paddingHorizontal: 10,
     borderWidth: 1,
     borderColor: '#f5f5f5',
     borderRadius: 15,
-    paddingVertical: 3
+    paddingVertical: 3,
+    marginRight: -10
   },
   content: {
     marginTop: 5,
@@ -146,9 +171,6 @@ const styles = StyleSheet.create({
     borderRadius: 10
   },
   postImageContainer: {
-    padding: 10,
-    borderWidth: 1,
-    borderColor: '#ccc',
     marginTop: 10
   }
 });
